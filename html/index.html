@@ -1,1 +1,40 @@
-<html></html>
+<html><head>
+<!-- relative path-name to access js -->
+<script type='text/javascript' src='../js/api.js'></script>
+<script type='text/javascript' src='../js/get_choiceList.js'></script>
+<script type='text/javascript' src='../js/choice.js'></script>
+<script type='text/javascript' src='../js/create.js'></script>
+<script type='text/javascript' src='../js/delete.js'></script>
+
+<script type="text/javascript">
+function initialize() {
+  
+   // get all constants
+   refreshConstantsList();
+}
+</script>
+</head>
+<body onload="initialize()">
+
+<h1>Request to add values </h1>
+
+<form name="addForm" method="post" name="newChoice">
+  <input name="choiceDescription" value="" /><input name="alt1" value="" /><input name="alt2" value="" /><input name="alt3" value="" /><input name="alt4" value="" /><input name="alt5" value="" /><input name="numTeammates" value="" />  <input name="result" readonly/>
+  <input type="button" value="Submit"  onClick="JavaScript:handleAddClick(this)">
+</form>
+
+<h2>Constants</h2>
+
+<form name="createForm" method="post">
+   <input name="constantName" value="constantName" />
+   <input name="constantValue" value=""/>
+  
+   <input type="button" id="createButton" value="Create Constant" onClick="JavaScript:handleCreateClick(this)">
+<br>   <input type="checkbox" name="system">Create System Constant<br>
+</form>
+
+<div id="constantList"></div>
+
+</body>
+
+</html>
