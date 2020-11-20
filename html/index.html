@@ -9,31 +9,50 @@
 <script type="text/javascript">
 function initialize() {
   
-   // get all constants
-   refreshConstantsList();
+   // refreshes the page to display choice
+   refreshChoice();
 }
 </script>
 </head>
 <body onload="initialize()">
 
-<h1>Request to add values </h1>
+<!-- Creating a new choice -->
+<h1>Request to Create New Choice </h1> 
 
-<form name="addForm" method="post" name="newChoice">
-  <input name="choiceDescription" value="" /><input name="alt1" value="" /><input name="alt2" value="" /><input name="alt3" value="" /><input name="alt4" value="" /><input name="alt5" value="" /><input name="numTeammates" value="" />  <input name="result" readonly/>
-  <input type="button" value="Submit"  onClick="JavaScript:handleAddClick(this)">
+<form name="newForm" method="post" name="newChoice">
+  <input name="choiceDescription" value="" /><input name="alt1" value="" />
+  <input name="alt2" value="" /><input name="alt3" value="" />
+  <input name="alt4" value="" /><input name="alt5" value="" />
+  <input name="numTeammates" value="" /><input name="choiceId" readonly/>
+  <input type="button" value="Create Choice"  onClick="JavaScript:handleNewClick(this)">
 </form>
 
-<h2>Constants</h2>
+<!-- Register to the Choice --> 
+<h2> Open Existing Choice</h2> 
 
-<form name="createForm" method="post">
-   <input name="constantName" value="constantName" />
+<form name="addForm" method="post" name="existingChoice">
+  <input name="choiceId" value="" /><input name="teammateName" value="" />
+  <input name="password (optional)" value="" />
+  <input type="button" value="Open Choice"  onClick="JavaScript:handleAddClick(this)">
+  <br>   <input type="checkbox" name="system">Create System Choice<br>
+</form>
+ 
+<!-- show the choice on the same page where they should be able to interact with the choice -->
+<h3> Display Choice</h3>
+
+<!-- <form name="createForm" method="post">
+   <input name="choiceDespcription" value="choiceDescription" />
+   <input name="alt1" value="alt1" /><input name="alt2" value="" />
+   <input name="alt3" value="" /><input name="alt4" value="" />
+   <input name="alt5" value="" />
+   <input name="numTeammates" value="" />
    <input name="constantValue" value=""/>
   
-   <input type="button" id="createButton" value="Create Constant" onClick="JavaScript:handleCreateClick(this)">
-<br>   <input type="checkbox" name="system">Create System Constant<br>
-</form>
+   <input type="button" id="createButton" value="Create Choice" onClick="JavaScript:handleCreateClick(this)">
+<br>   <input type="checkbox" name="system">Create System Choice<br>
+</form> -->
 
-<div id="constantList"></div>
+<div id="choice"></div>
 
 </body>
 
