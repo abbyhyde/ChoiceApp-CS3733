@@ -4,6 +4,11 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import com.amazonaws.lambda.demo.model.Member;
+import com.amazonaws.lambda.demo.model.Choice;
+import com.amazonaws.lambda.demo.model.Alternative;
+
+
 public class CreateChoiceRequest {
 	public String choiceId;
 	public String description;

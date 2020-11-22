@@ -17,10 +17,10 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 
 import com.amazonaws.lambda.demo.db.ChoiceDAO;
-import com.amazonaws.lambda.demo.http.Alternative;
+import com.amazonaws.lambda.demo.model.Alternative;
 import com.amazonaws.lambda.demo.http.CreateChoiceRequest;
 import com.amazonaws.lambda.demo.http.CreateChoiceResponse;
-import com.amazonaws.lambda.demo.http.Member;
+import com.amazonaws.lambda.demo.model.Member;
 import com.amazonaws.lambda.demo.model.Choice;
 
 /**

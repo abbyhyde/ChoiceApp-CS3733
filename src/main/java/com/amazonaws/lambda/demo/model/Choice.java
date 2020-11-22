@@ -10,19 +10,19 @@ public class Choice {
 	public String description;
 	public ArrayList<Alternative> alternatives;
 	public ArrayList<Member> members;
-	public int numMembers;
+	public int maxNumMembers;
 	public boolean isCompleted;
 	public Date dateCompleted;
 	public Alternative altChosen;
 	
 	public Choice() {}
 	
-	public Choice(String desc, ArrayList<Alternative> alts, int numM) {
-		choiceId = UUID.randomUUID().toString();
+	public Choice(String choiceID, String desc, ArrayList<Alternative> alts, int numM) {
+		choiceId = choiceID;
 		this.description = desc;
 		this.alternatives = alts;
 		this.members = new ArrayList<>();
-		this.numMembers = numM;
+		this.maxNumMembers = numM;
 		this.isCompleted = false;
 		this.dateCompleted = null;
 		this.altChosen = null;
@@ -47,6 +47,10 @@ public class Choice {
 	
 	public String toString() {
 		return "Choice(" + choiceId + "," + description + ")";
+	}
+	
+	public int numCurrentMembers() {
+		return members.size();
 	}
 	
 }

@@ -2,7 +2,7 @@ package com.amazonaws.lambda.demo.model;
 
 public class Member{
 	
-	String name;
+	public String name;
 	String pass;
 	
 	public Member(String name, String pass) {
@@ -34,6 +34,8 @@ public class Member{
 	public String toString() {
 		return "Member(" + name + ")";
 	}
+	
+	public String getPass() { return pass; } 
 	
 	
 	
