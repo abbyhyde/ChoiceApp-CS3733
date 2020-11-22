@@ -3,6 +3,8 @@
 <script type='text/javascript' src='../js/api.js'></script>
 <script type='text/javascript' src='../js/get_choiceList.js'></script>
 <script type='text/javascript' src='../js/choice.js'></script>
+<script type='text/javascript' src='../js/new.js'></script>
+<script type='text/javascript' src='../js/add.js'></script>
 <script type='text/javascript' src='../js/create.js'></script>
 <script type='text/javascript' src='../js/delete.js'></script>
 
@@ -16,43 +18,49 @@ function initialize() {
 </head>
 <body onload="initialize()">
 
-<!-- Creating a new choice -->
-<h1>Request to Create New Choice </h1> 
+<h1> Choice App</h1>
 
-<form name="newForm" method="post" name="newChoice">
-  <input name="choiceDescription" value="" /><input name="alt1" value="" />
-  <input name="alt2" value="" /><input name="alt3" value="" />
-  <input name="alt4" value="" /><input name="alt5" value="" />
-  <input name="numTeammates" value="" /><input name="choiceId" readonly/>
-  <input type="button" value="Create Choice"  onClick="JavaScript:handleNewClick(this)">
-</form>
+<div style= "width: 100%; height: 75%">
+	<div style= "width: 60%; height: 50%; float: right">
+		<!-- Creating a new choice -->
+		<h2>Request to Create New Choice </h2> 
+		
+		<form name="newForm" method="post" name="newChoice">
+		  <p> Choice Description </p>
+		  <input name="choiceDescription" value="" size="100"/>
+		  <p> Alternatives 1 and 2 must be provided</p>
+		  <input name="alt1" value="" size="80"/>
+		  <input name="alt2" value="" size="80"/>
+		  <p> Alternatives 3, 4, and 5 </p>
+		  <input name="alt3" value="" size="80"/>
+		  <input name="alt4" value="" size="80"/>
+		  <input name="alt5" value="" size="80"/>
+		  <p> Specify Number of Team Members </p>
+		  <input name="numTeammates" value="" size="5"/>
+		  <p> New Choice ID </p>
+		  <input name="choiceId" readonly/>
+		  <input type="button" value="Create Choice"  onClick="JavaScript:handleNewClick(this)">
+		</form>
+	</div>
 
-<!-- Register to the Choice --> 
-<h2> Open Existing Choice</h2> 
-
-<form name="addForm" method="post" name="existingChoice">
-  <input name="choiceId" value="" /><input name="teammateName" value="" />
-  <input name="password (optional)" value="" />
-  <input type="button" value="Open Choice"  onClick="JavaScript:handleAddClick(this)">
-  <br>   <input type="checkbox" name="system">Create System Choice<br>
-</form>
+	<div style= "width: 30%; height: 50%; float: left">
+		<!-- Register to the Choice --> 
+		<h2> Open Existing Choice</h2> 
+		
+		<form name="addForm" method="post" name="existingChoice">
+		  <p> Choice ID </p><input name="choiceId" value="" />
+		  <p> Team Member Name </p><input name="teammateName" value="" />
+		  <p> Optional Password </p><input name="password" value="" />
+		  <input type="button" value="Open Choice"  onClick="JavaScript:handleAddClick(this)">
+		</form>
+	</div>
+</div>
  
-<!-- show the choice on the same page where they should be able to interact with the choice -->
-<h3> Display Choice</h3>
-
-<!-- <form name="createForm" method="post">
-   <input name="choiceDespcription" value="choiceDescription" />
-   <input name="alt1" value="alt1" /><input name="alt2" value="" />
-   <input name="alt3" value="" /><input name="alt4" value="" />
-   <input name="alt5" value="" />
-   <input name="numTeammates" value="" />
-   <input name="constantValue" value=""/>
-  
-   <input type="button" id="createButton" value="Create Choice" onClick="JavaScript:handleCreateClick(this)">
-<br>   <input type="checkbox" name="system">Create System Choice<br>
-</form> -->
-
-<div id="choice"></div>
+ <div id="choice" style= "width: 100%; height: 50%">
+<!-- show the choice on the same page where they should be able to interact with the choice, done with Lambda? -->
+<h2> Display Choice</h2>
+<!-- There will be a choice given to them which they will be able to interact with in some capacity -->
+</div>
 
 </body>
 
