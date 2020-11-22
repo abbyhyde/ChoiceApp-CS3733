@@ -5,6 +5,8 @@ public class Member{
 	public String name;
 	String pass;
 	
+	public Member() {}
+	
 	public Member(String name, String pass) {
 		this.name = name;
 		this.pass = pass;
@@ -36,6 +38,8 @@ public class Member{
 	}
 	
 	public String getPass() { return pass; } 
+	public void setPass(String password) { this.pass = password; }
+
 	
 	
 	

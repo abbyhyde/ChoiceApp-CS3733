@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 public class Alternative{
 	
-	String description;
-	ArrayList<Member> approvers;
-	ArrayList<Member> disapprovers;
-	ArrayList<Feedback> feedbacks;
+	public String description;
+	public ArrayList<Member> approvers;
+	public ArrayList<Member> disapprovers;
+	public ArrayList<Feedback> feedbacks;
+	
+	public Alternative() {}
 	
 	public Alternative(String d) {
 		this.description = d;
