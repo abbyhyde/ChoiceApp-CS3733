@@ -64,9 +64,13 @@ public class ChoiceDAO {
                 return false;
             }
 
-            ps = conn.prepareStatement("INSERT INTO " + tblName + " (choiceId,value) values(?,?);");
+            ps = conn.prepareStatement("INSERT INTO " + tblName + " (choiceId,description,maxNumMembers,isCompleted,dateCompleted,chosenAlt) values(?,?,?,?,?,?);");
             ps.setString(1,  choice.choiceId);
-            ps.setObject(2,  choice);
+            ps.setString(2,  choice.description);
+            ps.setInt(3, choice.maxNumMembers);
+            ps.setBoolean(4, choice.isCompleted);
+            ps.setDate(5, choice.dateCompleted);
+            ps.setString(6, null);
             ps.execute();
             return true;
 
