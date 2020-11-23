@@ -46,7 +46,7 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 	 * @throws Exception 
 	 */
 	Choice participateChoice(String choiceId, String memberName, String pass) throws Exception { 
-		if (logger != null) { logger.log("in createConstant"); }
+		if (logger != null) { logger.log("in participateChoice"); }
 		ChoiceDAO dao = new ChoiceDAO();
 		
 		// check if present
