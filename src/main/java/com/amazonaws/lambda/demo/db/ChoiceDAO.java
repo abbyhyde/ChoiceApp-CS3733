@@ -7,6 +7,7 @@ import java.util.List;
 import com.amazonaws.lambda.demo.model.Alternative;
 import com.amazonaws.lambda.demo.model.Choice;
 import com.amazonaws.lambda.demo.model.Member;
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
 /**
  * Note that CAPITALIZATION matters regarding the table name. If you create with 
@@ -16,6 +17,8 @@ import com.amazonaws.lambda.demo.model.Member;
  *
  */
 public class ChoiceDAO { 
+	
+	LambdaLogger logger;
 
 	java.sql.Connection conn;
 	
@@ -52,6 +55,7 @@ public class ChoiceDAO {
 
         } catch (Exception e) {
         	e.printStackTrace();
+        	logger.log("failed getting choice");
             throw new Exception("Failed in getting choice: " + e.getMessage());
         }
     }
@@ -78,10 +82,13 @@ public class ChoiceDAO {
             ps.setDate(5, choice.dateCompleted);
             ps.setString(6, null);
             ps.execute();
+            
+            logger.log("successfully inserted");
             return true;
 
         } catch (Exception e) {
-            throw new Exception("Failed to insert constant: " + e.getMessage());
+        	logger.log("failed to insert choice");
+            throw new Exception("Failed to insert choice: " + e.getMessage());
         }
     }
     

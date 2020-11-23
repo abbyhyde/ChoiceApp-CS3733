@@ -15,7 +15,7 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
-
+import com.google.gson.Gson;
 import com.amazonaws.lambda.demo.db.ChoiceDAO;
 import com.amazonaws.lambda.demo.model.Alternative;
 import com.amazonaws.lambda.demo.http.CreateChoiceRequest;
@@ -49,7 +49,13 @@ public class CreateChoiceHandler implements RequestHandler<CreateChoiceRequest,C
 		
 		// check if present
 		Choice exist = dao.getChoice(choiceId);
+		String existString = new Gson().toJson(exist);
+		logger.log(existString);
+		
 		Choice choice = new Choice(choiceId, desc, alts, numM);
+		String choiceString = new Gson().toJson(choice);
+		logger.log(choiceString);
+		
 		if (exist == null) {
 			return dao.addChoice(choice);
 		} else {
@@ -71,12 +77,12 @@ public class CreateChoiceHandler implements RequestHandler<CreateChoiceRequest,C
 		CreateChoiceResponse response;
 		try {
 			if (createChoice(req.choiceId, req.description, req.alternatives,req.numMembers)) {
-				response = new CreateChoiceResponse(req.description);
+				response = new CreateChoiceResponse(req.choiceId);
 			} else {
-				response = new CreateChoiceResponse(req.description, 422);
+				response = new CreateChoiceResponse(req.choiceId, 422);
 			}
 		} catch (Exception e) {
-			response = new CreateChoiceResponse("Unable to create choice: " + req.description + "(" + e.getMessage() + ")", 400);
+			response = new CreateChoiceResponse("Unable to create choice: " + req.choiceId + "(" + e.getMessage() + ")", 400);
 		}
 
 		return response;
