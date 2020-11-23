@@ -15,9 +15,9 @@ function refreshChoice() {
   xhr.onloadend = function () {
     if (xhr.readyState == XMLHttpRequest.DONE) {
       console.log ("XHR:" + xhr.responseText);
-      processListResponse(xhr.responseText);
+      processChoiceResponse(xhr.responseText);
     } else {
-      processListResponse("N/A");
+      processChoiceResponse("N/A");
     }
   };
 }
@@ -27,24 +27,25 @@ function refreshChoice() {
  *
  * Replace the contents of 'constantList' with a <br>-separated list of name,value pairs.
  */
-function processListResponse(result) {
+function processChoiceResponse(result) {
   console.log("res:" + result);
   // Can grab any DIV or SPAN HTML element and can then manipulate its contents dynamically via javascript
   var js = JSON.parse(result);
-  var choiceList = document.getElementById('choiceList');
+  var choice = document.getElementById('choiceId');
   
   var output = "";
-  for (var i = 0; i < js.list.length; i++) {
-    var choiceJson = js.list[i];
+  for (js.choice.length) {
 	if(choice == choiceJson) {
 		console.log(choiceJson);
 	}
     
-    var cname = choiceJson["name"];
-    var cval = choiceJson["value"];
+    var cid = choiceJson["choiceId"];
+	var cdesc = choiceJson["desc"];
+	var calt = choiceJson["alternatives"];
+	var cnum = choiceJson["maxNumMembers"];
     var sysvar = choiceJson["system"];
     if (sysvar) {
-    	output = output + "<div id=\"choice" + cname + "\"><b>" + cname + ":</b> = " + cval + "<br></div>";
+    	output = output + "<div id=\"choice" + cid + "\"><b>" + cdesc + "</b><b> " + calt + "</b><br>" +"</div>";
     } else {
     	output = output + "<div id=\"choice" + cname + "\"><b>" + cname + ":</b> = " + cval + "(<a href='javaScript:requestDelete(\"" + cname + "\")'><img src='deleteIcon.png'></img></a>) <br></div>";
     }
