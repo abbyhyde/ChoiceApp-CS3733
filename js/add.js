@@ -29,8 +29,8 @@ function handleAddClick(e) {
   var pass = form.pass.value;
 
   var data = {};          //NEED TO CHANGE: Make this for a choice
-  data["choiceID"] = choiceID;
-  data["name"] = name;
+  data["choiceId"] = choiceID;
+  data["memberName"] = name;
   data["pass"] = pass;
 
   var js = JSON.stringify(data);

@@ -18,7 +18,6 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
  */
 public class ChoiceDAO { 
 	
-	LambdaLogger logger;
 
 	java.sql.Connection conn;
 	
@@ -55,7 +54,6 @@ public class ChoiceDAO {
 
         } catch (Exception e) {
         	e.printStackTrace();
-        	logger.log("failed getting choice");
             throw new Exception("Failed in getting choice: " + e.getMessage());
         }
     }
@@ -74,20 +72,18 @@ public class ChoiceDAO {
                 return false;
             }
 
-            ps = conn.prepareStatement("INSERT INTO " + tblChoices + " (choiceId,description,maxNumMembers,isCompleted,dateCompleted,chosenAlt) values(?,?,?,?,?,?);");
+            ps = conn.prepareStatement("INSERT INTO " + tblChoices + " (choiceId,description,maxNumMembers,isCompleted,dateCompleted,chosenAlt) VALUES(?,?,?,?,?,?);");
             ps.setString(1,  choice.choiceId);
             ps.setString(2,  choice.description);
             ps.setInt(3, choice.maxNumMembers);
             ps.setBoolean(4, choice.isCompleted);
             ps.setDate(5, choice.dateCompleted);
-            ps.setString(6, null);
+            ps.setString(6, "");
             ps.execute();
             
-            logger.log("successfully inserted");
             return true;
 
         } catch (Exception e) {
-        	logger.log("failed to insert choice");
             throw new Exception("Failed to insert choice: " + e.getMessage());
         }
     }
