@@ -45,7 +45,7 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 	 * 
 	 * @throws Exception 
 	 */
-	boolean participateChoice(String choiceId, String memberName, String pass) throws Exception { 
+	Choice participateChoice(String choiceId, String memberName, String pass) throws Exception { 
 		if (logger != null) { logger.log("in createConstant"); }
 		ChoiceDAO dao = new ChoiceDAO();
 		
@@ -58,10 +58,12 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 		} else {
 			member = new Member(memberName);
 		}
-		if (exist == null) {
-			return dao.addMember(exist, member);
+		if (exist != null) {
+			dao.addMember(exist, member);
+			return exist;
+			
 		} else {
-			return false;
+			return null;
 		}
 	}
 	
@@ -77,14 +79,17 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 		logger.log(req.toString());
 
 		ParticipateChoiceResponse response;
+		
+		
 		try {
-			if (participateChoice(req.choiceId, req.memberName, req.pass)) {
-				response = new ParticipateChoiceResponse(req.memberName);
+			Choice choice = participateChoice(req.choiceId, req.memberName, req.pass);
+			if (choice != null) {
+				response = new ParticipateChoiceResponse(choice);
 			} else {
-				response = new ParticipateChoiceResponse(req.memberName, 422);
+				response = new ParticipateChoiceResponse(choice, 422);
 			}
 		} catch (Exception e) {
-			response = new ParticipateChoiceResponse("Unable to assign member: " + req.memberName + "(" + e.getMessage() + ")", 400);
+			response = new ParticipateChoiceResponse(400);
 		}
 
 		return response;
