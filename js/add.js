@@ -52,5 +52,8 @@ function handleAddClick(e) {
     } else {
       processAddResponse(choiceID, name, pass, "N/A");
     }
+	document.getElementById("choice").style.visibility="visible";
+ 
+
   };
 }
