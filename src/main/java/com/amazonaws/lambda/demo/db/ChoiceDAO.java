@@ -7,6 +7,7 @@ import java.util.List;
 import com.amazonaws.lambda.demo.model.Alternative;
 import com.amazonaws.lambda.demo.model.Choice;
 import com.amazonaws.lambda.demo.model.Member;
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
 /**
  * Note that CAPITALIZATION matters regarding the table name. If you create with 
@@ -16,6 +17,7 @@ import com.amazonaws.lambda.demo.model.Member;
  *
  */
 public class ChoiceDAO { 
+	
 
 	java.sql.Connection conn;
 	
@@ -70,18 +72,19 @@ public class ChoiceDAO {
                 return false;
             }
 
-            ps = conn.prepareStatement("INSERT INTO " + tblChoices + " (choiceId,description,maxNumMembers,isCompleted,dateCompleted,chosenAlt) values(?,?,?,?,?,?);");
+            ps = conn.prepareStatement("INSERT INTO " + tblChoices + " (choiceId,description,maxNumMembers,isCompleted,dateCompleted,chosenAlt) VALUES(?,?,?,?,?,?);");
             ps.setString(1,  choice.choiceId);
             ps.setString(2,  choice.description);
             ps.setInt(3, choice.maxNumMembers);
             ps.setBoolean(4, choice.isCompleted);
             ps.setDate(5, choice.dateCompleted);
-            ps.setString(6, null);
+            ps.setString(6, "");
             ps.execute();
+            
             return true;
 
         } catch (Exception e) {
-            throw new Exception("Failed to insert constant: " + e.getMessage());
+            throw new Exception("Failed to insert choice: " + e.getMessage());
         }
     }
     
