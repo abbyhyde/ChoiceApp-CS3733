@@ -2,21 +2,21 @@
  * Respond to server JSON object.
  *
  */
-function processNewResponse(desc, alt1, alt2, alt3, alt4, alt5, numTeam, choiceID) {
+function processNewResponse(desc, alt1, alt2, alt3, alt4, alt5, numTeam, response) {
   // Can grab any DIV or SPAN HTML element and can then manipulate its
   // contents dynamically via javascript
-  console.log("Choice ID:" + choiceID);
-  var js = JSON.parse(choiceID);
+  console.log("Choice ID:" + response);
+  var js = JSON.parse(response);
 
-  var computation = js["choice"];
-  var status      = js["statusCode"];
+  var choiceId = js["choiceId"];
+  var status = js["statusCode"];
   
   if (status == 200) {
     // Update computation result
-    document.newForm.choiceID.value = computation
+    document.newForm.choiceId.value = choiceId
   } else {
     var msg = js["error"];
-    document.newForm.choiceID.value = "error:" + msg
+    document.newForm.choiceId.value = "error:" + msg
   }
 }
 
