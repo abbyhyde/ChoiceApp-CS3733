@@ -26,4 +26,14 @@ public class ParticipateChoiceRequest {
 		return "ParticipateChoice(" + choiceId + "," + memberName + ")";
 	}
 
+	public String getChoiceId() {return choiceId;}
+	public void setChoiceId(String ci) {this.choiceId = ci;}
+
+	public String getMemberName() {return memberName;}
+	public void setMemberName(String mn) {this.memberName = mn;}
+
+	public String getPass() {return pass;}
+	public void setPass(String p) {this.pass = p;}
+
+
 }

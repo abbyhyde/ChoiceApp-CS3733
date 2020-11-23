@@ -13,11 +13,7 @@ public class CreateChoiceRequest {
 	public String choiceId;
 	public String description;
 	public ArrayList<Alternative> alternatives;
-	public ArrayList<Member> members;
 	public int numMembers;
-	public boolean isCompleted;
-	public Date dateCompleted;
-	public Alternative altChosen;
 	
 	public CreateChoiceRequest() {}
 	
@@ -25,16 +21,25 @@ public class CreateChoiceRequest {
 		choiceId = UUID.randomUUID().toString();
 		this.description = desc;
 		this.alternatives = alts;
-		this.members = new ArrayList<>();
 		this.numMembers = numM;
-		this.isCompleted = false;
-		this.dateCompleted = null;
-		this.altChosen = null;
 	}
 	
 	public String toString() {
 		return "CreateChoice(" + choiceId + "," + description + ")";
 	}
+	
+	public String getChoiceId() { return choiceId; }
+	public void setChoiceId(String ci) { this.choiceId = ci; }
+	
+	public String getDescription() { return description; }
+	public void setDescription(String d) { this.description = d; }
+	
+	public ArrayList<Alternative> getAlternatives() { return alternatives; }
+	public void setAlternatives(ArrayList<Alternative> alts) { this.alternatives = alts; }
+	
+	public int getNumMembers() { return numMembers; }
+	public void setNumMembers(int nm) { this.numMembers = nm; }
+	
 	
 	
 	
