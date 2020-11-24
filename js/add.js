@@ -12,6 +12,13 @@ function processAddResponse(result) {
   var choiceId = choiceJSON["choiceId"];
   var description = choiceJSON["description"];
   var alternatives = choiceJSON["alternatives"];
+  var alts[5];
+  var altsDesc[5];
+  	for(var i=0;i<alternatives.length;i++){
+  		alts[i] = alternatives[i];
+  		altsDesc[i] = alternatives[i].description;
+  	}
+  
   var maxNumMembers = choiceJSON["maxNumMembers"];
   var isCompleted = choiceJSON["isCompleted"];
   
@@ -25,6 +32,7 @@ function processAddResponse(result) {
     document.choiceId.value = choiceId;
     document.choiceDesc.value = description;
     
+    document.altLabel.vaule = 
     
     
     

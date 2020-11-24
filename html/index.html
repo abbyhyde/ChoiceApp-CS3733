@@ -1,14 +1,15 @@
 <html><head>
 <!-- relative path-name to access js -->
-<script type='text/javascript' src='./api.js'></script>
-<script type='text/javascript' src='./get_choiceList.js'></script>
-<script type='text/javascript' src='./choice.js'></script>
-<script type='text/javascript' src='./new.js'></script>
-<script type='text/javascript' src='./add.js'></script>
-<script type='text/javascript' src='./create.js'></script>
-<script type='text/javascript' src='./delete.js'></script>
+<script type='text/javascript' src='../js/api.js'></script>
+<script type='text/javascript' src='../js/get_choiceList.js'></script>
+<script type='text/javascript' src='../choice.js'></script>
+<script type='text/javascript' src='../js/new.js'></script>
+<script type='text/javascript' src='../js/add.js'></script>
+<script type='text/javascript' src='../create.js'></script>
+<script type='text/javascript' src='../delete.js'></script>
 
 <script type="text/javascript">
+var currentAlt = 1;
 function initialize() {
 	//document.getElementById("choice").style.visibility="hidden";  	 
 
@@ -65,14 +66,50 @@ function initialize() {
 <div id="choiceDesc">This is the Choice Description</div>
 <br><br>
 
-<button id="alt1B" onClick=alert('welcome!');>Alternative #1</button><br>
-<button id="alt2B" onClick=alert('welcome!');>Alternative #2</button><br>
-<button id="alt3B" onClick=alert('welcome!');>Alternative #3</button><br>
-<button id="alt4B" onClick=alert('welcome!');>Alternative #4</button><br>
-<button id="alt5B" onClick=alert('welcome!');>Alternative #5</button><br>
+<button id="alt1B" currentAlt=1;>Alternative #1</button><br>
+<button id="alt2B" currentAlt=2;>Alternative #2</button><br>
+<button id="alt3B" currentAlt=3;>Alternative #3</button><br>
+<button id="alt4B" currentAlt=4;>Alternative #4</button><br>
+<button id="alt5B" currentAlt=5;>Alternative #5</button><br>
 
 <br><br>
-<p1>Alternative # <div id="altLabel">1</div> <br>
+<p1>Alternative #1<br>
+<div id="altDesc"> The Description of The Chosen Alternative </div>
+<br>
+<button id="PickedB">MARK AS PICKED</button><br>
+<button id="approveB">THUMBS UP</button><br>
+<button id="disapproveB">THUMBS DOWN</button><br>
+
+</p1>
+
+<p1>Alternative #2<br>
+<div id="altDesc"> The Description of The Chosen Alternative </div>
+<br>
+<button id="PickedB">MARK AS PICKED</button><br>
+<button id="approveB">THUMBS UP</button><br>
+<button id="disapproveB">THUMBS DOWN</button><br>
+
+</p1>
+
+<p1>Alternative #3<br>
+<div id="altDesc"> The Description of The Chosen Alternative </div>
+<br>
+<button id="PickedB">MARK AS PICKED</button><br>
+<button id="approveB">THUMBS UP</button><br>
+<button id="disapproveB">THUMBS DOWN</button><br>
+
+</p1>
+
+<p1>Alternative #4<br>
+<div id="altDesc"> The Description of The Chosen Alternative </div>
+<br>
+<button id="PickedB">MARK AS PICKED</button><br>
+<button id="approveB">THUMBS UP</button><br>
+<button id="disapproveB">THUMBS DOWN</button><br>
+
+</p1>
+
+<p1>Alternative #5<br>
 <div id="altDesc"> The Description of The Chosen Alternative </div>
 <br>
 <button id="PickedB">MARK AS PICKED</button><br>
