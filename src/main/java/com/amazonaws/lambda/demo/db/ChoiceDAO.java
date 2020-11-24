@@ -83,7 +83,7 @@ public class ChoiceDAO {
             ps.execute();
             
             
-            ArrayList<Alternative> alts = getAltsFromChoice(choice.choiceId);
+            ArrayList<Alternative> alts = choice.alternatives;
             logger.log("\n\n The alts: " + alts);
             for(Alternative alt : alts) {
             	logger.log("inserting alt " + alt.description);

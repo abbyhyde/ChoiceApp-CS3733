@@ -40,7 +40,7 @@ public class CreateChoiceHandlerTest extends LambdaTest {
     @Test
     public void testShouldBeOk() {
     	int numMembers = 10;
-    	String desc = "this is a choice";
+    	String desc = "Alt Test Time";
     	Alternative alt1 = new Alternative("this is an alternative description");
     	ArrayList<Alternative> alts = new ArrayList<Alternative>();
     	alts.add(alt1);
