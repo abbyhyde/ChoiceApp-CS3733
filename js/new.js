@@ -61,6 +61,7 @@ function handleNewClick(e) {
 		    "feedbacks":[]
 	},
   ];
+  data["members"] = [];
   data["maxNumMembers"] = numTeam;
   data["isCompleted"] = false;
 
