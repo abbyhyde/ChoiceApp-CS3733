@@ -84,6 +84,7 @@ public class ChoiceDAO {
             
             
             ArrayList<Alternative> alts = getAltsFromChoice(choice.choiceId);
+            logger.log("\n\n The alts: " + alts);
             for(Alternative alt : alts) {
             	logger.log("inserting alt " + alt.description);
             	ps = conn.prepareStatement("INSERT INTO " + tblAlt + " (altId, choiceId,description) VALUES(?,?,?);");
