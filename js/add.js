@@ -10,13 +10,13 @@ function processAddResponse(choiceID, name, pass, result) {
 
 
   var choiceId = js["choiceId"];
-  var description = js["description];
+  var description = js["description"];
   //var alternatives
   //var members
   var maxNumMembers = js["maxNumMembers"];
   var isCompleted = js["isCompleted"];
   
-  var status      = js["statusCode"];
+  var status = js["statusCode"];
   
   if (status == 200) {
     // Update computation result

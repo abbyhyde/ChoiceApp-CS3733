@@ -34,7 +34,7 @@ function processChoiceResponse(result) {
   var choice = document.getElementById('choiceId');
   
   var output = "";
-  for (js.choice.length) {
+  for (int i = 0; i < js.choice.length; i++) {
 	if(choice == choiceJson) {
 		console.log(choiceJson);
 	}
