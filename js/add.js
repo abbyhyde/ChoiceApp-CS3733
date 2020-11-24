@@ -12,8 +12,8 @@ function processAddResponse(result) {
   var choiceId = choiceJSON["choiceId"];
   var description = choiceJSON["description"];
   var alternatives = choiceJSON["alternatives"];
-  var alts[5];
-  var altsDesc[5];
+  var alts = new Array();
+  var altsDesc = new Array();
   	for(var i=0;i<alternatives.length;i++){
   		alts[i] = alternatives[i];
   		altsDesc[i] = alternatives[i].description;
