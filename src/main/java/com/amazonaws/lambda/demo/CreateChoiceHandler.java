@@ -44,7 +44,7 @@ public class CreateChoiceHandler implements RequestHandler<CreateChoiceRequest,C
 	 * @throws Exception 
 	 */
 	boolean createChoice(String choiceId, String desc, ArrayList<Alternative> alts, int numM) throws Exception { 
-		if (logger != null) { logger.log("in createConstant"); }
+		if (logger != null) { logger.log("in createChoice"); }
 		ChoiceDAO dao = new ChoiceDAO();
 		
 		// check if present

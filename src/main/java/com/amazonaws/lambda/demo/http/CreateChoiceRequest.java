@@ -19,7 +19,9 @@ public class CreateChoiceRequest {
 	public Date dateCompleted;
 	public Alternative altChosen;
 	
-	public CreateChoiceRequest() {}
+	public CreateChoiceRequest() {
+		choiceId = UUID.randomUUID().toString();
+	}
 	
 	public CreateChoiceRequest(String desc, ArrayList<Alternative> alts, int numM) {
 		choiceId = UUID.randomUUID().toString();
@@ -37,7 +39,7 @@ public class CreateChoiceRequest {
 	}
 	
 	public String getChoiceId() { return choiceId; }
-	public void setChoiceId(String ci) { this.choiceId = ci; }
+	public void setChoiceId(String ci) { }
 	
 	public String getDescription() { return description; }
 	public void setDescription(String d) { this.description = d; }
