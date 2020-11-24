@@ -56,5 +56,9 @@ function processChoiceResponse(result) {
 
   // Update computation result
   choiceList.innerHTML = output;
-*/
+
 }
+
+
+
+*/
