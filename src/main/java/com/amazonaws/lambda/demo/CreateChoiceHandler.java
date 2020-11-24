@@ -57,7 +57,7 @@ public class CreateChoiceHandler implements RequestHandler<CreateChoiceRequest,C
 		logger.log(choiceString);
 		
 		if (exist == null) {
-			return dao.addChoice(choice);
+			return dao.addChoice(choice, logger);
 		} else {
 			return false;
 		}

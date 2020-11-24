@@ -60,7 +60,7 @@ public class ChoiceDAO {
     }
    
 
-    public boolean addChoice(Choice choice) throws Exception {
+    public boolean addChoice(Choice choice, LambdaLogger logger) throws Exception {
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblChoices + " WHERE choiceId = ?;");
             ps.setString(1, choice.choiceId);
@@ -81,6 +81,17 @@ public class ChoiceDAO {
             ps.setDate(5, choice.dateCompleted);
             ps.setString(6, "");
             ps.execute();
+            
+            
+            ArrayList<Alternative> alts = getAltsFromChoice(choice.choiceId);
+            for(Alternative alt : alts) {
+            	logger.log("inserting alt " + alt.description);
+            	ps = conn.prepareStatement("INSERT INTO " + tblAlt + " (altId, choiceId,description) VALUES(?,?,?);");
+            	ps.setString(1,  alt.description + choice.choiceId);
+            	ps.setString(2,  choice.choiceId);
+                ps.setString(3,  alt.description);
+                ps.execute();
+            }
             
             return true;
 
@@ -203,7 +214,7 @@ public class ChoiceDAO {
         return member;
     }
     
-    private ArrayList<Alternative> getAltsFromChoice(String choiceId) throws Exception{
+    public ArrayList<Alternative> getAltsFromChoice(String choiceId) throws Exception{
     	try {
             Alternative currentAlt = null;
             ArrayList<Alternative> alts = new ArrayList<Alternative>();
