@@ -3,7 +3,7 @@
  *
  *    GET list_url
  *    RESPONSE  list of [name, value, system] constants 
- */
+ 
 function refreshChoice() {
    var xhr = new XMLHttpRequest();
    xhr.open("GET", choice_url, true);
@@ -26,7 +26,7 @@ function refreshChoice() {
  * Respond to server JSON object.
  *
  * Replace the contents of 'constantList' with a <br>-separated list of name,value pairs.
- */
+ 
 function processChoiceResponse(result) {
   console.log("res:" + result);
   // Can grab any DIV or SPAN HTML element and can then manipulate its contents dynamically via javascript
@@ -35,12 +35,12 @@ function processChoiceResponse(result) {
   
   var output = "";
 
-/*
+
   for (int i = 0; i < js.choice.length; i++) {
 	if(choice == choiceJson) {
 		console.log(choiceJson);
 	}
-	*/
+	
     
     var cid = choiceJson["choiceId"];
 	var cdesc = choiceJson["desc"];
@@ -56,4 +56,5 @@ function processChoiceResponse(result) {
 
   // Update computation result
   choiceList.innerHTML = output;
+*/
 }
