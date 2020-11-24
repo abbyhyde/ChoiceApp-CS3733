@@ -36,7 +36,7 @@ public class ChoiceDAO {
     	}
     }
 
-    public Choice getChoice(String choiceId) throws Exception {
+    public Choice getChoice(String choiceId, LambdaLogger logger) throws Exception {
         
         try {
             Choice choice = null;
@@ -45,6 +45,7 @@ public class ChoiceDAO {
             ResultSet resultSet = ps.executeQuery();
             
             while (resultSet.next()) {
+            	logger.log("we got a hit\n");
                 choice = generateChoice(resultSet);
             }
             resultSet.close();

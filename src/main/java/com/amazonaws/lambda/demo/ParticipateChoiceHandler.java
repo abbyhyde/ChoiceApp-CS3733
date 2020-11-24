@@ -1,25 +1,10 @@
 package com.amazonaws.lambda.demo;
 
-import java.io.ByteArrayInputStream;
-import java.sql.Date;
-import java.util.ArrayList;
-
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.DeleteObjectRequest;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
 
 import com.amazonaws.lambda.demo.db.ChoiceDAO;
-import com.amazonaws.lambda.demo.model.Alternative;
-import com.amazonaws.lambda.demo.http.CreateChoiceRequest;
-import com.amazonaws.lambda.demo.http.CreateChoiceResponse;
 import com.amazonaws.lambda.demo.http.ParticipateChoiceResponse;
 import com.amazonaws.lambda.demo.http.ParticipateChoiceRequest;
 import com.amazonaws.lambda.demo.model.Member;
@@ -50,7 +35,8 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 		ChoiceDAO dao = new ChoiceDAO();
 		
 		// check if present
-		Choice exist = dao.getChoice(choiceId);
+		Choice exist = dao.getChoice(choiceId, logger);
+		logger.log(exist.description); //see if it actually got it
 		
 		Member member;
 		if (pass != null) {

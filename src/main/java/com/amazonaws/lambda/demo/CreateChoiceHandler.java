@@ -48,7 +48,7 @@ public class CreateChoiceHandler implements RequestHandler<CreateChoiceRequest,C
 		ChoiceDAO dao = new ChoiceDAO();
 		
 		// check if present
-		Choice exist = dao.getChoice(choiceId);
+		Choice exist = dao.getChoice(choiceId, logger);
 		String existString = new Gson().toJson(exist);
 		logger.log(existString);
 		
