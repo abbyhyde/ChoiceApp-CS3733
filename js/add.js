@@ -32,7 +32,11 @@ function processAddResponse(result) {
     document.choiceId.value = choiceId;
     document.choiceDesc.value = description;
     
-    
+    document.alt1Desc.value = altsDesc[0];
+	document.alt2Desc.value = altsDesc[1];
+	document.alt3Desc.value = altsDesc[2];
+	document.alt4Desc.value = altsDesc[3];
+	document.alt5Desc.value = altsDesc[4];
     
     
     
