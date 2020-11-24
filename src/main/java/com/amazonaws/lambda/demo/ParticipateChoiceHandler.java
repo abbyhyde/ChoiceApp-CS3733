@@ -45,7 +45,9 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 			member = new Member(memberName);
 		}
 		if (exist != null) {
-			boolean added = dao.addMember(exist, member);
+			logger.log("about to add " + member.name); //see if it actually got it
+			boolean added = dao.addMember(exist, member, logger);
+			logger.log(member.name + "was added to the database");
 			if (added) {
 				return exist;
 			} else {

@@ -89,7 +89,7 @@ public class ChoiceDAO {
         }
     }
     
-    public boolean addMember(Choice choice, Member member) throws Exception {
+    public boolean addMember(Choice choice, Member member, LambdaLogger logger) throws Exception {
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblMembers + " WHERE memberId = ?;");
             String memberId = (member.name + choice.choiceId);
@@ -109,13 +109,14 @@ public class ChoiceDAO {
             }
 
             if (choice.numCurrentMembers() < choice.maxNumMembers) {
+            	logger.log("its trying to add the member\n");
             	ps = conn.prepareStatement("INSERT INTO " + tblMembers + " (memberId, choiceId, name, password) values(?,?,?,?);");
             	ps.setString(1,  memberId);
             	ps.setString(2,  choice.choiceId);
             	ps.setString(3,  member.name);
             	ps.setString(4,  member.getPass());
                 ps.execute();
-                
+                logger.log("it should have added?\n");
                 choice.addMember(member);
                 return true;
             } else {
