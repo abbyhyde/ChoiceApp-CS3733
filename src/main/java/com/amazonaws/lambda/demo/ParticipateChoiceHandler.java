@@ -59,8 +59,13 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 			member = new Member(memberName);
 		}
 		if (exist != null) {
-			dao.addMember(exist, member);
-			return exist;
+			boolean added = dao.addMember(exist, member);
+			if (added) {
+				return exist;
+			} else {
+				System.out.println("Could not add to choice, too many members.");
+				return null;
+			}
 			
 		} else {
 			return null;

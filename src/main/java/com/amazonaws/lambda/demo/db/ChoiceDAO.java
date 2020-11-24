@@ -97,7 +97,7 @@ public class ChoiceDAO {
             
             // already present?
             while (resultSet.next()) {
-            	if (resultSet.getString("password") == null) {
+            	if ((resultSet.getString("password") == null) && (member.getPass() == null)) {
             		return true;
             	}
             	if (member.getPass().equals(resultSet.getString("password"))) {
@@ -122,7 +122,7 @@ public class ChoiceDAO {
             }
 
         } catch (Exception e) {
-            throw new Exception("Failed to insert constant: " + e.getMessage());
+            throw new Exception("Failed to add member: " + e.getMessage());
         }
     }
     

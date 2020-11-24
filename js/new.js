@@ -29,6 +29,7 @@ function handleNewClick(e) {
   var alt4 = form.alt4.value;
   var alt5 = form.alt5.value;
   var numTeam = form.numTeam.value;
+  var choiceId = choiceId;
 
   var data = {};
   data["desc"] = desc;
@@ -38,6 +39,7 @@ function handleNewClick(e) {
   data["alt4"] = alt4;
   data["alt5"] = alt5;
   data["numTeam"] = numTeam;
+  data["choiceId"] = choiceId;
 
   var js = JSON.stringify(data);
   console.log("JS:" + js);

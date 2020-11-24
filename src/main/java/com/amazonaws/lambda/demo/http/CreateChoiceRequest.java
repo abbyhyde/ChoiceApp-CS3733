@@ -13,7 +13,11 @@ public class CreateChoiceRequest {
 	public String choiceId;
 	public String description;
 	public ArrayList<Alternative> alternatives;
+	public ArrayList<Member> members;
 	public int numMembers;
+	public boolean isCompleted;
+	public Date dateCompleted;
+	public Alternative altChosen;
 	
 	public CreateChoiceRequest() {}
 	
@@ -22,6 +26,10 @@ public class CreateChoiceRequest {
 		this.description = desc;
 		this.alternatives = alts;
 		this.numMembers = numM;
+		this.members = new ArrayList<Member>();
+		this.isCompleted = false;
+		this.dateCompleted = null;
+		this.altChosen = null;
 	}
 	
 	public String toString() {
