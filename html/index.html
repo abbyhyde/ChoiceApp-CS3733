@@ -10,7 +10,7 @@
 
 <script type="text/javascript">
 function initialize() {
-	document.getElementById("choice").style.visibility="hidden";  	 
+	//document.getElementById("choice").style.visibility="hidden";  	 
 
    // refreshes the page to display choice
    //refreshChoice();
@@ -59,8 +59,61 @@ function initialize() {
  
  <div id="choice" style= "width: 100%; height: 50%">
 <!-- show the choice on the same page where they should be able to interact with the choice, done with Lambda? -->
-<h2> Display Choice</h2>
-	
+
+<br><br><br><br><br><br><br>
+<h2> Choice # <div id="choiceId">ID</div></h2>
+<div id="choiceDesc">This is the Choice Description</div>
+<br><br>
+
+<button id="alt1B" onClick=alert('welcome!');>Alternative #1</button><br>
+<button id="alt2B" onClick=alert('welcome!');>Alternative #2</button><br>
+<button id="alt3B" onClick=alert('welcome!');>Alternative #3</button><br>
+<button id="alt4B" onClick=alert('welcome!');>Alternative #4</button><br>
+<button id="alt5B" onClick=alert('welcome!');>Alternative #5</button><br>
+
+<br><br>
+<p1>Alternative # <div id="altLabel">1</div> <br>
+<div id="altDesc"> The Description of The Chosen Alternative </div>
+<br>
+<button id="PickedB">MARK AS PICKED</button><br>
+<button id="approveB">THUMBS UP</button><br>
+<button id="disapproveB">THUMBS DOWN</button><br>
+
+</p1>
+
+<br><br>
+
+<p2>Feedback for Alternative # <div id="altLabelAgain">1</div>
+
+<ul1>
+  <li>Feedback 1</li>
+  <li>Feedback 2</li>
+  <li>Feedback 3</li>
+</ul1>
+
+</p2>
+
+<br><br>
+
+<p3>Approvals
+<ul2>
+  <li>Team Member 1</li>
+  <li>Team Member 2</li>
+  <li>Team Member 3</li>
+</ul2>
+  Total: 3
+</p3>
+
+<br>
+
+<p4>Disapprovals
+<ul3>
+  <li>Team Member 4</li>
+  <li>Team Member 5</li>
+  <li>Team Member 6</li>
+</ul3>
+  Total: 3
+</p4>
 	
 
 

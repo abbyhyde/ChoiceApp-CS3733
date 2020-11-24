@@ -8,13 +8,12 @@ function processAddResponse(result) {
   console.log("result:" + result);
   var js = JSON.parse(result);
 
-
-  var choiceId = js["choiceId"];
-  var description = js["description"];
-  //var alternatives
-  //var members
-  var maxNumMembers = js["maxNumMembers"];
-  var isCompleted = js["isCompleted"];
+  var choiceJSON = js["choice"];
+  var choiceId = choiceJSON["choiceId"];
+  var description = choiceJSON["description"];
+  var alternatives = choiceJSON["alternatives"];
+  var maxNumMembers = choiceJSON["maxNumMembers"];
+  var isCompleted = choiceJSON["isCompleted"];
   
   var status = js["statusCode"];
   
@@ -23,6 +22,13 @@ function processAddResponse(result) {
     //document.addForm.result.value = computation
     
     //this is where you output all of the values from the variables above
+    document.choiceId.value = choiceId;
+    document.choiceDesc.value = description;
+    
+    
+    
+    
+    
   } else {
     var msg = js["error"];
     //document.addForm.result.value = "error:" + msg;
