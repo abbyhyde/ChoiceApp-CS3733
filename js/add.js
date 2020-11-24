@@ -32,7 +32,7 @@ function processAddResponse(result) {
     document.choiceId.value = choiceId;
     document.choiceDesc.value = description;
     
-    document.altLabel.vaule = 
+    
     
     
     
