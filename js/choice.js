@@ -34,10 +34,13 @@ function processChoiceResponse(result) {
   var choice = document.getElementById('choiceId');
   
   var output = "";
+
+/*
   for (int i = 0; i < js.choice.length; i++) {
 	if(choice == choiceJson) {
 		console.log(choiceJson);
 	}
+	*/
     
     var cid = choiceJson["choiceId"];
 	var cdesc = choiceJson["desc"];
