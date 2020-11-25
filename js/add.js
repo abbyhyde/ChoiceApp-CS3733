@@ -19,10 +19,10 @@ function processAddResponse(result) {
   		altsDesc[i] = alternatives[i].description;
   	}
   
-  var maxNumMembers = choiceJSON["maxNumMembers"];
+  var maxNumMembers = choiceJSON["numMembers"];
   var isCompleted = choiceJSON["isCompleted"];
   
-  var status = js["statusCode"];
+  var status = js["httpCode"];
   
   if (status == 200) {
     // Update computation result
