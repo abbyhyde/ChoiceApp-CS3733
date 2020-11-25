@@ -85,14 +85,16 @@ public class ChoiceDAO {
             
             ArrayList<Alternative> alts = choice.alternatives;
             logger.log("\n\n The alts: " + alts);
+            int j = 0;
             for(Alternative alt : alts) {
             	if(!alt.description.equals("")) {
             		logger.log("inserting alt " + alt.description);
             		ps = conn.prepareStatement("INSERT INTO " + tblAlt + " (altId, choiceId,description) VALUES(?,?,?);");
-            		ps.setString(1,  alt.description + choice.choiceId);
+            		ps.setString(1,  alt.description + choice.choiceId + j);
             		ps.setString(2,  choice.choiceId);
             		ps.setString(3,  alt.description);
             		ps.execute();
+            		j++;
             	}
             	
             }
