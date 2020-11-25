@@ -10,7 +10,7 @@ public class Choice {
 	public String description;
 	public ArrayList<Alternative> alternatives;
 	public ArrayList<Member> members;
-	public int maxNumMembers;
+	public int numMembers; //maxNumMember
 	public boolean isCompleted;
 	public Date dateCompleted;
 	public Alternative altChosen;
@@ -22,7 +22,7 @@ public class Choice {
 		this.description = desc;
 		this.alternatives = alts;
 		this.members = new ArrayList<>();
-		this.maxNumMembers = numM;
+		this.numMembers = numM;
 		this.isCompleted = false;
 		this.dateCompleted = null;
 		this.altChosen = null;

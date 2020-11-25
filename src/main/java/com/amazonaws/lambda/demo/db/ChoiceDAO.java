@@ -76,7 +76,7 @@ public class ChoiceDAO {
             ps = conn.prepareStatement("INSERT INTO " + tblChoices + " (choiceId,description,maxNumMembers,isCompleted,dateCompleted,chosenAlt) VALUES(?,?,?,?,?,?);");
             ps.setString(1,  choice.choiceId);
             ps.setString(2,  choice.description);
-            ps.setInt(3, choice.maxNumMembers);
+            ps.setInt(3, choice.numMembers);
             ps.setBoolean(4, choice.isCompleted);
             ps.setDate(5, choice.dateCompleted);
             ps.setString(6, "");
@@ -125,7 +125,7 @@ public class ChoiceDAO {
                 return false; // password exists but doesn't match
             }
 
-            if (choice.numCurrentMembers() < choice.maxNumMembers) {
+            if (choice.numCurrentMembers() < choice.numMembers) {
             	logger.log("its trying to add the member\n");
             	ps = conn.prepareStatement("INSERT INTO " + tblMembers + " (memberId, choiceId, name, password) values(?,?,?,?);");
             	ps.setString(1,  memberId);
@@ -191,7 +191,7 @@ public class ChoiceDAO {
     	Choice choice = new Choice();
         choice.choiceId = resultSet.getString("choiceId");
         choice.description = resultSet.getString("description");
-        choice.maxNumMembers = resultSet.getInt("maxNumMembers");
+        choice.numMembers = resultSet.getInt("maxNumMembers");
         choice.isCompleted = resultSet.getBoolean("isCompleted");
         choice.dateCompleted = resultSet.getDate("dateCompleted");
         
