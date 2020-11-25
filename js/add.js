@@ -29,14 +29,14 @@ function processAddResponse(result) {
     //document.addForm.result.value = computation
     
     //this is where you output all of the values from the variables above
-    document.getElementById("choiceId").value = choiceId;
-    document.getElementById("choiceDesc").value = description;
+    document.getElementById("choiceId").innerText = choiceId;
+    document.getElementById("choiceDesc").innerText = description;
     
-    document.getElementById("alt1Desc").value = altsDesc[0];
-	document.getElementById("alt2Desc").value = altsDesc[1];
-	document.getElementById("alt3Desc").value = altsDesc[2];
-	document.getElementById("alt4Desc").value = altsDesc[3];
-	document.getElementById("alt5Desc").value = altsDesc[4];
+    document.getElementById("alt1Desc").innerText = altsDesc[0];
+	document.getElementById("alt2Desc").innerText = altsDesc[1];
+	document.getElementById("alt3Desc").innerText = altsDesc[2];
+	document.getElementById("alt4Desc").innerText = altsDesc[3];
+	document.getElementById("alt5Desc").innerText = altsDesc[4];
     
     
     
