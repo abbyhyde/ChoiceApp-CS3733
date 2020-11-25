@@ -62,7 +62,7 @@ function handleNewClick(e) {
 	},
   ];
   data["members"] = [];
-  data["maxNumMembers"] = numTeam;
+  data["numMembers"] = numTeam;
   data["isCompleted"] = false;
 
   var js = JSON.stringify(data);
