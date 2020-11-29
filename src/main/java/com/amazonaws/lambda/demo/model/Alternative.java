@@ -29,6 +29,10 @@ public class Alternative{
 		return false;  // not an Alt
 	}
 	
+	public void addApprove(Member m) {
+		approvers.add(m);
+	}
+	
 	public String toString() {
 		return "Alternative(" + description + ")";
 	}

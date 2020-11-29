@@ -58,6 +58,7 @@ public class ChoiceDAO {
             throw new Exception("Failed in getting choice: " + e.getMessage());
         }
     }
+    
    
 
     public boolean addChoice(Choice choice, LambdaLogger logger) throws Exception {
@@ -145,23 +146,46 @@ public class ChoiceDAO {
         }
     }
     
-    /*
-    public boolean updateChoice(Choice choice) throws Exception {
+    public Choice addMemberApprove(Alternative alt, String memberName, Choice choice, LambdaLogger logger) throws Exception {
         try {
-        	//(isCompleted,dateCompleted,chosenAlt) values(?,?,?,?,?,?);");
-        	String query = "UPDATE " + tblChoices + " SET value=? WHERE choiceId=?;";
-        	PreparedStatement ps = conn.prepareStatement(query);
-            ps.setObject(1, choice);
-        	ps.setString(2, choice.choiceId);
-            int numAffected = ps.executeUpdate();
-            ps.close();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblAlt + " WHERE choiceId = ? AND description=?;");
+            ps.setString(1, choice.choiceId);
+            ps.setString(1, alt.description);
+            ResultSet resultSet = ps.executeQuery();
             
-            return (numAffected == 1);
+            Member member = new Member(memberName);
+            String memberId = (memberName + choice.choiceId);
+            
+            
+            String altId = null;
+            while (resultSet.next()) {
+            	altId = resultSet.getString("altId");
+                resultSet.close();
+            }
+            if(altId == null) {
+            	return null;
+            }
+
+            
+            logger.log("its trying to add to approvers table\n");
+            ps = conn.prepareStatement("INSERT INTO " + tblApprovers + " (approveId, altId, memberId) values(?,?,?);");
+            ps.setString(1,  memberName + altId);
+            ps.setString(2,  altId);
+            ps.setString(3,  memberId);
+            ps.execute();
+            logger.log("it should have added?\n");
+            
+            alt.addApprove(member);
+            choice = getChoice(choice.choiceId, logger);
+            
+            return choice;
+            
+            
         } catch (Exception e) {
-            throw new Exception("Failed to update choice: " + e.getMessage());
+            throw new Exception("Failed to add member: " + e.getMessage());
         }
     }
-    */
+    
 
     public Alternative getAlt(String altId) throws Exception {
         
@@ -169,6 +193,29 @@ public class ChoiceDAO {
             Alternative alt = null;
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblAlt + " WHERE altId=?;");
             ps.setString(1,  altId);
+            ResultSet resultSet = ps.executeQuery();
+            
+            while (resultSet.next()) {
+                alt = generateAlt(resultSet);
+            }
+            resultSet.close();
+            ps.close();
+            
+            return alt;
+
+        } catch (Exception e) {
+        	e.printStackTrace();
+            throw new Exception("Failed in getting alternative: " + e.getMessage());
+        }
+    }
+    
+    public Alternative getAlt(String choiceId, String desc) throws Exception {
+        
+        try {
+            Alternative alt = null;
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblAlt + " WHERE choiceId=? AND description=?;");
+            ps.setString(1,  choiceId);
+            ps.setString(1,  desc);
             ResultSet resultSet = ps.executeQuery();
             
             while (resultSet.next()) {
@@ -207,8 +254,36 @@ public class ChoiceDAO {
         Alternative alt = new Alternative();
         alt.description = resultSet.getString("description");
         
-        //alt.approvers
-        //resultSet.getObject("value");
+        String altId = resultSet.getString("altId");
+        
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblApprovers + " WHERE altId=?;");
+        ps.setString(1,  altId);
+        ResultSet resultSet2 = ps.executeQuery();
+        
+        ArrayList<Member> members = new ArrayList<>();
+        ArrayList<String> memberIds = new ArrayList<>();
+        String currentMemberId = "";
+        
+        while(resultSet2.next()) {
+        	currentMemberId = resultSet2.getString("memberId");
+        	memberIds.add(currentMemberId);
+        	
+        	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblMembers + " WHERE memberId=?;");
+            ps.setString(1, currentMemberId);
+            ResultSet resultSet3 = ps.executeQuery();
+            
+            members.add(new Member(resultSet3.getString("name")));
+            
+        }
+        
+        alt.approvers = members;
+        
+        
+        
+        //STILL NEED THE DISAPPROVERS AND STUFF LOL
+        
+        
+        
         return alt;
     }
     
