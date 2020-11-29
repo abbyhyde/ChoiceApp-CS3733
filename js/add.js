@@ -31,6 +31,7 @@ function processAddResponse(result) {
     //this is where you output all of the values from the variables above
     document.getElementById("choiceId").innerText = choiceId;
     document.getElementById("choiceDesc").innerText = description;
+	document.getElementById("memberName").innerText = name; //need to check if this works!!!
     
     document.getElementById("alt1Desc").innerText = altsDesc[0];
 	document.getElementById("alt2Desc").innerText = altsDesc[1];

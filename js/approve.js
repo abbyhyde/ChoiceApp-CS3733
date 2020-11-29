@@ -2,13 +2,13 @@
  * Respond to server JSON object.
  *
  */
-function processAddResponse(result) {
+function processApproveResponse(result) {
   // Can grab any DIV or SPAN HTML element and can then manipulate its
   // contents dynamically via javascript
   console.log("result:" + result);
   var js = JSON.parse(result);
 
-  var choiceJSON = js["choice"];
+  var choiceJSON = js["choice"]; //need the alternative right?
   var choiceId = choiceJSON["choiceId"];
   var description = choiceJSON["description"];
   var alternatives = choiceJSON["alternatives"];
@@ -17,6 +17,7 @@ function processAddResponse(result) {
   	for(var i=0;i<alternatives.length;i++){
   		alts[i] = alternatives[i];
   		altsDesc[i] = alternatives[i].description;
+		altsApprove[i]= alternatives[i].approvers;
   	}
   
   var maxNumMembers = choiceJSON["numMembers"];
@@ -29,15 +30,17 @@ function processAddResponse(result) {
     //document.addForm.result.value = computation
     
     //this is where you output all of the values from the variables above
-    document.getElementById("choiceId").innerText = choiceId;
-    document.getElementById("choiceDesc").innerText = description;
+	//NEED TO FIX THIS!!!
+	var approveList = document.getElementById("approve1").value;
+	var newApprove = document.createElement('li');
+	newApprove.appendChild(document.createTextNode(approveList));
+	list.appendChild(newApprove);
     
     document.getElementById("alt1Desc").innerText = altsDesc[0];
 	document.getElementById("alt2Desc").innerText = altsDesc[1];
 	document.getElementById("alt3Desc").innerText = altsDesc[2];
 	document.getElementById("alt4Desc").innerText = altsDesc[3];
 	document.getElementById("alt5Desc").innerText = altsDesc[4];
-    
     
     
     
@@ -49,16 +52,22 @@ function processAddResponse(result) {
   //refreshChoice();
 }
 
-function handleAddClick(e) {
-  var form = document.addForm;
-  var choiceId = form.choiceId.value;
-  var name = form.teammateName.value;
-  var pass = form.password.value;
+function handleApproveClick(e, int) {
+//need to grab their name and then display the name under approve and add one to the count
+// need to pass in Choice ID, Member name, and Alternative Description
+//  var button = e;
+  var altNum = int;
+  var name = document.getElementById("memberName").innerText;
+  var choiceId = document.getElementById("choiceId").innerText;
+  var description = document.getElementById("alt" + altNum + "Desc").innerText;
+
+
+
 
   var data = {};          //NEED TO CHANGE: Make this for a choice
   data["choiceId"] = choiceId;
   data["memberName"] = name;
-  data["pass"] = pass;
+  data["altDesc"] = description;
 
   var js = JSON.stringify(data);
   console.log("JS:" + js);
@@ -75,12 +84,9 @@ function handleAddClick(e) {
     
     if (xhr.readyState == XMLHttpRequest.DONE) {
       console.log ("XHR:" + xhr.responseText);
-      processAddResponse(xhr.responseText);
+      processApproveResponse(xhr.responseText);
     } else {
-      processAddResponse("N/A");
+      processApproveResponse("N/A");
     }
-	document.getElementById("choice").style.visibility="visible";
- 
-
   };
 }

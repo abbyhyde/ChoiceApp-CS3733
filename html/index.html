@@ -3,11 +3,11 @@
 <!-- relative path-name to access js -->
 <script type='text/javascript' src='../js/api.js'></script>
 <script type='text/javascript' src='../js/get_choiceList.js'></script>
-<script type='text/javascript' src='../js/choice.js'></script>
 <script type='text/javascript' src='../js/new.js'></script>
 <script type='text/javascript' src='../js/add.js'></script>
-<script type='text/javascript' src='../js/create.js'></script>
-<script type='text/javascript' src='../js/delete.js'></script>
+<script type='text/javascript' src='../js/approve.js'></script>
+<script type='text/javascript' src='../js/disapprove.js'></script>
+<script type='text/javascript' src='../js/unselect.js'></script>
 
 <script type="text/javascript">
 var currentAlt = 1;
@@ -23,7 +23,7 @@ function initialize() {
 
 <h1> Choice App</h1>
 
-<div style= "width: 100%; height: 75%">
+<div style= "width: 100%; height: 50%">
 	<div style= "width: 60%; height: 50%; float: right">
 		<!-- Creating a new choice -->
 		<h2>Request to Create New Choice </h2> 
@@ -59,168 +59,184 @@ function initialize() {
 	</div>
 </div>
  
- <div id="choice" style= "width: 100%; height: 50%">
-<!-- show the choice on the same page where they should be able to interact with the choice, done with Lambda? -->
+<div id="choice" style= "width: 100%; height: 50%;">
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<p> 
-Choice # <div id="choiceId">ID</div>
-<div id="choiceDesc">This is the Choice Description</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<div style="display:inline-block; margin: 3px;">Choice # </div><div id="choiceId" style="display:inline-block; margin: 3px;">ID</div>
+	<div id="choiceDesc">This is the Choice Description. Choice Descriptions are going to be long and I want to see what happens when I change this. If I make it even longer what will happen?</div><br>
+	<div id="memberName"> Name</div>
+	<br><br>
 
-<br><br>
-<div style= "border: solid">
-Alternative #1<br>
-<div id="alt1Desc"> The Description of The Chosen Alternative </div>
-<br>
-<button id="PickedB">MARK AS PICKED</button><br>
-<button id="approveB">THUMBS UP</button><br>
-<button id="disapproveB">THUMBS DOWN</button><br>
-Feedback: <br>
-<ul>
-  <li>Feedback 1</li>
-  <li>Feedback 2</li>
-  <li>Feedback 3</li>
-</ul>
-Approvers: <br>
-<ul>
-  <li>Team Member 1</li>
-  <li>Team Member 2</li>
-  <li>Team Member 3</li>
-</ul>
-  Total: 3 <br>
-Disapprovals <br>
-<ul>
-  <li>Team Member 4</li>
-  <li>Team Member 5</li>
-  <li>Team Member 6</li>
-</ul>
-  Total: 3 <br>
-</div>
+	<div style= "border: solid">
+		<p>Alternative #1</p><br>
+		<div id="alt1Desc"> The Description of The Chosen Alternative </div>
+		<br>
+		<button id="Picked1B" style="margin: 5px;">MARK AS PICKED</button>
+		<button id="approve1B" style="margin: 5px;" onClick="JavaScript:handleApproveClick(this, 1)">THUMBS UP</button>
+		<button id="disapprove1B" style="margin: 5px;">THUMBS DOWN</button>
+		<br>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Feedback:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Feedback 1: Feedbacks are going to be long and I want to see what happens when I change this. If I make it even longer what will happen?</li>
+			  <li>Feedback 2</li>
+			  <li>Feedback 3</li>
+			</ul>
+		</div>
+		<br>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Approvers:
+			<ul id="approve1" style="list-style-type:none; padding-left: 0;">
+			  <li>Team Member 1</li>
+			  <li>Team Member 2</li>
+			  <li>Team Member 3</li>
+			</ul>
+			<div style="display:inline-block; margin: 3px;">Total:</div><div style="display:inline-block;"> 3</div>
+		</div>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Disapprovers:
+			<ul id="disapprove1" style="list-style-type:none; padding-left: 0;">
+			  <li>Team Member 4</li>
+			  <li>Team Member 5</li>
+			  <li>Team Member 6</li>
+			</ul>
+			<div style="display:inline-block; margin: 3px;">Total:</div><div style="display:inline-block;"> 3</div>
+		</div>
+	</div>
 
+	<div style= "border: solid">
+		<p>Alternative #2</p><br>
+		<div id="alt2Desc"> The Description of The Chosen Alternative </div>
+		<br>
+		<button id="Picked2B" style="margin: 5px;">MARK AS PICKED</button>
+		<button id="approve2B" style="margin: 5px;">THUMBS UP</button>
+		<button id="disapprove2B" style="margin: 5px;">THUMBS DOWN</button>
+		<br>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Feedback:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Feedback 1</li>
+			  <li>Feedback 2</li>
+			  <li>Feedback 3</li>
+			</ul>
+		</div>
+		<br>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Approvers:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Team Member 1</li>
+			  <li>Team Member 2</li>
+			  <li>Team Member 3</li>
+			</ul>
+			<div style="display:inline-block; margin: 3px;">Total:</div><div style="display:inline-block;"> 3</div>
+		</div>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Disapprovers:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Team Member 4</li>
+			  <li>Team Member 5</li>
+			  <li>Team Member 6</li>
+			</ul>
+			<div style="display:inline-block; margin: 3px;">Total:</div><div style="display:inline-block;"> 3</div>
+		</div>
+	</div>
 
-<div style= "border: solid">
-<p>Alternative #2<br>
-<div id="alt2Desc"> The Description of The Chosen Alternative </div>
-<br>
-<button id="PickedB">MARK AS PICKED</button><br>
-<button id="approveB">THUMBS UP</button><br>
-<button id="disapproveB">THUMBS DOWN</button><br>
-Feedback: <br>
-<ul>
-  <li>Feedback 1</li>
-  <li>Feedback 2</li>
-  <li>Feedback 3</li>
-</ul>
-Approvers: <br>
-<ul>
-  <li>Team Member 1</li>
-  <li>Team Member 2</li>
-  <li>Team Member 3</li>
-</ul>
-  Total: 3 <br>
-Disapprovals <br>
-<ul>
-  <li>Team Member 4</li>
-  <li>Team Member 5</li>
-  <li>Team Member 6</li>
-</ul>
-  Total: 3 <br>
-</div>
+	<div style= "border: solid">
+		<p>Alternative #3</p><br>
+		<div id="alt3Desc"> The Description of The Chosen Alternative </div>
+		<br>
+		<button id="Picked3B" style="margin: 5px;">MARK AS PICKED</button>
+		<button id="approve3B" style="margin: 5px;">THUMBS UP</button>
+		<button id="disapprove3B" style="margin: 5px;">THUMBS DOWN</button>
+		<br>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Feedback:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Feedback 1</li>
+			  <li>Feedback 2</li>
+			  <li>Feedback 3</li>
+			</ul>
+		</div>
+		<br>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Approvers:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Team Member 1</li>
+			  <li>Team Member 2</li>
+			  <li>Team Member 3</li>
+			</ul>
+			<div style="display:inline-block; margin: 3px;">Total:</div><div style="display:inline-block;"> 3</div>
+		</div>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Disapprovers:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Team Member 4</li>
+			  <li>Team Member 5</li>
+			  <li>Team Member 6</li>
+			</ul>
+			<div style="display:inline-block; margin: 3px;">Total:</div><div style="display:inline-block;"> 3</div>
+		</div>
+	</div>
 
-
-<div style= "border: solid">
-Alternative #3<br>
-<div id="alt3Desc"> The Description of The Chosen Alternative </div>
-<br>
-<button id="PickedB">MARK AS PICKED</button><br>
-<button id="approveB">THUMBS UP</button><br>
-<button id="disapproveB">THUMBS DOWN</button><br>
-Feedback: <br>
-<ul>
-  <li>Feedback 1</li>
-  <li>Feedback 2</li>
-  <li>Feedback 3</li>
-</ul>
-Approvers: <br>
-<ul>
-  <li>Team Member 1</li>
-  <li>Team Member 2</li>
-  <li>Team Member 3</li>
-</ul>
-  Total: 3 <br>
-Disapprovals <br>
-<ul>
-  <li>Team Member 4</li>
-  <li>Team Member 5</li>
-  <li>Team Member 6</li>
-</ul>
-  Total: 3 <br>
-</div>
-
-
-<div style= "border: solid">
-Alternative #4<br>
-<div id="alt4Desc"> The Description of The Chosen Alternative </div>
-<br>
-<button id="PickedB">MARK AS PICKED</button><br>
-<button id="approveB">THUMBS UP</button><br>
-<button id="disapproveB">THUMBS DOWN</button><br>
-Feedback: <br>
-<ul>
-  <li>Feedback 1</li>
-  <li>Feedback 2</li>
-  <li>Feedback 3</li>
-</ul>
-Approvers: <br>
-<ul>
-  <li>Team Member 1</li>
-  <li>Team Member 2</li>
-  <li>Team Member 3</li>
-</ul>
-  Total: 3 <br>
-Disapprovals <br>
-<ul>
-  <li>Team Member 4</li>
-  <li>Team Member 5</li>
-  <li>Team Member 6</li>
-</ul>
-  Total: 3 <br>
-</div>
-
-
-<div style= "border: solid">
-Alternative #5<br>
-<div id="alt5Desc"> The Description of The Chosen Alternative </div>
-<br>
-<button id="PickedB">MARK AS PICKED</button><br>
-<button id="approveB">THUMBS UP</button><br>
-<button id="disapproveB">THUMBS DOWN</button><br>
-Feedback: <br>
-<ul>
-  <li>Feedback 1</li>
-  <li>Feedback 2</li>
-  <li>Feedback 3</li>
-</ul>
-Approvers: <br>
-<ul>
-  <li>Team Member 1</li>
-  <li>Team Member 2</li>
-  <li>Team Member 3</li>
-</ul>
-  Total: 3 <br>
-Disapprovals <br>
-<ul>
-  <li>Team Member 4</li>
-  <li>Team Member 5</li>
-  <li>Team Member 6</li>
-</ul>
-  Total: 3 <br>
-</div>
-
-</p>
-<br><br>
+	<div style= "border: solid">
+		<p>Alternative #4</p><br>
+		<div id="alt4Desc"> The Description of The Chosen Alternative </div>
+		<br>
+		<button id="Picked4B" style="margin: 5px;">MARK AS PICKED</button>
+		<button id="approve4B" style="margin: 5px;">THUMBS UP</button>
+		<button id="disapprove4B" style="margin: 5px;">THUMBS DOWN</button>
+		<br>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Feedback:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Feedback 1</li>
+			  <li>Feedback 2</li>
+			  <li>Feedback 3</li>
+			</ul>
+		</div>
+		<br>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Approvers:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Team Member 1</li>
+			  <li>Team Member 2</li>
+			  <li>Team Member 3</li>
+			</ul>
+			<div style="display:inline-block; margin: 3px;">Total:</div><div style="display:inline-block;"> 3</div>
+		</div>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Disapprovers:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Team Member 4</li>
+			  <li>Team Member 5</li>
+			  <li>Team Member 6</li>
+			</ul>
+			<div style="display:inline-block; margin: 3px;">Total:</div><div style="display:inline-block;"> 3</div>
+		</div>
+	</div>
 
 
+	<div style= "border: solid">
+		<p>Alternative #5</p><br>
+		<div id="alt5Desc"> The Description of The Chosen Alternative </div>
+		<br>
+		<button id="Picked5B" style="margin: 5px;">MARK AS PICKED</button>
+		<button id="approve5B" style="margin: 5px;">THUMBS UP</button>
+		<button id="disapprove5B" style="margin: 5px;">THUMBS DOWN</button>
+		<br>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Feedback:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Feedback 1</li>
+			  <li>Feedback 2</li>
+			  <li>Feedback 3</li>
+			</ul>
+		</div>
+		<br>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Approvers: 
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Team Member 1</li>
+			  <li>Team Member 2</li>
+			  <li>Team Member 3</li>
+			</ul>
+			<div style="display:inline-block; margin: 3px;">Total:</div><div style="display:inline-block;"> 3</div>
+		</div>
+		<div style="display:inline-block; vertical-align: top; margin: 10px;">Disapprovers:
+			<ul style="list-style-type:none; padding-left: 0;">
+			  <li>Team Member 4</li>
+			  <li>Team Member 5</li>
+			  <li>Team Member 6</li>
+			</ul>
+			<div style="display:inline-block; margin: 3px;">Total:</div><div style="display:inline-block;"> 3</div>
+		</div>
+	</div>
 
 </div>
 
