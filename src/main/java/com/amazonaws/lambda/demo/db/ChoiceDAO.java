@@ -73,12 +73,12 @@ public class ChoiceDAO {
                 return false;
             }
 
-            ps = conn.prepareStatement("INSERT INTO " + tblChoices + " (choiceId,description,maxNumMembers,isCompleted,dateCompleted,chosenAlt) VALUES(?,?,?,?,?,?);");
+            ps = conn.prepareStatement("INSERT INTO " + tblChoices + " (choiceId,description,maxNumMembers,isCompleted,dateCreated,chosenAlt) VALUES(?,?,?,?,?,?);");
             ps.setString(1,  choice.choiceId);
             ps.setString(2,  choice.description);
             ps.setInt(3, choice.numMembers);
             ps.setBoolean(4, choice.isCompleted);
-            ps.setDate(5, choice.dateCompleted);
+            ps.setDate(5, choice.dateCreated);
             ps.setString(6, "");
             ps.execute();
             
@@ -193,7 +193,7 @@ public class ChoiceDAO {
         choice.description = resultSet.getString("description");
         choice.numMembers = resultSet.getInt("maxNumMembers");
         choice.isCompleted = resultSet.getBoolean("isCompleted");
-        choice.dateCompleted = resultSet.getDate("dateCompleted");
+        choice.dateCreated = resultSet.getDate("dateCreated");
         
         choice.altChosen = getAlt(resultSet.getString("chosenAlt"));
         

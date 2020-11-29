@@ -12,7 +12,7 @@ public class Choice {
 	public ArrayList<Member> members;
 	public int numMembers; //maxNumMember
 	public boolean isCompleted;
-	public Date dateCompleted;
+	public Date dateCreated;
 	public Alternative altChosen;
 	
 	public Choice() {}
@@ -24,7 +24,7 @@ public class Choice {
 		this.members = new ArrayList<>();
 		this.numMembers = numM;
 		this.isCompleted = false;
-		this.dateCompleted = null;
+		this.dateCreated = new Date(System.currentTimeMillis());
 		this.altChosen = null;
 	}
 	
