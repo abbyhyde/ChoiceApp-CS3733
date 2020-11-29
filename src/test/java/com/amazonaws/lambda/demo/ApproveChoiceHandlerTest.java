@@ -37,8 +37,8 @@ public class ApproveChoiceHandlerTest extends LambdaTest {
     @Test
     public void testAddApprove() {
     	String choiceId = "013788ea-614e-4628-ab83-4e0524084392";
-    	String name = "Vanessa";
-    	String altDesc = "ggkgt";
+    	String name = "Zach";
+    	String altDesc = "gsal";
     	
     	ApproveChoiceRequest ccr = new ApproveChoiceRequest(choiceId, name, altDesc);
         String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);

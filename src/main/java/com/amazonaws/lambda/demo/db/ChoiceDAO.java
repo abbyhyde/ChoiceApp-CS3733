@@ -151,7 +151,7 @@ public class ChoiceDAO {
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblAlt + " WHERE choiceId = ? AND description=?;");
             ps.setString(1, choice.choiceId);
-            ps.setString(1, alt.description);
+            ps.setString(2, alt.description);
             ResultSet resultSet = ps.executeQuery();
             
             Member member = new Member(memberName);
@@ -159,7 +159,7 @@ public class ChoiceDAO {
             
             
             String altId = null;
-            while (resultSet.next()) {
+            if (resultSet.next()) {
             	altId = resultSet.getString("altId");
                 resultSet.close();
             }
@@ -216,7 +216,7 @@ public class ChoiceDAO {
             Alternative alt = null;
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblAlt + " WHERE choiceId=? AND description=?;");
             ps.setString(1,  choiceId);
-            ps.setString(1,  desc);
+            ps.setString(2,  desc);
             ResultSet resultSet = ps.executeQuery();
             
             while (resultSet.next()) {
@@ -272,9 +272,9 @@ public class ChoiceDAO {
         	PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM " + tblMembers + " WHERE memberId=?;");
             ps2.setString(1, currentMemberId);
             ResultSet resultSet3 = ps2.executeQuery();
-            
-            members.add(new Member(resultSet3.getString("name")));
-            
+            if(resultSet3.next()) {
+            	members.add(new Member(resultSet3.getString("name")));
+            }
         }
         
         alt.approvers = members;
