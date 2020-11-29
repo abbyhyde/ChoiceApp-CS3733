@@ -268,9 +268,9 @@ public class ChoiceDAO {
         	currentMemberId = resultSet2.getString("memberId");
         	memberIds.add(currentMemberId);
         	
-        	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblMembers + " WHERE memberId=?;");
-            ps.setString(1, currentMemberId);
-            ResultSet resultSet3 = ps.executeQuery();
+        	PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM " + tblMembers + " WHERE memberId=?;");
+            ps2.setString(1, currentMemberId);
+            ResultSet resultSet3 = ps2.executeQuery();
             
             members.add(new Member(resultSet3.getString("name")));
             
