@@ -10,10 +10,10 @@ public class ApproveChoiceRequest {
 		
 	}
 	
-	public ApproveChoiceRequest(String cid, String name, String altd) {
+	public ApproveChoiceRequest(String cid, String name, String altD) {
 		choiceId = cid;
 		memberName = name;
-		altDesc = altd;
+		altDesc = altD;
 	}
 	
 	
