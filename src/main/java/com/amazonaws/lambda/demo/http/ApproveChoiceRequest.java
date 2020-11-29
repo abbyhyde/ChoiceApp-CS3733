@@ -18,7 +18,7 @@ public class ApproveChoiceRequest {
 	
 	
 	public String toString() {
-		return "ParticipateChoice(" + choiceId + "," + memberName + ")";
+		return "ParticipateChoice(" + choiceId + "," + memberName + "," + altDesc + ")";
 	}
 
 	public String getChoiceId() {return choiceId;}

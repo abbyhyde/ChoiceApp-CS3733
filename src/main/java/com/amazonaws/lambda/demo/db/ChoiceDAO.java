@@ -37,7 +37,7 @@ public class ChoiceDAO {
     }
 
     public Choice getChoice(String choiceId, LambdaLogger logger) throws Exception {
-        
+    	logger.log("about to get the choice\n");
         try {
             Choice choice = null;
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblChoices + " WHERE choiceId=?;");
@@ -54,6 +54,7 @@ public class ChoiceDAO {
             return choice;
 
         } catch (Exception e) {
+        	logger.log("couldnt get the choice from the database\n");
         	e.printStackTrace();
             throw new Exception("Failed in getting choice: " + e.getMessage());
         }
