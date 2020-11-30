@@ -1,16 +1,16 @@
 package com.amazonaws.lambda.demo.http;
 
-public class ApproveChoiceRequest {
-	
+public class UnselectChoiceRequest {
+
 	public String choiceId;
 	public String memberName;
 	public String altDesc;
 	
-	public ApproveChoiceRequest() {
+	public UnselectChoiceRequest() {
 		
 	}
 	
-	public ApproveChoiceRequest(String cid, String name, String altD) {
+	public UnselectChoiceRequest(String cid, String name, String altD) {
 		choiceId = cid;
 		memberName = name;
 		altDesc = altD;
@@ -18,7 +18,7 @@ public class ApproveChoiceRequest {
 	
 	
 	public String toString() {
-		return "ApproveChoice(" + choiceId + "," + memberName + "," + altDesc + ")";
+		return "UnselectChoice(" + choiceId + "," + memberName + "," + altDesc + ")";
 	}
 
 	public String getChoiceId() {return choiceId;}
@@ -29,6 +29,4 @@ public class ApproveChoiceRequest {
 
 	public String getAltDesc() {return altDesc;}
 	public void setAltDesc(String ad) {this.altDesc = ad;}
-
-
 }

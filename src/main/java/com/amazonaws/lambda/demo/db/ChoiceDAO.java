@@ -187,6 +187,68 @@ public class ChoiceDAO {
         }
     }
     
+    public Choice unselectMember(Alternative alt, String memberName, Choice choice, LambdaLogger logger) throws Exception {
+    	try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblAlt + " WHERE choiceId = ? AND description=?;");
+            ps.setString(1, choice.choiceId);
+            ps.setString(2, alt.description);
+            ResultSet resultSet = ps.executeQuery();
+            
+            Member member = new Member(memberName);
+            String memberId = (memberName + choice.choiceId);
+            
+            
+            String altId = null;
+            if (resultSet.next()) {
+            	altId = resultSet.getString("altId");
+                resultSet.close();
+            }
+            if(altId == null) {
+            	return null;
+            }
+
+            // check both approvers and disapprover lists
+            if (alt.approvers.contains(member)) {
+            	logger.log("its trying to delete from approvers table\n");
+                ps = conn.prepareStatement("DELETE FROM " + tblApprovers + " WHERE approveId=? AND altId=? AND memberId=?;");
+                ps.setString(1,  memberName + altId);
+                ps.setString(2,  altId);
+                ps.setString(3,  memberId);
+                ps.execute();
+                logger.log("it should have deleted from approvers?\n");
+                
+                alt.removeApprove(member);
+                choice = getChoice(choice.choiceId, logger);
+                ps.close();
+                
+                return choice;
+                
+            } else if (alt.disapprovers.contains(member)) {
+            	logger.log("its trying to delete from disapprovers table\n");
+                ps = conn.prepareStatement("DELETE FROM " + tblDisapprovers + " WHERE approveId=? AND altId=? AND memberId=?;");
+                ps.setString(1,  memberName + altId);
+                ps.setString(2,  altId);
+                ps.setString(3,  memberId);
+                ps.execute();
+                logger.log("it should have deleted from disapprovers?\n");
+                
+                alt.removeDisapprove(member);
+                choice = getChoice(choice.choiceId, logger);
+                ps.close();
+                
+                return choice;
+                
+            } else {
+            	// not in either of the approver or disapprover lists, so we yeet
+            	return null;
+            }
+            
+            
+        } catch (Exception e) {
+            throw new Exception("Failed to remove member: " + e.getMessage());
+        }
+    }
+    
 
     public Alternative getAlt(String altId) throws Exception {
         

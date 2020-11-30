@@ -33,6 +33,18 @@ public class Alternative{
 		approvers.add(m);
 	}
 	
+	public void removeApprove(Member m) {
+		approvers.remove(m);
+	}
+	
+	public void addDisapprove(Member m) {
+		disapprovers.add(m);
+	}
+	
+	public void removeDisapprove(Member m) {
+		disapprovers.remove(m);
+	}
+	
 	public String toString() {
 		return "Alternative(" + description + ")";
 	}
