@@ -167,9 +167,58 @@ public class ChoiceDAO {
             	return null;
             }
 
-            
+            if (alt.disapprovers.contains(member)) {
+            	unselectMember(alt, memberName, choice, logger);
+            } else if (alt.approvers.contains(member)) {
+            	return choice;
+            }
             logger.log("its trying to add to approvers table\n");
             ps = conn.prepareStatement("INSERT INTO " + tblApprovers + " (approveId, altId, memberId) values(?,?,?);");
+            ps.setString(1,  memberName + altId);
+            ps.setString(2,  altId);
+            ps.setString(3,  memberId);
+            ps.execute();
+            logger.log("it should have added?\n");
+            
+            alt.addApprove(member);
+            choice = getChoice(choice.choiceId, logger);
+            
+            return choice;
+            
+            
+        } catch (Exception e) {
+            throw new Exception("Failed to add member: " + e.getMessage());
+        }
+    }
+    
+    public Choice addMemberDisapprove(Alternative alt, String memberName, Choice choice, LambdaLogger logger) throws Exception {
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblAlt + " WHERE choiceId = ? AND description=?;");
+            ps.setString(1, choice.choiceId);
+            ps.setString(2, alt.description);
+            ResultSet resultSet = ps.executeQuery();
+            
+            Member member = new Member(memberName);
+            String memberId = (memberName + choice.choiceId);
+            
+            
+            String altId = null;
+            if (resultSet.next()) {
+            	altId = resultSet.getString("altId");
+                resultSet.close();
+            }
+            if(altId == null) {
+            	return null;
+            }
+
+            
+            logger.log("its trying to add to disapprovers table\n");
+            if (alt.approvers.contains(member)) {
+            	unselectMember(alt, memberName, choice, logger);
+            } else if (alt.disapprovers.contains(member)) {
+            	return choice;
+            }
+            ps = conn.prepareStatement("INSERT INTO " + tblDisapprovers + " (approveId, altId, memberId) values(?,?,?);");
             ps.setString(1,  memberName + altId);
             ps.setString(2,  altId);
             ps.setString(3,  memberId);
