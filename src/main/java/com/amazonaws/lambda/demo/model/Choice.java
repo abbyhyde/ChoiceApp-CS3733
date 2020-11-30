@@ -33,6 +33,15 @@ public class Choice {
 		return true;		
 	}
 	
+	public Alternative getAlt(String desc) {
+		for(Alternative a : alternatives) {
+			if(a.description.equals(desc)) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
 	
 	public boolean equals(Object o) {
 		if (o == null) { return false; }

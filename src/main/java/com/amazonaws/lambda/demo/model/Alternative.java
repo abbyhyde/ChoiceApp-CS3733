@@ -9,13 +9,17 @@ public class Alternative{
 	public ArrayList<Member> disapprovers;
 	public ArrayList<Feedback> feedbacks;
 	
-	public Alternative() {}
+	public Alternative() {
+		this.approvers = new ArrayList<Member>();
+		this.disapprovers = new ArrayList<Member>();
+		this.feedbacks = new ArrayList<Feedback>();
+	}
 	
 	public Alternative(String d) {
 		this.description = d;
-		this.approvers = new ArrayList<>();
-		this.disapprovers = new ArrayList<>();
-		this.feedbacks = new ArrayList<>();
+		this.approvers = new ArrayList<Member>();
+		this.disapprovers = new ArrayList<Member>();
+		this.feedbacks = new ArrayList<Feedback>();
 	}
 	
 	public boolean equals(Object o) {
@@ -43,6 +47,24 @@ public class Alternative{
 	
 	public void removeDisapprove(Member m) {
 		disapprovers.remove(m);
+	}
+	
+	public boolean containsApprover(Member m) {
+		for(Member mem : approvers) {
+			if(mem.name.equals(m.name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean containsDisapprover(Member m) {
+		for(Member mem : disapprovers) {
+			if(mem.name.equals(m.name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public String toString() {

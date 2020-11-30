@@ -167,9 +167,9 @@ public class ChoiceDAO {
             	return null;
             }
 
-            if (alt.disapprovers.contains(member)) {
+            if (alt.containsDisapprover(member)) {
             	unselectMember(alt, memberName, choice, logger);
-            } else if (alt.approvers.contains(member)) {
+            } else if (alt.containsApprover(member)) {
             	return choice;
             }
             logger.log("its trying to add to approvers table\n");
@@ -213,12 +213,12 @@ public class ChoiceDAO {
 
             
             logger.log("its trying to add to disapprovers table\n");
-            if (alt.approvers.contains(member)) {
+            if (alt.containsApprover(member)) {
             	unselectMember(alt, memberName, choice, logger);
-            } else if (alt.disapprovers.contains(member)) {
+            } else if (alt.containsDisapprover(member)) {
             	return choice;
             }
-            ps = conn.prepareStatement("INSERT INTO " + tblDisapprovers + " (approveId, altId, memberId) values(?,?,?);");
+            ps = conn.prepareStatement("INSERT INTO " + tblDisapprovers + " (disapproveId, altId, memberId) values(?,?,?);");
             ps.setString(1,  memberName + altId);
             ps.setString(2,  altId);
             ps.setString(3,  memberId);
@@ -368,11 +368,21 @@ public class ChoiceDAO {
         
         String altId = resultSet.getString("altId");
         
-        PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblApprovers + " WHERE altId=?;");
+        ArrayList<Member> Amembers = getApproverMembers(altId);
+        ArrayList<Member> Dmembers = getDisapproverMembers(altId);
+        
+        alt.approvers = Amembers;
+        alt.disapprovers = Dmembers;
+        
+        return alt;
+    }
+    
+    private ArrayList<Member> getApproverMembers(String altId) throws Exception{
+    	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblApprovers + " WHERE altId=?;");
         ps.setString(1,  altId);
         ResultSet resultSet2 = ps.executeQuery();
         
-        ArrayList<Member> members = new ArrayList<>();
+        ArrayList<Member> members = new ArrayList<Member>();
         ArrayList<String> memberIds = new ArrayList<>();
         String currentMemberId = "";
         
@@ -383,23 +393,39 @@ public class ChoiceDAO {
         	PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM " + tblMembers + " WHERE memberId=?;");
             ps2.setString(1, currentMemberId);
             ResultSet resultSet3 = ps2.executeQuery();
-            if(resultSet3.next()) {
+            while(resultSet3.next()) {
             	members.add(new Member(resultSet3.getString("name")));
             }
         }
         
-        alt.approvers = members;
-        
-        
-        
-        //STILL NEED THE DISAPPROVERS AND STUFF LOL
-        
-        
-        
-        return alt;
-    }
+        return members;
+	}
     
-    private Member generateMember(ResultSet resultSet) throws Exception {
+    private ArrayList<Member> getDisapproverMembers(String altId) throws Exception{
+    	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblDisapprovers + " WHERE altId=?;");
+        ps.setString(1,  altId);
+        ResultSet resultSet2 = ps.executeQuery();
+        
+        ArrayList<Member> members = new ArrayList<Member>();
+        ArrayList<String> memberIds = new ArrayList<>();
+        String currentMemberId = "";
+        
+        while(resultSet2.next()) {
+        	currentMemberId = resultSet2.getString("memberId");
+        	memberIds.add(currentMemberId);
+        	
+        	PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM " + tblMembers + " WHERE memberId=?;");
+            ps2.setString(1, currentMemberId);
+            ResultSet resultSet3 = ps2.executeQuery();
+            while(resultSet3.next()) {
+            	members.add(new Member(resultSet3.getString("name")));
+            }
+        }
+        
+        return members;
+	}
+
+	private Member generateMember(ResultSet resultSet) throws Exception {
     	Member member = new Member();
         member.name = resultSet.getString("name");
         member.setPass(resultSet.getString("password"));
