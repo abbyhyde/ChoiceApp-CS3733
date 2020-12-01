@@ -38,14 +38,16 @@ function processListResponse(result) {
     var choiceJson = js.list[i];
     console.log(choiceJson);
     
-    var cname = choiceJson["name"];
-    var cval = choiceJson["value"];
-    var sysvar = choiceJson["system"];
-    if (sysvar) {
-    	output = output + "<div id=\"choice" + cname + "\"><b>" + cname + ":</b> = " + cval + "<br></div>";
-    } else {
-    	output = output + "<div id=\"choice" + cname + "\"><b>" + cname + ":</b> = " + cval + "(<a href='javaScript:requestDelete(\"" + cname + "\")'><img src='deleteIcon.png'></img></a>) <br></div>";
-    }
+    var choiceId = choiceJson["choiceId"];   		  //choice ID
+    var dateCreated = choiceJson["dateCreated"];	  // creation date
+	if (choiceJson["isCompleted"]) {
+		var isCompleted = "completed";
+	} else {
+		var isCompleted = "not completed";
+	}
+	
+    output = output + "<div id=\"choice" + choiceId + "\"><b>" + choiceId + "</b>   " + dateCreated + "   "  + isCompleted "<br></div>";
+    
   }
 
   // Update computation result
