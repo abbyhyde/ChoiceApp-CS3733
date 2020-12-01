@@ -46,7 +46,7 @@ function processListResponse(result) {
 		var isCompleted = "not completed";
 	}
 	
-    output = output + "<div id=\"choice" + choiceId + "\"><b>" + choiceId + "</b>   " + dateCreated + "   "  + isCompleted "<br></div>";
+    output = output + "<div id=\"choice" + choiceId + "\"><b>" + choiceId + "</b>   " + dateCreated + "   "  + isCompleted + "<br></div>";
     
   }
 
