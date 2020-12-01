@@ -3,7 +3,7 @@
 var base_url = "https://djffapxaf4.execute-api.us-east-2.amazonaws.com/Beta/";  
 
 var add_url        = base_url + "participateChoice";   // POST
-var list_url       = base_url + "list";    // GET
+var list_url       = base_url + "getChoices";    // GET
 var new_url        = base_url + "createChoice";
 var approve_url    = base_url + "selectApproval";
 var disapprove_url = base_url + "selectDisapproval";
