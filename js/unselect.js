@@ -2,7 +2,7 @@
  * Respond to server JSON object.
  *
  */
-function processAddResponse(result) {
+function processUnselectResponse(result) {
   // Can grab any DIV or SPAN HTML element and can then manipulate its
   // contents dynamically via javascript
   console.log("result:" + result);
@@ -38,7 +38,7 @@ function processAddResponse(result) {
 	document.getElementById("alt4Desc").innerText = altsDesc[3];
 	document.getElementById("alt5Desc").innerText = altsDesc[4];
     
-    
+    //this should be set up the same as add right?
     
     
   } else {
@@ -49,7 +49,7 @@ function processAddResponse(result) {
   //refreshChoice();
 }
 
-function handleAddClick(e) {
+function handleUnselectClick(e) {
   var form = document.addForm;
   var choiceId = form.choiceId.value;
   var name = form.teammateName.value;
@@ -63,7 +63,7 @@ function handleAddClick(e) {
   var js = JSON.stringify(data);
   console.log("JS:" + js);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", add_url, true);
+  xhr.open("POST", unselect_url, true);
 
   // send the collected data as JSON
   xhr.send(js);
@@ -75,9 +75,9 @@ function handleAddClick(e) {
     
     if (xhr.readyState == XMLHttpRequest.DONE) {
       console.log ("XHR:" + xhr.responseText);
-      processAddResponse(xhr.responseText);
+      processUnselectResponse(xhr.responseText);
     } else {
-      processAddResponse("N/A");
+      processUnselectResponse("N/A");
     }
 	document.getElementById("choice").style.visibility="visible";
  
