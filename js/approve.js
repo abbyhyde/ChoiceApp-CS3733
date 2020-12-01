@@ -45,7 +45,7 @@ function processApproveResponse(result) {
 		for (var i=0; i < altsApprove[0].length; i++) {
 			memName = altsApprove[i].name;
 			listMem = document.getElementById("approve1").innerText;
-			document.getElementById("approve1").innerHTML = listMem + <br/> + memName;
+			document.getElementById("approve1").innerHTML = listMem + "<br>" + memName;
 		}
 		document.getElementById("approveTot1").innerText = altsApprove[0].length;
 	}
@@ -60,7 +60,7 @@ function processApproveResponse(result) {
 		for (var i=0; i < altsApprove[1].length; i++) {
 			memName = altsApprove[i].name;
 			listMem = document.getElementById("approve2").innerText;
-			document.getElementById("approve2").innerHTML = listMem + <br/> + memName;
+			document.getElementById("approve2").innerHTML = listMem + "<br>" + memName;
 		}
 		document.getElementById("approveTot2").innerText = altsApprove[1].length;
 	}
@@ -75,7 +75,7 @@ function processApproveResponse(result) {
 		for (var i=0; i < altsApprove[2].length; i++) {
 			memName = altsApprove[i].name;
 			listMem = document.getElementById("approve3").innerText;
-			document.getElementById("approve3").innerHTML = listMem + <br/> + memName;
+			document.getElementById("approve3").innerHTML = listMem + "<br>" + memName;
 		}
 		document.getElementById("approveTot3").innerText = altsApprove[2].length;
 	}
@@ -90,7 +90,7 @@ function processApproveResponse(result) {
 		for (var i=0; i < altsApprove[3].length; i++) {
 			memName = altsApprove[i].name;
 			listMem = document.getElementById("approve4").innerText;
-			document.getElementById("approve4").innerHTML = listMem + <br/> + memName;
+			document.getElementById("approve4").innerHTML = listMem + "<br>" + memName;
 		}
 		document.getElementById("approveTot4").innerText = altsApprove[3].length;
 	}
@@ -105,7 +105,7 @@ function processApproveResponse(result) {
 		for (var i=0; i < altsApprove[4].length; i++) {
 			memName = altsApprove[i].name;
 			listMem = document.getElementById("approve5").innerText;
-			document.getElementById("approve5").innerHTML = listMem + <br/> + memName;
+			document.getElementById("approve5").innerHTML = listMem + "<br>" + memName;
 		}
 		document.getElementById("approveTot5").innerText = altsApprove[4].length;
 	}
