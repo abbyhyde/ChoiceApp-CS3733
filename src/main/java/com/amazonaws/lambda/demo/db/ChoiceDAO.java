@@ -60,6 +60,30 @@ public class ChoiceDAO {
         }
     }
     
+    public ArrayList<Choice> getAllChoices(LambdaLogger logger) throws Exception {
+    	logger.log("about to get the choices\n");
+        try {
+        	ArrayList<Choice> allChoices = new ArrayList<Choice>();
+            Choice choice = null;
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblChoices + ";");
+            ResultSet resultSet = ps.executeQuery();
+            
+            while (resultSet.next()) {
+            	logger.log("we got a hit\n");
+                choice = generateChoice(resultSet);
+                allChoices.add(choice);
+            }
+            resultSet.close();
+            ps.close();
+            
+            return allChoices;
+
+        } catch (Exception e) {
+        	logger.log("couldnt get the choices from the database\n");
+        	e.printStackTrace();
+            throw new Exception("Failed in getting choiced: " + e.getMessage());
+        }
+    }
    
 
     public boolean addChoice(Choice choice, LambdaLogger logger) throws Exception {
