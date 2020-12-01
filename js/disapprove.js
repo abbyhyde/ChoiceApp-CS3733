@@ -38,57 +38,76 @@ function processDisapproveResponse(result) {
     
     document.getElementById("alt1Desc").innerText = altsDesc[0];
 	document.getElementById("approve1").innerText = document.getElementById("approve1").innerText; //probably don't need these lines
-	document.getElementById("approveTot1").innerText = altsApprove[0].length;
-	for (var i=0; i < altsDisapprove[0].length; i++) {
-		memName = altsDisapprove[i].name;
-		listMem = document.getElementById("disapprove1").innerText;
-		document.getElementById("disapprove1").innerText = listMem + "\n" + memName;
+	if (altsApprove[0] != null) {
+		document.getElementById("approveTot1").innerText = altsApprove[0].length;
 	}
-	document.getElementById("disapproveTot1").innerText = altsDisapprove[0].length;
-
+	if (altsDisapprove[0] != null) {
+		for (var i=0; i < altsDisapprove[0].length; i++) {
+			memName = altsDisapprove[i].name;
+			listMem = document.getElementById("disapprove1").innerText;
+			document.getElementById("disapprove1").innerHTML = listMem + <br/> + memName;
+		}
+		document.getElementById("disapproveTot1").innerText = altsDisapprove[0].length;
+	}
 
 	document.getElementById("alt2Desc").innerText = altsDesc[1];
 	document.getElementById("approve2").innerText = document.getElementById("approve2").innerText; //probably don't need these lines
+	if (altsApprove[1] != null) {
 	document.getElementById("approveTot2").innerText = altsApprove[1].length;
-	for (var i=0; i < altsDisapprove[1].length; i++) {
-		memName = altsDisapprove[i].name;
-		listMem = document.getElementById("disapprove2").innerText;
-		document.getElementById("disapprove2").innerText = listMem + "\n" + memName;
 	}
-	document.getElementById("disapproveTot2").innerText = altsDisapprove[1].length;
+	if (altsDisapprove[1] != null) {
+		for (var i=0; i < altsDisapprove[1].length; i++) {
+			memName = altsDisapprove[i].name;
+			listMem = document.getElementById("disapprove2").innerText;
+			document.getElementById("disapprove2").innerHTML = listMem + <br/> + memName;
+		}
+		document.getElementById("disapproveTot2").innerText = altsDisapprove[1].length;
+	}
 	
 	
 	document.getElementById("alt3Desc").innerText = altsDesc[2];
 	document.getElementById("approve3").innerText = document.getElementById("approve3").innerText; //probably don't need these lines
-	document.getElementById("approveTot3").innerText = altsApprove[2].length;
-	for (var i=0; i < altsDisapprove[2].length; i++) {
-		memName = altsDisapprove[i].name;
-		listMem = document.getElementById("disapprove3").innerText;
-		document.getElementById("disapprove3").innerText = listMem + "\n" + memName;
+	if (altsApprove[2] != null) {
+		document.getElementById("approveTot3").innerText = altsApprove[2].length;
 	}
-	document.getElementById("disapproveTot3").innerText = altsDisapprove[2].length;
+	if (altsDisapprove[2] != null) {
+		for (var i=0; i < altsDisapprove[2].length; i++) {
+			memName = altsDisapprove[i].name;
+			listMem = document.getElementById("disapprove3").innerText;
+			document.getElementById("disapprove3").innerHTML = listMem + <br/> + memName;
+		}
+		document.getElementById("disapproveTot3").innerText = altsDisapprove[2].length;
+	}
 	
 	
 	document.getElementById("alt4Desc").innerText = altsDesc[3];
 	document.getElementById("approve4").innerText = document.getElementById("approve4").innerText; //probably don't need these lines
+	if (altsApprove[3] != null) {
 	document.getElementById("approveTot4").innerText = altsApprove[3].length;
-	for (var i=0; i < altsDisapprove[3].length; i++) {
-		memName = altsDisapprove[i].name;
-		listMem = document.getElementById("disapprove4").innerText;
-		document.getElementById("disapprove4").innerText = listMem + "\n" + memName;
 	}
-	document.getElementById("disapproveTot4").innerText = altsDisapprove[3].length;
+	if (altsDisapprove[3] != null) {
+		for (var i=0; i < altsDisapprove[3].length; i++) {
+			memName = altsDisapprove[i].name;
+			listMem = document.getElementById("disapprove4").innerText;
+			document.getElementById("disapprove4").innerHTML = listMem + <br/> + memName;
+		}
+		document.getElementById("disapproveTot4").innerText = altsDisapprove[3].length;
+	}
 	
 	
 	document.getElementById("alt5Desc").innerText = altsDesc[4];
     document.getElementById("approve5").innerText = document.getElementById("approve5").innerText; //probably don't need these lines
+	if (altsApprove[4] != null) {
 	document.getElementById("approveTot5").innerText = altsApprove[4].length;
-	for (var i=0; i < altsDisapprove[4].length; i++) {
-		memName = altsDisapprove[i].name;
-		listMem = document.getElementById("disapprove5").innerText;
-		document.getElementById("disapprove5").innerText = listMem + "\n" + memName;
 	}
-	document.getElementById("disapproveTot5").innerText = altsDisapprove[4].length;
+	if (altsDisapprove[4] != null) {
+		for (var i=0; i < altsDisapprove[4].length; i++) {
+			memName = altsDisapprove[i].name;
+			listMem = document.getElementById("disapprove5").innerText;
+			document.getElementById("disapprove5").innerHTML = listMem + <br/> + memName;
+		}
+		document.getElementById("disapproveTot5").innerText = altsDisapprove[4].length;
+	}
     
     
     
