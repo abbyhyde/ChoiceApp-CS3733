@@ -14,6 +14,9 @@ function processApproveResponse(result) {
   var alternatives = choiceJSON["alternatives"];
   var alts = new Array();
   var altsDesc = new Array();
+  var altsApprove = new Array();
+  var altsDisapprove = new Array();
+  var altsFeedback = new Array();
   	for(var i=0;i<alternatives.length;i++){
   		alts[i] = alternatives[i];
   		altsDesc[i] = alternatives[i].description;
