@@ -51,6 +51,12 @@ function processDisapproveResponse(result) {
 	var approvers = new Array();   
 	var disapprovers = new Array(); 
 
+
+	if (altsDesc[0] == "") {
+		document.getElementById("Alt1").style.visibility="hidden"; 
+	} else {
+		document.getElementById("Alt1").style.visibility="visible";
+	}
     document.getElementById("alt1Desc").innerText = altsDesc[0];
 	if (altsApprove[0] != null) {
 		approvers = altsApprove[0];
@@ -74,6 +80,11 @@ function processDisapproveResponse(result) {
 	}
 
 
+	if (altsDesc[1] == "") {
+		document.getElementById("Alt2").style.visibility="hidden"; 
+	} else {
+		document.getElementById("Alt2").style.visibility="visible";
+	}
 	document.getElementById("alt2Desc").innerText = altsDesc[1];
 	if (altsApprove[1] != null) {
 		approvers = altsApprove[1];
@@ -96,7 +107,12 @@ function processDisapproveResponse(result) {
 		document.getElementById("disapproveTot2").innerText = altsDisapprove[1].length;
 	}
 	
-	
+
+	if (altsDesc[2] == "") {
+		document.getElementById("Alt3").style.visibility="hidden"; 
+	} else {
+		document.getElementById("Alt3").style.visibility="visible";
+	}	
 	document.getElementById("alt3Desc").innerText = altsDesc[2];
 	if (altsApprove[2] != null) {
 		approvers = altsApprove[2];
@@ -120,7 +136,11 @@ function processDisapproveResponse(result) {
 	}
 	
 	
-	
+	if (altsDesc[3] == "") {
+		document.getElementById("Alt4").style.visibility="hidden"; 
+	} else {
+		document.getElementById("Alt4").style.visibility="visible";
+	}	
 	document.getElementById("alt4Desc").innerText = altsDesc[3];
 	if (altsApprove[3] != null) {
 		approvers = altsApprove[3];
@@ -144,7 +164,11 @@ function processDisapproveResponse(result) {
 	}
 	
 	
-	
+	if (altsDesc[4] == "") {
+		document.getElementById("Alt5").style.visibility="hidden"; 
+	} else {
+		document.getElementById("Alt5").style.visibility="visible";
+	}	
 	document.getElementById("alt5Desc").innerText = altsDesc[4];
     if (altsApprove[4] != null) {
 		approvers = altsApprove[4];
