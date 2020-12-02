@@ -43,13 +43,12 @@ function processApproveResponse(result) {
   if (status == 200) {
     // Update choice display
     
-	//NEED TO FIX THIS!!!
-	document.getElementById("choiceId").innerText = choiceId;
+    document.getElementById("choiceId").innerText = choiceId;
     document.getElementById("choiceDesc").innerText = description;
-//	document.getElementById("memberName").innerText = name; //not keeping name!!!
-	var approvers = new Array();	
+	//var name = document.getElementById("memberName").innerText; //need to check if this works!!!
+	var approvers = new Array();   
+	var disapprovers = new Array(); 
 
-    
     document.getElementById("alt1Desc").innerText = altsDesc[0];
 	if (altsApprove[0] != null) {
 		approvers = altsApprove[0];
@@ -61,12 +60,18 @@ function processApproveResponse(result) {
 		document.getElementById("approve1").innerHTML = memNames;
 		document.getElementById("approveTot1").innerText = altsApprove[0].length;
 	}
-	document.getElementById("disapprove1").innerText = document.getElementById("disapprove1").innerText; //probably don't need these lines
 	if (altsDisapprove[0] != null) {
+		disapprovers = altsDisapprove[0];
+		var memNames = "";
+		for (var i=0; i < disapprovers.length; i++) {
+			memName = disapprovers[i];
+			memNames += memName + "\n";
+		}
+		document.getElementById("disapprove1").innerHTML = memNames;
 		document.getElementById("disapproveTot1").innerText = altsDisapprove[0].length;
 	}
-	
-	
+
+
 	document.getElementById("alt2Desc").innerText = altsDesc[1];
 	if (altsApprove[1] != null) {
 		approvers = altsApprove[1];
@@ -78,9 +83,15 @@ function processApproveResponse(result) {
 		document.getElementById("approve2").innerHTML = memNames;
 		document.getElementById("approveTot2").innerText = altsApprove[1].length;
 	}
-	document.getElementById("disapprove2").innerText = document.getElementById("disapprove2").innerText; //probably don't need these lines
 	if (altsDisapprove[1] != null) {
-	document.getElementById("disapproveTot2").innerText = altsDisapprove[1].length;
+		disapprovers = altsDisapprove[1];
+		var memNames = "";
+		for (var i=0; i < disapprovers.length; i++) {
+			memName = disapprovers[i];
+			memNames += memName + "\n";
+		}
+		document.getElementById("disapprove2").innerHTML = memNames;
+		document.getElementById("disapproveTot2").innerText = altsDisapprove[1].length;
 	}
 	
 	
@@ -95,10 +106,17 @@ function processApproveResponse(result) {
 		document.getElementById("approve3").innerHTML = memNames;
 		document.getElementById("approveTot3").innerText = altsApprove[2].length;
 	}
-	document.getElementById("disapprove3").innerText = document.getElementById("disapprove3").innerText; //probably don't need these lines
 	if (altsDisapprove[2] != null) {
-	document.getElementById("disapproveTot3").innerText = altsDisapprove[2].length;
+		disapprovers = altsDisapprove[2];
+		var memNames = "";
+		for (var i=0; i < disapprovers.length; i++) {
+			memName = disapprovers[i];
+			memNames += memName + "\n";
+		}
+		document.getElementById("disapprove3").innerHTML = memNames;
+		document.getElementById("disapproveTot3").innerText = altsDisapprove[2].length;
 	}
+	
 	
 	
 	document.getElementById("alt4Desc").innerText = altsDesc[3];
@@ -112,14 +130,21 @@ function processApproveResponse(result) {
 		document.getElementById("approve4").innerHTML = memNames;
 		document.getElementById("approveTot4").innerText = altsApprove[3].length;
 	}
-	document.getElementById("disapprove4").innerText = document.getElementById("disapprove4").innerText; //probably don't need these lines
 	if (altsDisapprove[3] != null) {
-	document.getElementById("disapproveTot4").innerText = altsDisapprove[3].length;
+		disapprovers = altsDisapprove[3];
+		var memNames = "";
+		for (var i=0; i < disapprovers.length; i++) {
+			memName = disapprovers[i];
+			memNames += memName + "\n";
+		}
+		document.getElementById("disapprove4").innerHTML = memNames;
+		document.getElementById("disapproveTot4").innerText = altsDisapprove[3].length;
 	}
 	
 	
+	
 	document.getElementById("alt5Desc").innerText = altsDesc[4];
-	if (altsApprove[4] != null) {
+    if (altsApprove[4] != null) {
 		approvers = altsApprove[4];
 		var memNames = "";
 		for (var i=0; i < approvers.length; i++) {
@@ -129,10 +154,16 @@ function processApproveResponse(result) {
 		document.getElementById("approve5").innerHTML = memNames;
 		document.getElementById("approveTot5").innerText = altsApprove[4].length;
 	}
-	document.getElementById("disapprove5").innerText = document.getElementById("disapprove5").innerText; //probably don't need these lines
 	if (altsDisapprove[4] != null) {
-	document.getElementById("disapproveTot5").innerText = altsDisapprove[4].length;
-    }
+		disapprovers = altsDisapprove[4];
+		var memNames = "";
+		for (var i=0; i < disapprovers.length; i++) {
+			memName = disapprovers[i];
+			memNames += memName + "\n";
+		}
+		document.getElementById("disapprove5").innerHTML = memNames;
+		document.getElementById("disapproveTot5").innerText = altsDisapprove[4].length;
+	}
 
     
   } else {

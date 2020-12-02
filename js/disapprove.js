@@ -45,14 +45,21 @@ function processDisapproveResponse(result) {
     //document.addForm.result.value = computation
     
     //this is where you output all of the values from the variables above
-    document.getElementById("choiceId").innerText = choiceId;
+	document.getElementById("choiceId").innerText = choiceId;
     document.getElementById("choiceDesc").innerText = description;
-//	document.getElementById("memberName").innerText = name;
-	var disapprovers = new Array();
-    
+	//var name = document.getElementById("memberName").innerText; //need to check if this works!!!
+	var approvers = new Array();   
+	var disapprovers = new Array(); 
+
     document.getElementById("alt1Desc").innerText = altsDesc[0];
-	document.getElementById("approve1").innerText = document.getElementById("approve1").innerText; //probably don't need these lines
 	if (altsApprove[0] != null) {
+		approvers = altsApprove[0];
+		var memNames = "";
+		for (var i=0; i < approvers.length; i++) {
+			memName = approvers[i];
+			memNames += memName + "\n";
+		}
+		document.getElementById("approve1").innerHTML = memNames;
 		document.getElementById("approveTot1").innerText = altsApprove[0].length;
 	}
 	if (altsDisapprove[0] != null) {
@@ -66,10 +73,17 @@ function processDisapproveResponse(result) {
 		document.getElementById("disapproveTot1").innerText = altsDisapprove[0].length;
 	}
 
+
 	document.getElementById("alt2Desc").innerText = altsDesc[1];
-	document.getElementById("approve2").innerText = document.getElementById("approve2").innerText; //probably don't need these lines
 	if (altsApprove[1] != null) {
-	document.getElementById("approveTot2").innerText = altsApprove[1].length;
+		approvers = altsApprove[1];
+		var memNames = "";
+		for (var i=0; i < approvers.length; i++) {
+			memName = approvers[i];
+			memNames += memName + "\n";
+		}
+		document.getElementById("approve2").innerHTML = memNames;
+		document.getElementById("approveTot2").innerText = altsApprove[1].length;
 	}
 	if (altsDisapprove[1] != null) {
 		disapprovers = altsDisapprove[1];
@@ -84,8 +98,14 @@ function processDisapproveResponse(result) {
 	
 	
 	document.getElementById("alt3Desc").innerText = altsDesc[2];
-	document.getElementById("approve3").innerText = document.getElementById("approve3").innerText; //probably don't need these lines
 	if (altsApprove[2] != null) {
+		approvers = altsApprove[2];
+		var memNames = "";
+		for (var i=0; i < approvers.length; i++) {
+			memName = approvers[i];
+			memNames += memName + "\n";
+		}
+		document.getElementById("approve3").innerHTML = memNames;
 		document.getElementById("approveTot3").innerText = altsApprove[2].length;
 	}
 	if (altsDisapprove[2] != null) {
@@ -100,10 +120,17 @@ function processDisapproveResponse(result) {
 	}
 	
 	
+	
 	document.getElementById("alt4Desc").innerText = altsDesc[3];
-	document.getElementById("approve4").innerText = document.getElementById("approve4").innerText; //probably don't need these lines
 	if (altsApprove[3] != null) {
-	document.getElementById("approveTot4").innerText = altsApprove[3].length;
+		approvers = altsApprove[3];
+		var memNames = "";
+		for (var i=0; i < approvers.length; i++) {
+			memName = approvers[i];
+			memNames += memName + "\n";
+		}
+		document.getElementById("approve4").innerHTML = memNames;
+		document.getElementById("approveTot4").innerText = altsApprove[3].length;
 	}
 	if (altsDisapprove[3] != null) {
 		disapprovers = altsDisapprove[3];
@@ -117,10 +144,17 @@ function processDisapproveResponse(result) {
 	}
 	
 	
+	
 	document.getElementById("alt5Desc").innerText = altsDesc[4];
-    document.getElementById("approve5").innerText = document.getElementById("approve5").innerText; //probably don't need these lines
-	if (altsApprove[4] != null) {
-	document.getElementById("approveTot5").innerText = altsApprove[4].length;
+    if (altsApprove[4] != null) {
+		approvers = altsApprove[4];
+		var memNames = "";
+		for (var i=0; i < approvers.length; i++) {
+			memName = approvers[i];
+			memNames += memName + "\n";
+		}
+		document.getElementById("approve5").innerHTML = memNames;
+		document.getElementById("approveTot5").innerText = altsApprove[4].length;
 	}
 	if (altsDisapprove[4] != null) {
 		disapprovers = altsDisapprove[4];
