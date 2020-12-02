@@ -34,8 +34,8 @@ function processListResponse(result) {
   var choiceList = document.getElementById("choiceList");
   
   var output = "";
-  for (var i = 0; i < js.list.length; i++) {
-    var choiceJson = js.list[i];
+  for (var i = 0; i < js.choiceList.length; i++) {
+    var choiceJson = js.choiceList[i];
     console.log(choiceJson);
     
     var choiceId = choiceJson["choiceId"];   		  //choice ID
