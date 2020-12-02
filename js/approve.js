@@ -20,9 +20,13 @@ function processApproveResponse(result) {
   	for(var i=0;i<alternatives.length;i++){
   		alts[i] = alternatives[i];
   		altsDesc[i] = alternatives[i].description;
-		altsApprove[i] = alternatives[i].approvers;
-		altsDisapprove[i] = alternatives[i].disapprovers;
-		altsFeedback[i] = alternatives[i].feedbacks;
+		for (var j=0; j<alternatives[i].approvers.length; j++) {
+			altsApprove[j]=alternatives[i].approvers[j].name;
+		}
+		for (var j=0; j<alternatives[i].disapprovers.length; j++) {
+			altsDisapprove[j]=alternatives[i].disapprovers[j].name;
+		}
+		altsFeedback[i] = alternatives[i].feedbacks; //THIS NEEDS TO BE DONE
   	}
   
   var maxNumMembers = choiceJSON["numMembers"];
