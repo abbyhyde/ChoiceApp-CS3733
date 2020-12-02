@@ -32,10 +32,11 @@ function processListResponse(result) {
   // Can grab any DIV or SPAN HTML element and can then manipulate its contents dynamically via javascript
   var js = JSON.parse(result);
   var choiceList = document.getElementById("choiceList");
-  
+  var list = js["choices"];
+
   var output = "";
-  for (var i = 0; i < js.choiceList.length; i++) {
-    var choiceJson = js.choiceList[i];
+  for (var i = 0; i < list.length; i++) {
+    var choiceJson = list[i];
     console.log(choiceJson);
     
     var choiceId = choiceJson["choiceId"];   		  //choice ID
