@@ -47,20 +47,18 @@ function processApproveResponse(result) {
 	document.getElementById("choiceId").innerText = choiceId;
     document.getElementById("choiceDesc").innerText = description;
 //	document.getElementById("memberName").innerText = name; //not keeping name!!!
-	
-/*	var approveList = document.getElementById("approve1").value;
-	var newApprove = document.createElement('li');
-	newApprove.appendChild(document.createTextNode(approveList));
-	list.appendChild(newApprove);*/
+	var approvers = new Array();	
+
     
-	var approvers = new Array();
     document.getElementById("alt1Desc").innerText = altsDesc[0];
 	if (altsApprove[0] != null) {
 		approvers = altsApprove[0];
+		var memNames = "";
 		for (var i=0; i < approvers.length; i++) {
 			memName = approvers[i];
-			document.getElementById("approve1").innerHTML = memName + "<br>";
+			memNames += memName "\n";
 		}
+		document.getElementById("approve1").innerHTML = memNames;
 		document.getElementById("approveTot1").innerText = altsApprove[0].length;
 	}
 	document.getElementById("disapprove1").innerText = document.getElementById("disapprove1").innerText; //probably don't need these lines
@@ -72,10 +70,12 @@ function processApproveResponse(result) {
 	document.getElementById("alt2Desc").innerText = altsDesc[1];
 	if (altsApprove[1] != null) {
 		approvers = altsApprove[1];
+		var memNames = "";
 		for (var i=0; i < approvers.length; i++) {
 			memName = approvers[i];
-			document.getElementById("approve2").innerHTML = memName + "<br>";
+			memNames += memName "\n";
 		}
+		document.getElementById("approve2").innerHTML = memNames;
 		document.getElementById("approveTot2").innerText = altsApprove[1].length;
 	}
 	document.getElementById("disapprove2").innerText = document.getElementById("disapprove2").innerText; //probably don't need these lines
@@ -87,10 +87,12 @@ function processApproveResponse(result) {
 	document.getElementById("alt3Desc").innerText = altsDesc[2];
 	if (altsApprove[2] != null) {
 		approvers = altsApprove[2];
+		var memNames = "";
 		for (var i=0; i < approvers.length; i++) {
 			memName = approvers[i];
-			document.getElementById("approve3").innerHTML = memName + "<br>";
+			memNames += memName "\n";
 		}
+		document.getElementById("approve3").innerHTML = memNames;
 		document.getElementById("approveTot3").innerText = altsApprove[2].length;
 	}
 	document.getElementById("disapprove3").innerText = document.getElementById("disapprove3").innerText; //probably don't need these lines
@@ -102,10 +104,12 @@ function processApproveResponse(result) {
 	document.getElementById("alt4Desc").innerText = altsDesc[3];
 	if (altsApprove[3] != null) {
 		approvers = altsApprove[3];
+		var memNames = "";
 		for (var i=0; i < approvers.length; i++) {
 			memName = approvers[i];
-			document.getElementById("approve4").innerHTML = memName + "<br>";
+			memNames += memName "\n";
 		}
+		document.getElementById("approve4").innerHTML = memNames;
 		document.getElementById("approveTot4").innerText = altsApprove[3].length;
 	}
 	document.getElementById("disapprove4").innerText = document.getElementById("disapprove4").innerText; //probably don't need these lines
@@ -117,10 +121,12 @@ function processApproveResponse(result) {
 	document.getElementById("alt5Desc").innerText = altsDesc[4];
 	if (altsApprove[4] != null) {
 		approvers = altsApprove[4];
+		var memNames = "";
 		for (var i=0; i < approvers.length; i++) {
 			memName = approvers[i];
-			document.getElementById("approve5").innerHTML = memName + "<br>";
+			memNames += memName "\n";
 		}
+		document.getElementById("approve5").innerHTML = memNames;
 		document.getElementById("approveTot5").innerText = altsApprove[4].length;
 	}
 	document.getElementById("disapprove5").innerText = document.getElementById("disapprove5").innerText; //probably don't need these lines
