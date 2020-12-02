@@ -36,9 +36,9 @@ public class DisapproveChoiceHandlerTest extends LambdaTest {
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
     public void testAddDisapprove() {
-    	String choiceId = "013788ea-614e-4628-ab83-4e0524084392";
-    	String name = "Zach";
-    	String altDesc = "gsal";
+    	String choiceId = "db53342a-0511-4a4f-a705-1d4ff745baa1";
+    	String name = "Vanessa";
+    	String altDesc = "Alt 1";
     	
     	DisapproveChoiceRequest ccr = new DisapproveChoiceRequest(choiceId, name, altDesc);
         String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);

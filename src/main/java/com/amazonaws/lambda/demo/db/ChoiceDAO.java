@@ -298,7 +298,7 @@ public class ChoiceDAO {
                 
             } else if (alt.disapprovers.contains(member)) {
             	logger.log("its trying to delete from disapprovers table\n");
-                ps = conn.prepareStatement("DELETE FROM " + tblDisapprovers + " WHERE approveId=? AND altId=? AND memberId=?;");
+                ps = conn.prepareStatement("DELETE FROM " + tblDisapprovers + " WHERE disapproveId=? AND altId=? AND memberId=?;");
                 ps.setString(1,  memberName + altId);
                 ps.setString(2,  altId);
                 ps.setString(3,  memberId);
