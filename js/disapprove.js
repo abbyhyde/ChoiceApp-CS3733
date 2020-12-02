@@ -50,7 +50,7 @@ function processDisapproveResponse(result) {
 	}
 	if (altsDisapprove[0] != null) {
 		for (var i=0; i < altsDisapprove[0].length; i++) {
-			memName = altsDisapprove[i].name;
+			memName = altsDisapprove[i];
 			listMem = document.getElementById("disapprove1").innerText;
 			document.getElementById("disapprove1").innerHTML = listMem + "<br>" + memName;
 		}
@@ -64,7 +64,7 @@ function processDisapproveResponse(result) {
 	}
 	if (altsDisapprove[1] != null) {
 		for (var i=0; i < altsDisapprove[1].length; i++) {
-			memName = altsDisapprove[i].name;
+			memName = altsDisapprove[i];
 			listMem = document.getElementById("disapprove2").innerText;
 			document.getElementById("disapprove2").innerHTML = listMem + "<br>" + memName;
 		}
@@ -79,7 +79,7 @@ function processDisapproveResponse(result) {
 	}
 	if (altsDisapprove[2] != null) {
 		for (var i=0; i < altsDisapprove[2].length; i++) {
-			memName = altsDisapprove[i].name;
+			memName = altsDisapprove[i];
 			listMem = document.getElementById("disapprove3").innerText;
 			document.getElementById("disapprove3").innerHTML = listMem + "<br>" + memName;
 		}
@@ -94,7 +94,7 @@ function processDisapproveResponse(result) {
 	}
 	if (altsDisapprove[3] != null) {
 		for (var i=0; i < altsDisapprove[3].length; i++) {
-			memName = altsDisapprove[i].name;
+			memName = altsDisapprove[i];
 			listMem = document.getElementById("disapprove4").innerText;
 			document.getElementById("disapprove4").innerHTML = listMem + "<br>" + memName;
 		}
@@ -109,7 +109,7 @@ function processDisapproveResponse(result) {
 	}
 	if (altsDisapprove[4] != null) {
 		for (var i=0; i < altsDisapprove[4].length; i++) {
-			memName = altsDisapprove[i].name;
+			memName = altsDisapprove[i];
 			listMem = document.getElementById("disapprove5").innerText;
 			document.getElementById("disapprove5").innerHTML = listMem + "<br>" + memName;
 		}

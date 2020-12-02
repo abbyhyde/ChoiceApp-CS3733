@@ -40,7 +40,7 @@ function processApproveResponse(result) {
 	//NEED TO FIX THIS!!!
 	document.getElementById("choiceId").innerText = choiceId;
     document.getElementById("choiceDesc").innerText = description;
-	document.getElementById("memberName").innerText = name; //need to check if this works!!!
+//	document.getElementById("memberName").innerText = name; //not keeping name!!!
 	
 /*	var approveList = document.getElementById("approve1").value;
 	var newApprove = document.createElement('li');
@@ -50,7 +50,7 @@ function processApproveResponse(result) {
     document.getElementById("alt1Desc").innerText = altsDesc[0];
 	if (altsApprove[0] != null) {
 		for (var i=0; i < altsApprove[0].length; i++) {
-			memName = altsApprove[i].name;
+			memName = altsApprove[i];
 			listMem = document.getElementById("approve1").innerText;
 			document.getElementById("approve1").innerHTML = listMem + "<br>" + memName;
 		}
@@ -65,7 +65,7 @@ function processApproveResponse(result) {
 	document.getElementById("alt2Desc").innerText = altsDesc[1];
 	if (altsApprove[1] != null) {
 		for (var i=0; i < altsApprove[1].length; i++) {
-			memName = altsApprove[i].name;
+			memName = altsApprove[i];
 			listMem = document.getElementById("approve2").innerText;
 			document.getElementById("approve2").innerHTML = listMem + "<br>" + memName;
 		}
@@ -80,7 +80,7 @@ function processApproveResponse(result) {
 	document.getElementById("alt3Desc").innerText = altsDesc[2];
 	if (altsApprove[2] != null) {
 		for (var i=0; i < altsApprove[2].length; i++) {
-			memName = altsApprove[i].name;
+			memName = altsApprove[i];
 			listMem = document.getElementById("approve3").innerText;
 			document.getElementById("approve3").innerHTML = listMem + "<br>" + memName;
 		}
@@ -95,7 +95,7 @@ function processApproveResponse(result) {
 	document.getElementById("alt4Desc").innerText = altsDesc[3];
 	if (altsApprove[3] != null) {
 		for (var i=0; i < altsApprove[3].length; i++) {
-			memName = altsApprove[i].name;
+			memName = altsApprove[i];
 			listMem = document.getElementById("approve4").innerText;
 			document.getElementById("approve4").innerHTML = listMem + "<br>" + memName;
 		}
@@ -110,7 +110,7 @@ function processApproveResponse(result) {
 	document.getElementById("alt5Desc").innerText = altsDesc[4];
 	if (altsApprove[4] != null) {
 		for (var i=0; i < altsApprove[4].length; i++) {
-			memName = altsApprove[i].name;
+			memName = altsApprove[i];
 			listMem = document.getElementById("approve5").innerText;
 			document.getElementById("approve5").innerHTML = listMem + "<br>" + memName;
 		}
