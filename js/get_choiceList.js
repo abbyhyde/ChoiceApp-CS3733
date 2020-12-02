@@ -22,6 +22,7 @@ function refreshChoiceList() {
   };
 }
 
+
 /**
  * Respond to server JSON object.
  *

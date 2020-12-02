@@ -190,9 +190,7 @@ function processDisapproveResponse(result) {
 		document.getElementById("disapprove5").innerHTML = memNames;
 		document.getElementById("disapproveTot5").innerText = altsDisapprove[4].length;
 	}
-    
-    
-    
+     
   } else {
     var msg = js["error"];
   }
