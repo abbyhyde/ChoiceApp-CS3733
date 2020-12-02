@@ -18,15 +18,21 @@ function processAddResponse(result) {
   var altsDisapprove = new Array();
   var altsFeedback = new Array();
   	for(var i=0;i<alternatives.length;i++){
+  		var currentApprove = new Array();
+		var currentDisapprove = new Array();
   		alts[i] = alternatives[i];
   		altsDesc[i] = alternatives[i].description;
 		for (var j=0; j<alternatives[i].approvers.length; j++) {
-			altsApprove[j]=alternatives[i].approvers[j].name;
+			currentApprove[j] = alternatives[i].approvers[j].name;
 		}
+		altsApprove[i] = currentApprove;
 		for (var j=0; j<alternatives[i].disapprovers.length; j++) {
-			altsDisapprove[j]=alternatives[i].disapprovers[j].name;
+			currentDisapprove[j] = alternatives[i].disapprovers[j].name;
 		}
-		altsFeedback[i] = alternatives[i].feedbacks;
+		altsDisapprove[i] = currentDisapprove;
+		
+		
+		altsFeedback[i] = alternatives[i].feedbacks; //THIS NEEDS TO BE DONE
   	}
   
   var maxNumMembers = choiceJSON["numMembers"];
