@@ -49,6 +49,11 @@ public class Alternative{
 		disapprovers.remove(m);
 	}
 	
+	public void addFeedback(Feedback feedback) {
+		feedbacks.add(feedback);
+		
+	}
+	
 	public boolean containsApprover(Member m) {
 		for(Member mem : approvers) {
 			if(mem.name.equals(m.name)) {
@@ -70,5 +75,7 @@ public class Alternative{
 	public String toString() {
 		return "Alternative(" + description + ")";
 	}
+
+	
 	
 }

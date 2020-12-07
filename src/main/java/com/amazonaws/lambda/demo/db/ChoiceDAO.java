@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.amazonaws.lambda.demo.model.Alternative;
 import com.amazonaws.lambda.demo.model.Choice;
+import com.amazonaws.lambda.demo.model.Feedback;
 import com.amazonaws.lambda.demo.model.Member;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
@@ -322,8 +323,52 @@ public class ChoiceDAO {
             throw new Exception("Failed to remove member: " + e.getMessage());
         }
     }
-    
 
+    
+    public Choice addFeedback(Alternative alt, Choice choice, Feedback feedback, LambdaLogger logger) throws Exception {
+    	try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblAlt + " WHERE choiceId = ? AND description=?;");
+            ps.setString(1, choice.choiceId);
+            ps.setString(2, alt.description);
+            ResultSet resultSet = ps.executeQuery();
+            
+            Member member = feedback.getMember();
+            String memberId = (member.name + choice.choiceId);
+            
+            
+            String altId = null;
+            if (resultSet.next()) {
+            	altId = resultSet.getString("altId");
+                resultSet.close();
+            }
+            if(altId == null) {
+            	return null;
+            }
+
+            
+            logger.log("its trying to add to feedback table\n");
+            ps = conn.prepareStatement("INSERT INTO " + tblFeedback + " (FeedbackId, altId, memberId, timeWritten, contents) values(?,?,?,?,?);");
+            ps.setString(1,  feedback.contents + feedback.member.name + altId);  //TODO CHANGE THE DATABASE LENGTH 
+            ps.setString(2,  altId);
+            ps.setString(3,  memberId);
+            ps.setDate(4,  feedback.timeMade);
+            ps.setString(5,  feedback.contents);
+            ps.execute();
+            logger.log("it should have added?\n");
+            
+            alt.addFeedback(feedback);
+            choice = getChoice(choice.choiceId, logger);
+            
+            return choice;
+            
+            
+        } catch (Exception e) {
+            throw new Exception("Failed to add member: " + e.getMessage());
+        }
+	}
+
+
+    
     public Alternative getAlt(String altId) throws Exception {
         
         try {
@@ -387,7 +432,6 @@ public class ChoiceDAO {
     }
     
     private Alternative generateAlt(ResultSet resultSet) throws Exception {
-    	//not actually the full alternative, as we don't need to get the approvals and feedback ect.
         Alternative alt = new Alternative();
         alt.description = resultSet.getString("description");
         
@@ -395,14 +439,42 @@ public class ChoiceDAO {
         
         ArrayList<Member> Amembers = getApproverMembers(altId);
         ArrayList<Member> Dmembers = getDisapproverMembers(altId);
+        ArrayList<Feedback> feedbacks = getFeedbacks(altId);
         
         alt.approvers = Amembers;
         alt.disapprovers = Dmembers;
+        alt.feedbacks = feedbacks;
         
         return alt;
     }
     
-    private ArrayList<Member> getApproverMembers(String altId) throws Exception{
+    private Feedback generateFeedback(ResultSet resultSet) throws Exception {
+        Feedback feedback = new Feedback();
+        feedback.contents = resultSet.getString("contents");
+        String memberId = resultSet.getString("memberId");
+        feedback.member = new Member(memberId);
+        feedback.timeMade = resultSet.getDate("timeWritten");
+        
+        return feedback;
+    }
+    
+    private ArrayList<Feedback> getFeedbacks(String altId) throws Exception {
+    	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblFeedback + " WHERE altId=?;");
+        ps.setString(1,  altId);
+        ResultSet resultSet = ps.executeQuery();
+        
+        ArrayList<Feedback> feedbacks = new ArrayList<Feedback>();
+        Feedback currentFeedback;
+        
+        while(resultSet.next()) {
+        	currentFeedback = generateFeedback(resultSet);
+        	feedbacks.add(currentFeedback);
+        }
+        
+        return feedbacks;
+	}
+
+	private ArrayList<Member> getApproverMembers(String altId) throws Exception{
     	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblApprovers + " WHERE altId=?;");
         ps.setString(1,  altId);
         ResultSet resultSet2 = ps.executeQuery();
@@ -505,5 +577,7 @@ public class ChoiceDAO {
         }
     	
     }
+
+	
 
 }

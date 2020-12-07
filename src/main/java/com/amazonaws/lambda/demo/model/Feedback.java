@@ -4,15 +4,17 @@ import java.sql.Date;
 
 public class Feedback{
 	
-	Date timeMade;
-	Member member;
-	String contents;
+	public Date timeMade;
+	public Member member;
+	public String contents;
 	
-	public Feedback(Member m, String c) {
+	public Feedback(Member m, String c, Date d) {
 		this.member = m;
 		this.contents = c;
-		this.timeMade = new Date(System.currentTimeMillis());
+		this.timeMade = d;
 	}
+	
+	public Feedback() {}
 	
 	public boolean equals(Object o) {
 		if (o == null) { return false; }
@@ -24,6 +26,8 @@ public class Feedback{
 		
 		return false;  // not a Feedback
 	}
+	
+	public Member getMember() {return this.member;}
 	
 	public String toString() {
 		return "Feedback(" + member.name + ": " + contents + ")";
