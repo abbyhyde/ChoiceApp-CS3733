@@ -20,7 +20,24 @@ function initialize() {
 		<!-- Creating a new choice -->
 		<h2>Choice List </h2> 
 		  <input type="button" id="choiceList" value="Get List of Choices"  onClick="JavaScript:refreshChoiceList()">
-		  <div id="choices"></div>
+		  <div id="choices">
+		  <div style="display:inline-block; vertical-align: top; margin: 10px;">
+		  <p>Choice ID:</p>
+		  <div id="choiceID"></div>
+		  </div>
+		  <div style="display:inline-block; vertical-align: top; margin: 10px;">
+		  <p>Description:</p>
+		  <div id="description"></div>
+		  </div>
+		  <div style="display:inline-block; vertical-align: top; margin: 10px;">
+		  <p>Creation Date:</p>
+		  <div id="createdDate"></div>
+		  </div>
+		  <div style="display:inline-block; vertical-align: top; margin: 10px;">
+		  <p>Completed:</p>
+		  <div id="completed"></div>
+		  </div>
+		  </div>
 	</div>
 
 	<div style= "width: 40%; height: 50%; float: right">
