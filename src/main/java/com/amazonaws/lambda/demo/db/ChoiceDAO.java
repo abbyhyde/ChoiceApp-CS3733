@@ -194,7 +194,8 @@ public class ChoiceDAO {
             if (alt.containsDisapprover(member)) {
             	unselectMember(alt, memberName, choice, logger);
             } else if (alt.containsApprover(member)) {
-            	return choice;
+            	return unselectMember(alt, memberName, choice, logger);
+            	
             }
             logger.log("its trying to add to approvers table\n");
             ps = conn.prepareStatement("INSERT INTO " + tblApprovers + " (approveId, altId, memberId) values(?,?,?);");
@@ -240,7 +241,7 @@ public class ChoiceDAO {
             if (alt.containsApprover(member)) {
             	unselectMember(alt, memberName, choice, logger);
             } else if (alt.containsDisapprover(member)) {
-            	return choice;
+            	return unselectMember(alt, memberName, choice, logger);
             }
             ps = conn.prepareStatement("INSERT INTO " + tblDisapprovers + " (disapproveId, altId, memberId) values(?,?,?);");
             ps.setString(1,  memberName + altId);
