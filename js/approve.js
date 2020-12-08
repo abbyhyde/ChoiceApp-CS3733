@@ -30,9 +30,14 @@ function processApproveResponse(result) {
 			currentDisapprove[j] = alternatives[i].disapprovers[j].name;
 		}
 		altsDisapprove[i] = currentDisapprove;
-		
-		
-		altsFeedback[i] = alternatives[i].feedbacks; //THIS NEEDS TO BE DONE
+		for (var j=0; j<alternatives[i].feedback[j].length; j++) {
+			//currentFeedbackDate[j] = alternatives[i].feedback[j].timeMade;
+			//currentFeedbackName[j] = alternatives[i].feedback[j].name;
+			//currentFeedbackContents[j] = alternatives[i].feedback[j].contents;
+			currentFeedback[j] = alternatives[i].feedback[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
+			
+		}
+		altsFeedback[i] = currentFeedback;
   	}
   
   var maxNumMembers = choiceJSON["numMembers"];
@@ -48,6 +53,7 @@ function processApproveResponse(result) {
 	//var name = document.getElementById("memberName").innerText; //need to check if this works!!!
 	var approvers = new Array();   
 	var disapprovers = new Array(); 
+	var feedbacks = new Array();
 
 
 	if (altsDesc[0] == null) {
@@ -74,6 +80,15 @@ function processApproveResponse(result) {
 			}
 			document.getElementById("disapprove1").innerHTML = memNames;
 			document.getElementById("disapproveTot1").innerText = altsDisapprove[0].length;
+		}
+		if (altsFeedback[0] != null) {
+			feedbacks = altsFeedback[0];
+			var feedback = "";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i];
+				contents += "\n" + content;
+			}
+			document.getElementById("Feedback1").innerHTML = contents;
 		}
 	}
     
@@ -104,6 +119,15 @@ function processApproveResponse(result) {
 			document.getElementById("disapprove2").innerHTML = memNames;
 			document.getElementById("disapproveTot2").innerText = altsDisapprove[1].length;
 		}
+		if (altsFeedback[1] != null) {
+			feedbacks = altsFeedback[1];
+			var feedback = "";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i];
+				contents += "\n" + content;
+			}
+			document.getElementById("Feedback2").innerHTML = contents;
+		}
 	}
 	
 	
@@ -132,6 +156,15 @@ function processApproveResponse(result) {
 			}
 			document.getElementById("disapprove3").innerHTML = memNames;
 			document.getElementById("disapproveTot3").innerText = altsDisapprove[2].length;
+		}
+		if (altsFeedback[2] != null) {
+			feedbacks = altsFeedback[2];
+			var feedback = "";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i];
+				contents += "\n" + content;
+			}
+			document.getElementById("Feedback3").innerHTML = contents;
 		}
 	}	
 	
@@ -162,6 +195,15 @@ function processApproveResponse(result) {
 			document.getElementById("disapprove4").innerHTML = memNames;
 			document.getElementById("disapproveTot4").innerText = altsDisapprove[3].length;
 		}
+		if (altsFeedback[3] != null) {
+			feedbacks = altsFeedback[3];
+			var feedback = "";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i];
+				contents += "\n" + content;
+			}
+			document.getElementById("Feedback4").innerHTML = contents;
+		}
 	}	
 	
 	
@@ -190,6 +232,15 @@ function processApproveResponse(result) {
 			}
 			document.getElementById("disapprove5").innerHTML = memNames;
 			document.getElementById("disapproveTot5").innerText = altsDisapprove[4].length;
+		}
+		if (altsFeedback[4] != null) {
+			feedbacks = altsFeedback[4];
+			var feedback = "";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i];
+				contents += "\n" + content;
+			}
+			document.getElementById("Feedback5").innerHTML = contents;
 		}
 	}	
 	

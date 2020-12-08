@@ -28,17 +28,200 @@ function processUnselectResponse(result) {
     // Update computation result
     //document.addForm.result.value = computation
     
-    //this is where you output all of the values from the variables above
-    document.getElementById("choiceId").innerText = choiceId;
+    	document.getElementById("choiceId").innerText = choiceId;
     document.getElementById("choiceDesc").innerText = description;
-    
-    document.getElementById("alt1Desc").innerText = altsDesc[0];
-	document.getElementById("alt2Desc").innerText = altsDesc[1];
-	document.getElementById("alt3Desc").innerText = altsDesc[2];
-	document.getElementById("alt4Desc").innerText = altsDesc[3];
-	document.getElementById("alt5Desc").innerText = altsDesc[4];
-    
-    //this should be set up the same as add right?
+	//var name = document.getElementById("memberName").innerText; //need to check if this works!!!
+	var approvers = new Array();   
+	var disapprovers = new Array(); 
+	var feedbacks = new Array();
+
+
+	if (altsDesc[0] == null) {
+		document.getElementById("Alt1").style.visibility="hidden"; 
+	} else {
+		document.getElementById("Alt1").style.visibility="visible";
+		document.getElementById("alt1Desc").innerText = altsDesc[0];
+		if (altsApprove[0] != null) {
+			approvers = altsApprove[0];
+			var memNames = "";
+			for (var i=0; i < approvers.length; i++) {
+				memName = approvers[i];
+				memNames += memName + "\n";
+			}
+			document.getElementById("approve1").innerHTML = memNames;
+			document.getElementById("approveTot1").innerText = altsApprove[0].length;
+		}
+		if (altsDisapprove[0] != null) {
+			disapprovers = altsDisapprove[0];
+			var memNames = "";
+			for (var i=0; i < disapprovers.length; i++) {
+				memName = disapprovers[i];
+				memNames += memName + "\n";
+			}
+			document.getElementById("disapprove1").innerHTML = memNames;
+			document.getElementById("disapproveTot1").innerText = altsDisapprove[0].length;
+		}
+		if (altsFeedback[0] != null) {
+			feedbacks = altsFeedback[0];
+			var feedback = "";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i];
+				contents += "\n" + content;
+			}
+			document.getElementById("Feedback1").innerHTML = contents;
+		}
+	}
+
+
+	if (altsDesc[1] == null) {
+		document.getElementById("Alt2").style.visibility="hidden"; 
+	} else {
+		document.getElementById("Alt2").style.visibility="visible";
+		document.getElementById("alt2Desc").innerText = altsDesc[1];
+		if (altsApprove[1] != null) {
+			approvers = altsApprove[1];
+			var memNames = "";
+			for (var i=0; i < approvers.length; i++) {
+				memName = approvers[i];
+				memNames += memName + "\n";
+			}
+			document.getElementById("approve2").innerHTML = memNames;
+			document.getElementById("approveTot2").innerText = altsApprove[1].length;
+		}
+		if (altsDisapprove[1] != null) {
+			disapprovers = altsDisapprove[1];
+			var memNames = "";
+			for (var i=0; i < disapprovers.length; i++) {
+				memName = disapprovers[i];
+				memNames += memName + "\n";
+			}
+			document.getElementById("disapprove2").innerHTML = memNames;
+			document.getElementById("disapproveTot2").innerText = altsDisapprove[1].length;
+		}
+		if (altsFeedback[1] != null) {
+			feedbacks = altsFeedback[1];
+			var feedback = "";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i];
+				contents += "\n" + content;
+			}
+			document.getElementById("Feedback2").innerHTML = contents;
+		}
+	}
+	
+	
+
+	if (altsDesc[2] == null) {
+		document.getElementById("Alt3").style.visibility="hidden"; 
+	} else {
+		document.getElementById("Alt3").style.visibility="visible";
+		document.getElementById("alt3Desc").innerText = altsDesc[2];
+		if (altsApprove[2] != null) {
+			approvers = altsApprove[2];
+			var memNames = "";
+			for (var i=0; i < approvers.length; i++) {
+				memName = approvers[i];
+				memNames += memName + "\n";
+			}
+			document.getElementById("approve3").innerHTML = memNames;
+			document.getElementById("approveTot3").innerText = altsApprove[2].length;
+		}
+		if (altsDisapprove[2] != null) {
+			disapprovers = altsDisapprove[2];
+			var memNames = "";
+			for (var i=0; i < disapprovers.length; i++) {
+				memName = disapprovers[i];
+				memNames += memName + "\n";
+			}
+			document.getElementById("disapprove3").innerHTML = memNames;
+			document.getElementById("disapproveTot3").innerText = altsDisapprove[2].length;
+		}
+		if (altsFeedback[2] != null) {
+			feedbacks = altsFeedback[2];
+			var feedback = "";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i];
+				contents += "\n" + content;
+			}
+			document.getElementById("Feedback3").innerHTML = contents;
+		}
+	}	
+
+	
+	
+	if (altsDesc[3] == null) {
+		document.getElementById("Alt4").style.visibility="hidden"; 
+	} else {
+		document.getElementById("Alt4").style.visibility="visible";
+		document.getElementById("alt4Desc").innerText = altsDesc[3];
+		if (altsApprove[3] != null) {
+			approvers = altsApprove[3];
+			var memNames = "";
+			for (var i=0; i < approvers.length; i++) {
+				memName = approvers[i];
+				memNames += memName + "\n";
+			}
+			document.getElementById("approve4").innerHTML = memNames;
+			document.getElementById("approveTot4").innerText = altsApprove[3].length;
+		}
+		if (altsDisapprove[3] != null) {
+			disapprovers = altsDisapprove[3];
+			var memNames = "";
+			for (var i=0; i < disapprovers.length; i++) {
+				memName = disapprovers[i];
+				memNames += memName + "\n";
+			}
+			document.getElementById("disapprove4").innerHTML = memNames;
+			document.getElementById("disapproveTot4").innerText = altsDisapprove[3].length;
+		}
+		if (altsFeedback[3] != null) {
+			feedbacks = altsFeedback[3];
+			var feedback = "";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i];
+				contents += "\n" + content;
+			}
+			document.getElementById("Feedback4").innerHTML = contents;
+		}
+	}	
+	
+	
+	
+	if (altsDesc[4] == null) {
+		document.getElementById("Alt5").style.visibility="hidden"; 
+	} else {
+		document.getElementById("Alt5").style.visibility="visible";
+		document.getElementById("alt5Desc").innerText = altsDesc[4];
+	    if (altsApprove[4] != null) {
+			approvers = altsApprove[4];
+			var memNames = "";
+			for (var i=0; i < approvers.length; i++) {
+				memName = approvers[i];
+				memNames += memName + "\n";
+			}
+			document.getElementById("approve5").innerHTML = memNames;
+			document.getElementById("approveTot5").innerText = altsApprove[4].length;
+		}
+		if (altsDisapprove[4] != null) {
+			disapprovers = altsDisapprove[4];
+			var memNames = "";
+			for (var i=0; i < disapprovers.length; i++) {
+				memName = disapprovers[i];
+				memNames += memName + "\n";
+			}
+			document.getElementById("disapprove5").innerHTML = memNames;
+			document.getElementById("disapproveTot5").innerText = altsDisapprove[4].length;
+		}
+		if (altsFeedback[4] != null) {
+			feedbacks = altsFeedback[4];
+			var feedback = "";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i];
+				contents += "\n" + content;
+			}
+			document.getElementById("Feedback5").innerHTML = contents;
+		}
+	}
     
     
   } else {
@@ -50,15 +233,15 @@ function processUnselectResponse(result) {
 }
 
 function handleUnselectClick(e) {
-  var form = document.addForm;
-  var choiceId = form.choiceId.value;
-  var name = form.teammateName.value;
-  var pass = form.password.value;
+  var altNum = int;
+  var name = document.getElementById("memberName").innerText;
+  var choiceId = document.getElementById("choiceId").innerText;
+  var description = document.getElementById("alt" + altNum + "Desc").innerText;
 
   var data = {};          //NEED TO CHANGE: Make this for a choice
   data["choiceId"] = choiceId;
   data["memberName"] = name;
-  data["pass"] = pass;
+  data["altDesc"] = description;
 
   var js = JSON.stringify(data);
   console.log("JS:" + js);
@@ -79,8 +262,5 @@ function handleUnselectClick(e) {
     } else {
       processUnselectResponse("N/A");
     }
-	document.getElementById("choice").style.visibility="visible";
- 
-
   };
 }
