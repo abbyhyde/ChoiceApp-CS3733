@@ -16,11 +16,15 @@ function processUnselectResponse(result) {
   var altsDesc = new Array();
   var altsApprove = new Array();
   var altsDisapprove = new Array();
-  var altsFeedback = new Array();
+  var altsFeedbackDate = new Array();
+  var altsFeedbackName = new Array();
+  var altsFeedbackContents = new Array();
   	for(var i=0;i<alternatives.length;i++){
   		var currentApprove = new Array();
 		var currentDisapprove = new Array();
-		var currentFeedback = new Array();
+		var currentFeedbackDate = new Array();
+		var currentFeedbackName = new Array();
+		var currentFeedbackContents = new Array();
   		alts[i] = alternatives[i];
   		altsDesc[i] = alternatives[i].description;
 		for (var j=0; j<alternatives[i].approvers.length; j++) {
@@ -32,13 +36,15 @@ function processUnselectResponse(result) {
 		}
 		altsDisapprove[i] = currentDisapprove;
 		for (var j=0; j<alternatives[i].feedbacks.length; j++) {
-			//currentFeedbackDate[j] = alternatives[i].feedback[j].timeMade;
-			//currentFeedbackName[j] = alternatives[i].feedback[j].name;
-			//currentFeedbackContents[j] = alternatives[i].feedback[j].contents;
-			currentFeedback[j] = alternatives[i].feedback[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
+			currentFeedbackDate[j] = alternatives[i].feedback[j].timeMade;
+			currentFeedbackName[j] = alternatives[i].feedback[j].name;
+			currentFeedbackContents[j] = alternatives[i].feedback[j].contents;
+			//currentFeedback[j] = alternatives[i].feedback[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
 			
 		}
-		altsFeedback[i] = currentFeedback;
+		altsFeedbackDate[i] = currentFeedbackDate;
+		altsFeedbackName[i] = currentFeedbackName;
+		altsFeedbackContents[i] = currentFeedbackContents;
 	}
   
   var maxNumMembers = choiceJSON["numMembers"];
