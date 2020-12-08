@@ -98,7 +98,9 @@ public class ChoiceDAO {
             Date cutoff = new Date(millis); // generating the actual date from that number of days ago
             
             PreparedStatement ps;
-            for (Choice c : allChoices) {
+            Choice c = null;
+            for (int i=0; i<allChoices.size(); i++) {
+            	c = allChoices.get(i);
             	if (c.dateCreated.before(cutoff)) {
                 	logger.log("trying to delete current choice from choices table \n");
                 	
