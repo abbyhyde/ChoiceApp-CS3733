@@ -9,6 +9,7 @@ import com.amazonaws.lambda.demo.model.Choice;
 import com.amazonaws.lambda.demo.model.Feedback;
 import com.amazonaws.lambda.demo.model.Member;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import java.sql.Date;
 
 /**
  * Note that CAPITALIZATION matters regarding the table name. If you create with 
@@ -62,6 +63,7 @@ public class ChoiceDAO {
     }
     
     public ArrayList<Choice> getAllChoices(LambdaLogger logger) throws Exception {
+
     	logger.log("about to get the choices\n");
         try {
         	ArrayList<Choice> allChoices = new ArrayList<Choice>();
@@ -84,8 +86,40 @@ public class ChoiceDAO {
         	e.printStackTrace();
             throw new Exception("Failed in getting choiced: " + e.getMessage());
         }
+    } 
+    
+    public ArrayList<Choice> deleteChoices(long days, LambdaLogger logger) throws Exception {
+
+    	logger.log("about to get the choices in order to delete some of them\n");
+        try {
+        	ArrayList<Choice> allChoices = getAllChoices(logger);
+        	
+        	long millis = System.currentTimeMillis() - (days*24*60*60*1000);   
+            Date cutoff = new Date(millis); // generating the actual date from that number of days ago
+            
+            PreparedStatement ps;
+            for (Choice c : allChoices) {
+            	if (c.dateCreated.before(cutoff)) {
+                	logger.log("trying to delete current choice from choices table \n");
+                	
+                    ps = conn.prepareStatement("DELETE FROM " + tblChoices + " WHERE choiceId=?;");
+                    ps.setString(1,  c.choiceId);
+                    ps.execute();
+                    logger.log("it should have deleted from choices?\n");
+                    
+                    allChoices.remove(c);
+                    ps.close();
+            	}
+            }
+            
+            return allChoices;
+
+        } catch (Exception e) {
+        	logger.log("couldnt delete the choices from the database\n");
+        	e.printStackTrace();
+            throw new Exception("Failed in deleting choiced: " + e.getMessage());
+        }
     }
-   
 
     public boolean addChoice(Choice choice, LambdaLogger logger) throws Exception {
         try {
@@ -322,7 +356,6 @@ public class ChoiceDAO {
         }
     }
 
-    
     public Choice addFeedback(Alternative alt, Choice choice, Feedback feedback, LambdaLogger logger) throws Exception {
     	try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblAlt + " WHERE choiceId = ? AND description=?;");
@@ -434,8 +467,6 @@ public class ChoiceDAO {
         }
     }
 
-
-    
     private Choice generateChoice(ResultSet resultSet) throws Exception {
     	Choice choice = new Choice();
         choice.choiceId = resultSet.getString("choiceId");
@@ -550,7 +581,7 @@ public class ChoiceDAO {
         return member;
     }
     
-    public ArrayList<Alternative> getAltsFromChoice(String choiceId) throws Exception{
+    private ArrayList<Alternative> getAltsFromChoice(String choiceId) throws Exception{
     	try {
             Alternative currentAlt = null;
             ArrayList<Alternative> alts = new ArrayList<Alternative>();
