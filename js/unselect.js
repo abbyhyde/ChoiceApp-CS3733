@@ -14,14 +14,35 @@ function processUnselectResponse(result) {
   var alternatives = choiceJSON["alternatives"];
   var alts = new Array();
   var altsDesc = new Array();
+  var altsApprove = new Array();
+  var altsDisapprove = new Array();
+  var altsFeedback = new Array();
   	for(var i=0;i<alternatives.length;i++){
+  		var currentApprove = new Array();
+		var currentDisapprove = new Array();
+		var currentFeedback = new Array();
   		alts[i] = alternatives[i];
   		altsDesc[i] = alternatives[i].description;
-  	}
+		for (var j=0; j<alternatives[i].approvers.length; j++) {
+			currentApprove[j] = alternatives[i].approvers[j].name;
+		}
+		altsApprove[i] = currentApprove;
+		for (var j=0; j<alternatives[i].disapprovers.length; j++) {
+			currentDisapprove[j] = alternatives[i].disapprovers[j].name;
+		}
+		altsDisapprove[i] = currentDisapprove;
+		for (var j=0; j<alternatives[i].feedbacks.length; j++) {
+			//currentFeedbackDate[j] = alternatives[i].feedback[j].timeMade;
+			//currentFeedbackName[j] = alternatives[i].feedback[j].name;
+			//currentFeedbackContents[j] = alternatives[i].feedback[j].contents;
+			currentFeedback[j] = alternatives[i].feedback[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
+			
+		}
+		altsFeedback[i] = currentFeedback;
+	}
   
   var maxNumMembers = choiceJSON["numMembers"];
   var isCompleted = choiceJSON["isCompleted"];
-  
   var status = js["httpCode"];
   
   if (status == 200) {
@@ -63,7 +84,7 @@ function processUnselectResponse(result) {
 		}
 		if (altsFeedback[0] != null) {
 			feedbacks = altsFeedback[0];
-			var feedback = "";
+			var contents = "";
 			for (var i=0; i < feedbacks.length; i++) {
 				content = feedbacks[i];
 				contents += "\n" + content;
@@ -100,7 +121,7 @@ function processUnselectResponse(result) {
 		}
 		if (altsFeedback[1] != null) {
 			feedbacks = altsFeedback[1];
-			var feedback = "";
+			var contents = "";
 			for (var i=0; i < feedbacks.length; i++) {
 				content = feedbacks[i];
 				contents += "\n" + content;
@@ -138,7 +159,7 @@ function processUnselectResponse(result) {
 		}
 		if (altsFeedback[2] != null) {
 			feedbacks = altsFeedback[2];
-			var feedback = "";
+			var contents = "";
 			for (var i=0; i < feedbacks.length; i++) {
 				content = feedbacks[i];
 				contents += "\n" + content;
@@ -176,7 +197,7 @@ function processUnselectResponse(result) {
 		}
 		if (altsFeedback[3] != null) {
 			feedbacks = altsFeedback[3];
-			var feedback = "";
+			var contents = "";
 			for (var i=0; i < feedbacks.length; i++) {
 				content = feedbacks[i];
 				contents += "\n" + content;
@@ -214,7 +235,7 @@ function processUnselectResponse(result) {
 		}
 		if (altsFeedback[4] != null) {
 			feedbacks = altsFeedback[4];
-			var feedback = "";
+			var contents = "";
 			for (var i=0; i < feedbacks.length; i++) {
 				content = feedbacks[i];
 				contents += "\n" + content;

@@ -20,6 +20,7 @@ function processDisapproveResponse(result) {
   	for(var i=0;i<alternatives.length;i++){
   		var currentApprove = new Array();
 		var currentDisapprove = new Array();
+		var currentFeedback = new Array();
   		alts[i] = alternatives[i];
   		altsDesc[i] = alternatives[i].description;
 		for (var j=0; j<alternatives[i].approvers.length; j++) {
@@ -30,7 +31,7 @@ function processDisapproveResponse(result) {
 			currentDisapprove[j] = alternatives[i].disapprovers[j].name;
 		}
 		altsDisapprove[i] = currentDisapprove;
-		for (var j=0; j<alternatives[i].feedback[j].length; j++) {
+		for (var j=0; j<alternatives[i].feedbacks.length; j++) {
 			//currentFeedbackDate[j] = alternatives[i].feedback[j].timeMade;
 			//currentFeedbackName[j] = alternatives[i].feedback[j].name;
 			//currentFeedbackContents[j] = alternatives[i].feedback[j].contents;
@@ -85,7 +86,7 @@ function processDisapproveResponse(result) {
 		}
 		if (altsFeedback[0] != null) {
 			feedbacks = altsFeedback[0];
-			var feedback = "";
+			var contents = "";
 			for (var i=0; i < feedbacks.length; i++) {
 				content = feedbacks[i];
 				contents += "\n" + content;
@@ -122,7 +123,7 @@ function processDisapproveResponse(result) {
 		}
 		if (altsFeedback[1] != null) {
 			feedbacks = altsFeedback[1];
-			var feedback = "";
+			var contents = "";
 			for (var i=0; i < feedbacks.length; i++) {
 				content = feedbacks[i];
 				contents += "\n" + content;
@@ -160,7 +161,7 @@ function processDisapproveResponse(result) {
 		}
 		if (altsFeedback[2] != null) {
 			feedbacks = altsFeedback[2];
-			var feedback = "";
+			var contents = "";
 			for (var i=0; i < feedbacks.length; i++) {
 				content = feedbacks[i];
 				contents += "\n" + content;
@@ -198,7 +199,7 @@ function processDisapproveResponse(result) {
 		}
 		if (altsFeedback[3] != null) {
 			feedbacks = altsFeedback[3];
-			var feedback = "";
+			var contents = "";
 			for (var i=0; i < feedbacks.length; i++) {
 				content = feedbacks[i];
 				contents += "\n" + content;
@@ -236,7 +237,7 @@ function processDisapproveResponse(result) {
 		}
 		if (altsFeedback[4] != null) {
 			feedbacks = altsFeedback[4];
-			var feedback = "";
+			var contents = "";
 			for (var i=0; i < feedbacks.length; i++) {
 				content = feedbacks[i];
 				contents += "\n" + content;
