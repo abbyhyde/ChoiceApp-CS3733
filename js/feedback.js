@@ -97,23 +97,17 @@ function processFeedbackResponse(result) {
 			document.getElementById("disapproveTot1").innerText = altsDisapprove[0].length;
 		}
 		if (altsFeedback[0] != null) {
-			feedbackDate = altsFeedbackDate[0];
+			feedbacks = altsFeedback[0];
+			/*feedbackDate = altsFeedbackDate[0];
 			feedbackName = altsFeedbackName[0];
-			feedbackContent = altsFeedbackContents[0];
-			/*var contents = "";
-			var names = "";
-			var dates ="";*/
+			feedbackContent = altsFeedbackContents[0];*/
 			var feedback ="";
 			for (var i=0; i < feedbacks.length; i++) {
-				content = feedbacks[i].content;
-				name = feedbacks[i].name;
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
 				date = feedbacks[i].timeMade;
 				
-				/*dates += "\n" + date;
-				names += "\n" + name;
-				contents += "\n" + content;*/
-				
-				feedback += "\n" + date + "<br>" + name + "<br>" + content;
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
 			}
 			document.getElementById("Feedback1").innerHTML = feedback;
 		}
@@ -146,12 +140,18 @@ function processFeedbackResponse(result) {
 		}
 		if (altsFeedback[1] != null) {
 			feedbacks = altsFeedback[1];
-			var contents = "";
+			/*feedbackDate = altsFeedbackDate[1];
+			feedbackName = altsFeedbackName[1];
+			feedbackContent = altsFeedbackContents[1];*/
+			var feedback ="";
 			for (var i=0; i < feedbacks.length; i++) {
-				content = feedbacks[i];
-				contents += "\n" + content;
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
 			}
-			document.getElementById("Feedback2").innerHTML = contents;
+			document.getElementById("Feedback2").innerHTML = feedback;
 		}
 	}
 	
@@ -183,12 +183,18 @@ function processFeedbackResponse(result) {
 		}
 		if (altsFeedback[2] != null) {
 			feedbacks = altsFeedback[2];
-			var contents = "";
+			/*feedbackDate = altsFeedbackDate[2];
+			feedbackName = altsFeedbackName[2];
+			feedbackContent = altsFeedbackContents[2];*/
+			var feedback ="";
 			for (var i=0; i < feedbacks.length; i++) {
-				content = feedbacks[i];
-				contents += "\n" + content;
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
 			}
-			document.getElementById("Feedback3").innerHTML = contents;
+			document.getElementById("Feedback3").innerHTML = feedback;
 		}
 	}
 	
@@ -221,12 +227,18 @@ function processFeedbackResponse(result) {
 		}
 		if (altsFeedback[3] != null) {
 			feedbacks = altsFeedback[3];
-			var contents = "";
+			/*feedbackDate = altsFeedbackDate[3];
+			feedbackName = altsFeedbackName[3];
+			feedbackContent = altsFeedbackContents[3];*/
+			var feedback ="";
 			for (var i=0; i < feedbacks.length; i++) {
-				content = feedbacks[i];
-				contents += "\n" + content;
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
 			}
-			document.getElementById("Feedback4").innerHTML = contents;
+			document.getElementById("Feedback4").innerHTML = feedback;
 		}
 	}	
 	
@@ -259,12 +271,18 @@ function processFeedbackResponse(result) {
 		}
 		if (altsFeedback[4] != null) {
 			feedbacks = altsFeedback[4];
-			var contents = "";
+			/*feedbackDate = altsFeedbackDate[4];
+			feedbackName = altsFeedbackName[4];
+			feedbackContent = altsFeedbackContents[4];*/
+			var feedback ="";
 			for (var i=0; i < feedbacks.length; i++) {
-				content = feedbacks[i];
-				contents += "\n" + content;
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
 			}
-			document.getElementById("Feedback5").innerHTML = contents;
+			document.getElementById("Feedback5").innerHTML = feedback;
 		}
 	}	
 	

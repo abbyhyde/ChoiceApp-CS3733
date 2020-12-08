@@ -16,12 +16,14 @@ function processUnselectResponse(result) {
   var altsDesc = new Array();
   var altsApprove = new Array();
   var altsDisapprove = new Array();
+  var altsFeedback = new Array();
   var altsFeedbackDate = new Array();
   var altsFeedbackName = new Array();
   var altsFeedbackContents = new Array();
   	for(var i=0;i<alternatives.length;i++){
   		var currentApprove = new Array();
 		var currentDisapprove = new Array();
+		var currentFeedback = new Array();
 		var currentFeedbackDate = new Array();
 		var currentFeedbackName = new Array();
 		var currentFeedbackContents = new Array();
@@ -36,12 +38,14 @@ function processUnselectResponse(result) {
 		}
 		altsDisapprove[i] = currentDisapprove;
 		for (var j=0; j<alternatives[i].feedbacks.length; j++) {
-			currentFeedbackDate[j] = alternatives[i].feedback[j].timeMade;
-			currentFeedbackName[j] = alternatives[i].feedback[j].name;
-			currentFeedbackContents[j] = alternatives[i].feedback[j].contents;
+			currentFeedback[j] = alternatives[i].feedbacks[j];
+			currentFeedbackDate[j] = alternatives[i].feedbacks[j].timeMade;
+			currentFeedbackName[j] = alternatives[i].feedbacks[j].name;
+			currentFeedbackContents[j] = alternatives[i].feedbacks[j].contents;
 			//currentFeedback[j] = alternatives[i].feedback[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
 			
 		}
+		altsFeedback[i] = currentFeedback;
 		altsFeedbackDate[i] = currentFeedbackDate;
 		altsFeedbackName[i] = currentFeedbackName;
 		altsFeedbackContents[i] = currentFeedbackContents;
@@ -61,6 +65,9 @@ function processUnselectResponse(result) {
 	var approvers = new Array();   
 	var disapprovers = new Array(); 
 	var feedbacks = new Array();
+	var feedbackDate = new Array();
+	var feedbackName = new Array();
+	var feedbackContent = new Array();
 
 
 	if (altsDesc[0] == null) {
@@ -90,12 +97,18 @@ function processUnselectResponse(result) {
 		}
 		if (altsFeedback[0] != null) {
 			feedbacks = altsFeedback[0];
-			var contents = "";
+			/*feedbackDate = altsFeedbackDate[0];
+			feedbackName = altsFeedbackName[0];
+			feedbackContent = altsFeedbackContents[0];*/
+			var feedback ="";
 			for (var i=0; i < feedbacks.length; i++) {
-				content = feedbacks[i];
-				contents += "\n" + content;
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
 			}
-			document.getElementById("Feedback1").innerHTML = contents;
+			document.getElementById("Feedback1").innerHTML = feedback;
 		}
 	}
 
@@ -127,12 +140,18 @@ function processUnselectResponse(result) {
 		}
 		if (altsFeedback[1] != null) {
 			feedbacks = altsFeedback[1];
-			var contents = "";
+			/*feedbackDate = altsFeedbackDate[1];
+			feedbackName = altsFeedbackName[1];
+			feedbackContent = altsFeedbackContents[1];*/
+			var feedback ="";
 			for (var i=0; i < feedbacks.length; i++) {
-				content = feedbacks[i];
-				contents += "\n" + content;
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
 			}
-			document.getElementById("Feedback2").innerHTML = contents;
+			document.getElementById("Feedback2").innerHTML = feedback;
 		}
 	}
 	
@@ -165,12 +184,18 @@ function processUnselectResponse(result) {
 		}
 		if (altsFeedback[2] != null) {
 			feedbacks = altsFeedback[2];
-			var contents = "";
+			/*feedbackDate = altsFeedbackDate[2];
+			feedbackName = altsFeedbackName[2];
+			feedbackContent = altsFeedbackContents[2];*/
+			var feedback ="";
 			for (var i=0; i < feedbacks.length; i++) {
-				content = feedbacks[i];
-				contents += "\n" + content;
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
 			}
-			document.getElementById("Feedback3").innerHTML = contents;
+			document.getElementById("Feedback3").innerHTML = feedback;
 		}
 	}	
 
@@ -203,12 +228,18 @@ function processUnselectResponse(result) {
 		}
 		if (altsFeedback[3] != null) {
 			feedbacks = altsFeedback[3];
-			var contents = "";
+			/*feedbackDate = altsFeedbackDate[3];
+			feedbackName = altsFeedbackName[3];
+			feedbackContent = altsFeedbackContents[3];*/
+			var feedback ="";
 			for (var i=0; i < feedbacks.length; i++) {
-				content = feedbacks[i];
-				contents += "\n" + content;
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
 			}
-			document.getElementById("Feedback4").innerHTML = contents;
+			document.getElementById("Feedback4").innerHTML = feedback;
 		}
 	}	
 	
@@ -241,12 +272,18 @@ function processUnselectResponse(result) {
 		}
 		if (altsFeedback[4] != null) {
 			feedbacks = altsFeedback[4];
-			var contents = "";
+			/*feedbackDate = altsFeedbackDate[4];
+			feedbackName = altsFeedbackName[4];
+			feedbackContent = altsFeedbackContents[4];*/
+			var feedback ="";
 			for (var i=0; i < feedbacks.length; i++) {
-				content = feedbacks[i];
-				contents += "\n" + content;
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
 			}
-			document.getElementById("Feedback5").innerHTML = contents;
+			document.getElementById("Feedback5").innerHTML = feedback;
 		}
 	}
     
