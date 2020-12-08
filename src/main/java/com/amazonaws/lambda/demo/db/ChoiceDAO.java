@@ -371,12 +371,12 @@ public class ChoiceDAO {
             PreparedStatement ps = conn.prepareStatement("UPDATE " + tblChoices + " SET chosenAlt=? WHERE choiceId=?;");
             ps.setString(1, alt.description + choice.choiceId);
             ps.setString(2, choice.choiceId);
-            ResultSet resultSet = ps.executeQuery();
+            int resultSet = ps.executeUpdate();
             logger.log("updated chosenAlt");
             
             PreparedStatement ps2 = conn.prepareStatement("UPDATE " + tblChoices + " SET isCompleted=1 WHERE choiceId=?;");
             ps2.setString(1, choice.choiceId);
-            ResultSet resultSet2 = ps2.executeQuery();
+            int resultSet2 = ps2.executeUpdate();
             
             logger.log("marking choice as completed and setting chosenAlt done");
             choice = getChoice(choice.choiceId, logger);
