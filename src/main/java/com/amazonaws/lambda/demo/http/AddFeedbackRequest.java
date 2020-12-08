@@ -36,7 +36,10 @@ public class AddFeedbackRequest {
 	public String getAltDesc() {return altDesc;}
 	public void setAltDesc(String ad) {this.altDesc = ad;}
 	
-	public String getFeedbackDesc() {return altDesc;}
-	public void setFeedbackDesc(String ad) {this.altDesc = ad;}
+	public String getFeedbackDesc() {return feedbackDesc;}
+	public void setFeedbackDesc(String fd) {this.feedbackDesc = fd;}
+	
+	public Date getFeedbackDate() {return date;}
+	public void setFeedbackDate(Date d) {}
 
 }
