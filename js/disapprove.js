@@ -82,7 +82,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("approve1").innerHTML = memNames;
 			document.getElementById("approveTot1").innerText = altsApprove[0].length;
@@ -92,7 +92,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < disapprovers.length; i++) {
 				memName = disapprovers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("disapprove1").innerHTML = memNames;
 			document.getElementById("disapproveTot1").innerText = altsDisapprove[0].length;
@@ -125,7 +125,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("approve2").innerHTML = memNames;
 			document.getElementById("approveTot2").innerText = altsApprove[1].length;
@@ -135,7 +135,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < disapprovers.length; i++) {
 				memName = disapprovers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("disapprove2").innerHTML = memNames;
 			document.getElementById("disapproveTot2").innerText = altsDisapprove[1].length;
@@ -169,7 +169,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("approve3").innerHTML = memNames;
 			document.getElementById("approveTot3").innerText = altsApprove[2].length;
@@ -179,7 +179,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < disapprovers.length; i++) {
 				memName = disapprovers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("disapprove3").innerHTML = memNames;
 			document.getElementById("disapproveTot3").innerText = altsDisapprove[2].length;
@@ -213,7 +213,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("approve4").innerHTML = memNames;
 			document.getElementById("approveTot4").innerText = altsApprove[3].length;
@@ -223,7 +223,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < disapprovers.length; i++) {
 				memName = disapprovers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("disapprove4").innerHTML = memNames;
 			document.getElementById("disapproveTot4").innerText = altsDisapprove[3].length;
@@ -257,7 +257,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("approve5").innerHTML = memNames;
 			document.getElementById("approveTot5").innerText = altsApprove[4].length;
@@ -267,7 +267,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < disapprovers.length; i++) {
 				memName = disapprovers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("disapprove5").innerHTML = memNames;
 			document.getElementById("disapproveTot5").innerText = altsDisapprove[4].length;
