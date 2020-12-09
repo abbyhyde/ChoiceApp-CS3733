@@ -95,13 +95,13 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 			
 			if (choice != null) {
 				if (choice.choiceId.equals("433")) { //choice is already completed
-					response = new ParticipateChoiceResponse(choice, 433);
+					response = new ParticipateChoiceResponse(433);
 				}
 				else if (choice.choiceId.equals("420")) { //too many members
-					response = new ParticipateChoiceResponse(choice, 420);
+					response = new ParticipateChoiceResponse(420);
 				}
 				else if (choice.choiceId.equals("444")) { //password doesnt match
-					response = new ParticipateChoiceResponse(choice, 444);
+					response = new ParticipateChoiceResponse(444);
 				}
 				else {
 					response = new ParticipateChoiceResponse(choice, 200);

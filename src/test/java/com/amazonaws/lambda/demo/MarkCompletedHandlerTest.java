@@ -24,8 +24,8 @@ public class MarkCompletedHandlerTest extends LambdaTest {
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
     public void testMarkCompleted() {
-    	String choiceId = "f8733481-11c9-44ff-a096-8acc7ef5296c";
-    	String altDesc = "stuffing (if y'all don't pick this you're a monster)";
+    	String choiceId = "ee4c68f0-8d17-4059-bb4e-6f726f9d44d7";
+    	String altDesc = "pasta";
     	
     	MarkCompletedRequest ccr = new MarkCompletedRequest(choiceId, altDesc);
         String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);
