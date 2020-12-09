@@ -48,8 +48,9 @@ public class MarkCompletedHandler implements RequestHandler<MarkCompletedRequest
 		if (exist != null && alt != null) {
 			logger.log("about to mark completed "); //see if it actually got it
 			Choice updatedChoice = dao.markCompleted(exist, alt, logger);
-			logger.log(altDesc + "was marked completed");
+			
 			if (updatedChoice != null) {
+				logger.log(updatedChoice.altChosen.description + "was marked completed");
 				return updatedChoice;
 			} else {
 				System.out.println("Could not mark complete");
