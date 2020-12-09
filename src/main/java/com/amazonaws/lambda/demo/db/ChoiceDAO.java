@@ -6,8 +6,10 @@ import java.util.List;
 
 import com.amazonaws.lambda.demo.model.Alternative;
 import com.amazonaws.lambda.demo.model.Choice;
+import com.amazonaws.lambda.demo.model.Feedback;
 import com.amazonaws.lambda.demo.model.Member;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import java.sql.Date;
 
 /**
  * Note that CAPITALIZATION matters regarding the table name. If you create with 
@@ -61,6 +63,7 @@ public class ChoiceDAO {
     }
     
     public ArrayList<Choice> getAllChoices(LambdaLogger logger) throws Exception {
+
     	logger.log("about to get the choices\n");
         try {
         	ArrayList<Choice> allChoices = new ArrayList<Choice>();
@@ -83,8 +86,42 @@ public class ChoiceDAO {
         	e.printStackTrace();
             throw new Exception("Failed in getting choiced: " + e.getMessage());
         }
+    } 
+    
+    public ArrayList<Choice> deleteChoices(long days, LambdaLogger logger) throws Exception {
+
+    	logger.log("about to get the choices in order to delete some of them\n");
+        try {
+        	ArrayList<Choice> allChoices = getAllChoices(logger);
+        	
+        	long millis = System.currentTimeMillis() - (days*24*60*60*1000);   
+            Date cutoff = new Date(millis); // generating the actual date from that number of days ago
+            
+            PreparedStatement ps;
+            Choice c = null;
+            for (int i=0; i<allChoices.size(); i++) {
+            	c = allChoices.get(i);
+            	if (c.dateCreated.before(cutoff)) {
+                	logger.log("trying to delete current choice from choices table \n");
+                	
+                    ps = conn.prepareStatement("DELETE FROM " + tblChoices + " WHERE choiceId=?;");
+                    ps.setString(1,  c.choiceId);
+                    ps.execute();
+                    logger.log("it should have deleted from choices?\n");
+                    
+                    allChoices.remove(c);
+                    ps.close();
+            	}
+            }
+            
+            return allChoices;
+
+        } catch (Exception e) {
+        	logger.log("couldnt delete the choices from the database\n");
+        	e.printStackTrace();
+            throw new Exception("Failed in deleting choiced: " + e.getMessage());
+        }
     }
-   
 
     public boolean addChoice(Choice choice, LambdaLogger logger) throws Exception {
         try {
@@ -111,16 +148,14 @@ public class ChoiceDAO {
             
             ArrayList<Alternative> alts = choice.alternatives;
             logger.log("\n\n The alts: " + alts);
-            int j = 0;
             for(Alternative alt : alts) {
             	if(!alt.description.equals("")) {
             		logger.log("inserting alt " + alt.description);
             		ps = conn.prepareStatement("INSERT INTO " + tblAlt + " (altId, choiceId,description) VALUES(?,?,?);");
-            		ps.setString(1,  alt.description + choice.choiceId + j);
+            		ps.setString(1,  alt.description + choice.choiceId);
             		ps.setString(2,  choice.choiceId);
             		ps.setString(3,  alt.description);
             		ps.execute();
-            		j++;
             	}
             	
             }
@@ -194,7 +229,8 @@ public class ChoiceDAO {
             if (alt.containsDisapprover(member)) {
             	unselectMember(alt, memberName, choice, logger);
             } else if (alt.containsApprover(member)) {
-            	return choice;
+            	return unselectMember(alt, memberName, choice, logger);
+            	
             }
             logger.log("its trying to add to approvers table\n");
             ps = conn.prepareStatement("INSERT INTO " + tblApprovers + " (approveId, altId, memberId) values(?,?,?);");
@@ -240,7 +276,7 @@ public class ChoiceDAO {
             if (alt.containsApprover(member)) {
             	unselectMember(alt, memberName, choice, logger);
             } else if (alt.containsDisapprover(member)) {
-            	return choice;
+            	return unselectMember(alt, memberName, choice, logger);
             }
             ps = conn.prepareStatement("INSERT INTO " + tblDisapprovers + " (disapproveId, altId, memberId) values(?,?,?);");
             ps.setString(1,  memberName + altId);
@@ -321,8 +357,73 @@ public class ChoiceDAO {
             throw new Exception("Failed to remove member: " + e.getMessage());
         }
     }
-    
 
+    public Choice addFeedback(Alternative alt, Choice choice, Feedback feedback, LambdaLogger logger) throws Exception {
+    	try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblAlt + " WHERE choiceId = ? AND description=?;");
+            ps.setString(1, choice.choiceId);
+            ps.setString(2, alt.description);
+            ResultSet resultSet = ps.executeQuery();
+            
+            Member member = feedback.getMember();
+            String memberId = (member.name + choice.choiceId);
+            
+            
+            String altId = null;
+            if (resultSet.next()) {
+            	altId = resultSet.getString("altId");
+                resultSet.close();
+            }
+            if(altId == null) {
+            	return null;
+            }
+
+            
+            logger.log("its trying to add to feedback table\n");
+            ps = conn.prepareStatement("INSERT INTO " + tblFeedback + " (FeedbackId, altId, memberId, timeWritten, contents) values(?,?,?,?,?);");
+            ps.setString(1,  feedback.contents + feedback.member.name + altId);  //TODO CHANGE THE DATABASE LENGTH 
+            ps.setString(2,  altId);
+            ps.setString(3,  memberId);
+            ps.setDate(4,  feedback.timeMade);
+            ps.setString(5,  feedback.contents);
+            ps.execute();
+            logger.log("it should have added?\n");
+            
+            alt.addFeedback(feedback);
+            choice = getChoice(choice.choiceId, logger);
+            
+            return choice;
+            
+            
+        } catch (Exception e) {
+            throw new Exception("Failed to add member: " + e.getMessage());
+        }
+	}
+
+    public Choice markCompleted(Choice choice, Alternative alt, LambdaLogger logger) throws Exception {
+    	try {
+    		// 'UPDATE tutorials_tbl SET tutorial_title="Learning JAVA" WHERE tutorial_id=3';
+            PreparedStatement ps = conn.prepareStatement("UPDATE " + tblChoices + " SET chosenAlt=? WHERE choiceId=?;");
+            ps.setString(1, alt.description + choice.choiceId);
+            ps.setString(2, choice.choiceId);
+            int resultSet = ps.executeUpdate();
+            logger.log("updated chosenAlt");
+            
+            PreparedStatement ps2 = conn.prepareStatement("UPDATE " + tblChoices + " SET isCompleted=1 WHERE choiceId=?;");
+            ps2.setString(1, choice.choiceId);
+            int resultSet2 = ps2.executeUpdate();
+            
+            logger.log("marking choice as completed and setting chosenAlt done");
+            choice = getChoice(choice.choiceId, logger);
+            
+            return choice;
+            
+        } catch (Exception e) {
+        	logger.log(e.getMessage());
+            throw new Exception("Failed to add member: " + e.getMessage());
+        }
+    }
+    
     public Alternative getAlt(String altId) throws Exception {
         
         try {
@@ -368,8 +469,6 @@ public class ChoiceDAO {
         }
     }
 
-
-    
     private Choice generateChoice(ResultSet resultSet) throws Exception {
     	Choice choice = new Choice();
         choice.choiceId = resultSet.getString("choiceId");
@@ -386,7 +485,6 @@ public class ChoiceDAO {
     }
     
     private Alternative generateAlt(ResultSet resultSet) throws Exception {
-    	//not actually the full alternative, as we don't need to get the approvals and feedback ect.
         Alternative alt = new Alternative();
         alt.description = resultSet.getString("description");
         
@@ -394,14 +492,42 @@ public class ChoiceDAO {
         
         ArrayList<Member> Amembers = getApproverMembers(altId);
         ArrayList<Member> Dmembers = getDisapproverMembers(altId);
+        ArrayList<Feedback> feedbacks = getFeedbacks(altId);
         
         alt.approvers = Amembers;
         alt.disapprovers = Dmembers;
+        alt.feedbacks = feedbacks;
         
         return alt;
     }
     
-    private ArrayList<Member> getApproverMembers(String altId) throws Exception{
+    private Feedback generateFeedback(ResultSet resultSet) throws Exception {
+        Feedback feedback = new Feedback();
+        feedback.contents = resultSet.getString("contents");
+        String memberId = resultSet.getString("memberId");
+        feedback.member = new Member(memberId);
+        feedback.timeMade = resultSet.getDate("timeWritten");
+        
+        return feedback;
+    }
+    
+    private ArrayList<Feedback> getFeedbacks(String altId) throws Exception {
+    	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblFeedback + " WHERE altId=?;");
+        ps.setString(1,  altId);
+        ResultSet resultSet = ps.executeQuery();
+        
+        ArrayList<Feedback> feedbacks = new ArrayList<Feedback>();
+        Feedback currentFeedback;
+        
+        while(resultSet.next()) {
+        	currentFeedback = generateFeedback(resultSet);
+        	feedbacks.add(currentFeedback);
+        }
+        
+        return feedbacks;
+	}
+
+	private ArrayList<Member> getApproverMembers(String altId) throws Exception{
     	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblApprovers + " WHERE altId=?;");
         ps.setString(1,  altId);
         ResultSet resultSet2 = ps.executeQuery();
@@ -457,7 +583,7 @@ public class ChoiceDAO {
         return member;
     }
     
-    public ArrayList<Alternative> getAltsFromChoice(String choiceId) throws Exception{
+    private ArrayList<Alternative> getAltsFromChoice(String choiceId) throws Exception{
     	try {
             Alternative currentAlt = null;
             ArrayList<Alternative> alts = new ArrayList<Alternative>();
@@ -504,5 +630,7 @@ public class ChoiceDAO {
         }
     	
     }
+
+	
 
 }
