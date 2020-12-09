@@ -38,6 +38,10 @@ public class MarkCompletedHandler implements RequestHandler<MarkCompletedRequest
 		Choice exist = dao.getChoice(choiceId, logger);
 		logger.log(exist.description); //see if it actually got it
 		
+		if(exist.isCompleted) {
+			return exist;
+		}
+		
 		Alternative alt = dao.getAlt(choiceId, altDesc);
 		logger.log(alt.description); //see if it actually got it
 		

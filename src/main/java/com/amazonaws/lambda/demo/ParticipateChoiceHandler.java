@@ -38,26 +38,42 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 		Choice exist = dao.getChoice(choiceId, logger);
 		logger.log(exist.description); //see if it actually got it
 		
+	
+		
 		Member member;
 		if (pass != null) {
 			member = new Member(memberName, pass);
 		} else {
 			member = new Member(memberName);
 		}
+		
+		if(exist.containsMember(member) && exist.isCompleted) {
+			return exist;
+		}
+		if(exist.isCompleted && !(exist.containsMember(member))) {
+			Choice c = new Choice();
+			c.choiceId = "433";
+			return c;
+		}
+
 		if (exist != null) {
 			logger.log("about to add " + member.name); //see if it actually got it
-			boolean added = dao.addMember(exist, member, logger);
+			String message = dao.addMember(exist, member, logger);
 			logger.log(member.name + "was added to the database");
-			if (added) {
+			if (message.equals("200")) {
 				return exist;
-			} else {
-				System.out.println("Could not add to choice, too many members.");
-				return null;
+			} else if (message.equals("420")){
+				Choice c = new Choice();
+				c.choiceId = "420";
+				return c;
+			} else if (message.equals("444")){
+				Choice c = new Choice();
+				c.choiceId = "444";
+				return c;
 			}
 			
-		} else {
-			return null;
-		}
+		} 
+		return null;
 	}
 	
 	/** Create S3 bucket
@@ -76,10 +92,23 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 		
 		try {
 			Choice choice = participateChoice(req.choiceId, req.memberName, req.pass);
+			
 			if (choice != null) {
-				response = new ParticipateChoiceResponse(choice);
-			} else {
-				response = new ParticipateChoiceResponse(choice, 422);
+				if (choice.choiceId.equals("433")) { //choice is already completed
+					response = new ParticipateChoiceResponse(choice, 433);
+				}
+				else if (choice.choiceId.equals("420")) { //too many members
+					response = new ParticipateChoiceResponse(choice, 420);
+				}
+				else if (choice.choiceId.equals("444")) { //password doesnt match
+					response = new ParticipateChoiceResponse(choice, 444);
+				}
+				else {
+					response = new ParticipateChoiceResponse(choice, 200);
+				}
+			} 
+			else {
+				response = new ParticipateChoiceResponse(400);
 			}
 		} catch (Exception e) {
 			response = new ParticipateChoiceResponse(400);

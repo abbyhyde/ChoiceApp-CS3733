@@ -37,6 +37,10 @@ public class DisapproveChoiceHandler implements RequestHandler<DisapproveChoiceR
 		Choice exist = dao.getChoice(choiceId, logger);
 		logger.log(exist.description); //see if it actually got it
 		
+		if(exist.isCompleted) {
+			return exist;
+		}
+		
 		Alternative alt = exist.getAlt(altDesc);
 		logger.log(alt.description); //see if it actually got it
 		

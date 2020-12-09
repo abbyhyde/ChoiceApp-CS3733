@@ -167,7 +167,7 @@ public class ChoiceDAO {
         }
     }
     
-    public boolean addMember(Choice choice, Member member, LambdaLogger logger) throws Exception {
+    public String addMember(Choice choice, Member member, LambdaLogger logger) throws Exception {
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblMembers + " WHERE memberId = ?;");
             String memberId = (member.name + choice.choiceId);
@@ -177,13 +177,13 @@ public class ChoiceDAO {
             // already present?
             while (resultSet.next()) {
             	if ((resultSet.getString("password") == null) && (member.getPass() == null)) {
-            		return true;
+            		return "200";
             	}
             	if (member.getPass().equals(resultSet.getString("password"))) {
-            		return true;
+            		return "200";
             	} 
                 resultSet.close();
-                return false; // password exists but doesn't match
+                return "444"; // password exists but doesn't match
             }
 
             if (choice.numCurrentMembers() < choice.numMembers) {
@@ -196,9 +196,9 @@ public class ChoiceDAO {
                 ps.execute();
                 logger.log("it should have added?\n");
                 choice.addMember(member);
-                return true;
+                return "200";
             } else {
-            	return false;
+            	return "420";
             }
 
         } catch (Exception e) {

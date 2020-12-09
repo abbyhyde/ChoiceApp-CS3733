@@ -62,5 +62,9 @@ public class Choice {
 		return members.size();
 	}
 	
+	public boolean containsMember(Member m) {
+		return members.contains(m);
+	}
+	
 }
 
