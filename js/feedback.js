@@ -2,7 +2,7 @@
  * Respond to server JSON object.
  *
  */
-function processAddResponse(result) {
+function processFeedbackResponse(result) {
   // Can grab any DIV or SPAN HTML element and can then manipulate its
   // contents dynamically via javascript
   console.log("result:" + result);
@@ -43,7 +43,7 @@ function processAddResponse(result) {
 			currentFeedbackName[j] = alternatives[i].feedbacks[j].member.name;
 			currentFeedbackContents[j] = alternatives[i].feedbacks[j].contents;
 			//currentFeedback[j] = alternatives[i].feedbacks[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
-			
+			//this doesn't wor try something else! lol
 		}
 		altsFeedback[i] = currentFeedback;
 		altsFeedbackDate[i] = currentFeedbackDate;
@@ -65,7 +65,7 @@ function processAddResponse(result) {
     document.getElementById("choiceDesc").innerText = description;
 	var name = document.getElementById("memberName").innerText; //need to check if this works!!!
 	var approvers = new Array();   
-	var disapprovers = new Array(); 
+	var disapprovers = new Array();
 	var feedbacks = new Array(); 
 	var feedbackDate = new Array();
 	var feedbackName = new Array();
@@ -295,21 +295,36 @@ function processAddResponse(result) {
   //refreshChoice();
 }
 
-function handleAddClick(e) {
-  var form = document.addForm;
-  var choiceId = form.choiceId.value;
-  var name = form.teammateName.value;
-  var pass = form.password.value;
+function handleFeedbackClick(e, int) {
+  var altNum = int;  
+  var name = document.getElementById("memberName").innerText;
+  var choiceId = document.getElementById("choiceId").innerText;
+  var description = document.getElementById("alt" + altNum + "Desc").innerText;
+
+	if (altNum == 1) {
+		var form = document.addFeedback1;
+	} else if (altNum == 2) {
+		var form = document.addFeedback2;
+	} else if (altNum == 3) {
+		var form = document.addFeedback3;
+	} else if (altNum == 4) {
+		var form = document.addFeedback4;
+	} else if (altNum == 5) {
+		var form = document.addFeedback5;
+	}
+	
+    var contents = form.feedback.value;
 
   var data = {};          //NEED TO CHANGE: Make this for a choice
   data["choiceId"] = choiceId;
+  data["altDesc"] = description;
   data["memberName"] = name;
-  data["pass"] = pass;
+  data["feedbackDesc"] = contents;
 
   var js = JSON.stringify(data);
   console.log("JS:" + js);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", add_url, true);
+  xhr.open("POST", feedback_url, true);
 
   // send the collected data as JSON
   xhr.send(js);
@@ -321,12 +336,9 @@ function handleAddClick(e) {
     
     if (xhr.readyState == XMLHttpRequest.DONE) {
       console.log ("XHR:" + xhr.responseText);
-      processAddResponse(xhr.responseText);
+      processFeedbackResponse(xhr.responseText);
     } else {
-      processAddResponse("N/A");
+      processFeedbackResponse("N/A");
     }
-	document.getElementById("choice").style.visibility="visible";
- 	document.getElementById("memberName").innerText = name;
-
   };
 }

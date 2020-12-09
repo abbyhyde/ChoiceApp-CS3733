@@ -2,7 +2,7 @@
  * Respond to server JSON object.
  *
  */
-function processAddResponse(result) {
+function processSelectResponse(result) {
   // Can grab any DIV or SPAN HTML element and can then manipulate its
   // contents dynamically via javascript
   console.log("result:" + result);
@@ -40,36 +40,35 @@ function processAddResponse(result) {
 		for (var j=0; j<alternatives[i].feedbacks.length; j++) {
 			currentFeedback[j] = alternatives[i].feedbacks[j];
 			currentFeedbackDate[j] = alternatives[i].feedbacks[j].timeMade;
-			currentFeedbackName[j] = alternatives[i].feedbacks[j].member.name;
+			currentFeedbackName[j] = alternatives[i].feedbacks[j].name;
 			currentFeedbackContents[j] = alternatives[i].feedbacks[j].contents;
-			//currentFeedback[j] = alternatives[i].feedbacks[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
+			//currentFeedback[j] = alternatives[i].feedback[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
 			
 		}
 		altsFeedback[i] = currentFeedback;
 		altsFeedbackDate[i] = currentFeedbackDate;
 		altsFeedbackName[i] = currentFeedbackName;
 		altsFeedbackContents[i] = currentFeedbackContents;
-  	}
+	}
   
   var maxNumMembers = choiceJSON["numMembers"];
   var isCompleted = choiceJSON["isCompleted"];
-  
   var status = js["httpCode"];
   
   if (status == 200) {
     // Update computation result
     //document.addForm.result.value = computation
     
-    //this is where you output all of the values from the variables above
-    document.getElementById("choiceId").innerText = choiceId;
+    	document.getElementById("choiceId").innerText = choiceId;
     document.getElementById("choiceDesc").innerText = description;
-	var name = document.getElementById("memberName").innerText; //need to check if this works!!!
+	//var name = document.getElementById("memberName").innerText; //need to check if this works!!!
 	var approvers = new Array();   
 	var disapprovers = new Array(); 
-	var feedbacks = new Array(); 
+	var feedbacks = new Array();
 	var feedbackDate = new Array();
 	var feedbackName = new Array();
 	var feedbackContent = new Array();
+
 
 	if (altsDesc[0] == null) {
 		document.getElementById("Alt1").style.visibility="hidden"; 
@@ -81,7 +80,7 @@ function processAddResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "<br>";
+				memNames += memName + "\n";
 			}
 			document.getElementById("approve1").innerHTML = memNames;
 			document.getElementById("approveTot1").innerText = altsApprove[0].length;
@@ -112,6 +111,7 @@ function processAddResponse(result) {
 			document.getElementById("Feedback1").innerHTML = feedback;
 		}
 	}
+
 
 	if (altsDesc[1] == null) {
 		document.getElementById("Alt2").style.visibility="hidden"; 
@@ -156,6 +156,7 @@ function processAddResponse(result) {
 	}
 	
 	
+
 	if (altsDesc[2] == null) {
 		document.getElementById("Alt3").style.visibility="hidden"; 
 	} else {
@@ -196,8 +197,8 @@ function processAddResponse(result) {
 			}
 			document.getElementById("Feedback3").innerHTML = feedback;
 		}
-	}
-	
+	}	
+
 	
 	
 	if (altsDesc[3] == null) {
@@ -284,9 +285,9 @@ function processAddResponse(result) {
 			}
 			document.getElementById("Feedback5").innerHTML = feedback;
 		}
-	}	
-	
-       
+	}
+    
+    
   } else {
     var msg = js["error"];
     //document.addForm.result.value = "error:" + msg;
@@ -295,21 +296,21 @@ function processAddResponse(result) {
   //refreshChoice();
 }
 
-function handleAddClick(e) {
-  var form = document.addForm;
-  var choiceId = form.choiceId.value;
-  var name = form.teammateName.value;
-  var pass = form.password.value;
+function handleSelectClick(e) {
+  var altNum = int;
+  var name = document.getElementById("memberName").innerText;
+  var choiceId = document.getElementById("choiceId").innerText;
+  var description = document.getElementById("alt" + altNum + "Desc").innerText;
 
   var data = {};          //NEED TO CHANGE: Make this for a choice
   data["choiceId"] = choiceId;
   data["memberName"] = name;
-  data["pass"] = pass;
+  data["altDesc"] = description;
 
   var js = JSON.stringify(data);
   console.log("JS:" + js);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", add_url, true);
+  xhr.open("POST", unselect_url, true);
 
   // send the collected data as JSON
   xhr.send(js);
@@ -321,12 +322,9 @@ function handleAddClick(e) {
     
     if (xhr.readyState == XMLHttpRequest.DONE) {
       console.log ("XHR:" + xhr.responseText);
-      processAddResponse(xhr.responseText);
+      processUnselectResponse(xhr.responseText);
     } else {
-      processAddResponse("N/A");
+      processUnselectResponse("N/A");
     }
-	document.getElementById("choice").style.visibility="visible";
- 	document.getElementById("memberName").innerText = name;
-
   };
 }

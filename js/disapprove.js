@@ -17,9 +17,16 @@ function processDisapproveResponse(result) {
   var altsApprove = new Array();
   var altsDisapprove = new Array();
   var altsFeedback = new Array();
+  var altsFeedbackDate = new Array();
+  var altsFeedbackName = new Array();
+  var altsFeedbackContents = new Array();
   	for(var i=0;i<alternatives.length;i++){
   		var currentApprove = new Array();
 		var currentDisapprove = new Array();
+		var currentFeedback = new Array();
+		var currentFeedbackDate = new Array();
+		var currentFeedbackName = new Array();
+		var currentFeedbackContents = new Array();
   		alts[i] = alternatives[i];
   		altsDesc[i] = alternatives[i].description;
 		for (var j=0; j<alternatives[i].approvers.length; j++) {
@@ -30,9 +37,18 @@ function processDisapproveResponse(result) {
 			currentDisapprove[j] = alternatives[i].disapprovers[j].name;
 		}
 		altsDisapprove[i] = currentDisapprove;
-		
-		
-		altsFeedback[i] = alternatives[i].feedbacks; //THIS NEEDS TO BE DONE
+		for (var j=0; j<alternatives[i].feedbacks.length; j++) {
+			currentFeedback[j] = alternatives[i].feedbacks[j];
+			currentFeedbackDate[j] = alternatives[i].feedbacks[j].timeMade;
+			currentFeedbackName[j] = alternatives[i].feedbacks[j].member.name;
+			currentFeedbackContents[j] = alternatives[i].feedbacks[j].contents;
+			//currentFeedback[j] = alternatives[i].feedback[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
+			
+		}
+		altsFeedback[i] = currentFeedback;
+		altsFeedbackDate[i] = currentFeedbackDate;
+		altsFeedbackName[i] = currentFeedbackName;
+		altsFeedbackContents[i] = currentFeedbackContents;
   	}
   
   var maxNumMembers = choiceJSON["numMembers"];
@@ -50,6 +66,10 @@ function processDisapproveResponse(result) {
 	//var name = document.getElementById("memberName").innerText; //need to check if this works!!!
 	var approvers = new Array();   
 	var disapprovers = new Array(); 
+	var feedbacks = new Array();
+	var feedbackDate = new Array();
+	var feedbackName = new Array();
+	var feedbackContent = new Array();
 
 
 	if (altsDesc[0] == null) {
@@ -62,7 +82,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("approve1").innerHTML = memNames;
 			document.getElementById("approveTot1").innerText = altsApprove[0].length;
@@ -72,10 +92,25 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < disapprovers.length; i++) {
 				memName = disapprovers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("disapprove1").innerHTML = memNames;
 			document.getElementById("disapproveTot1").innerText = altsDisapprove[0].length;
+		}
+		if (altsFeedback[0] != null) {
+			feedbacks = altsFeedback[0];
+			/*feedbackDate = altsFeedbackDate[0];
+			feedbackName = altsFeedbackName[0];
+			feedbackContent = altsFeedbackContents[0];*/
+			var feedback ="";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
+			}
+			document.getElementById("Feedback1").innerHTML = feedback;
 		}
 	}
 
@@ -90,7 +125,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("approve2").innerHTML = memNames;
 			document.getElementById("approveTot2").innerText = altsApprove[1].length;
@@ -100,10 +135,25 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < disapprovers.length; i++) {
 				memName = disapprovers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("disapprove2").innerHTML = memNames;
 			document.getElementById("disapproveTot2").innerText = altsDisapprove[1].length;
+		}
+		if (altsFeedback[1] != null) {
+			feedbacks = altsFeedback[1];
+			/*feedbackDate = altsFeedbackDate[1];
+			feedbackName = altsFeedbackName[1];
+			feedbackContent = altsFeedbackContents[1];*/
+			var feedback ="";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
+			}
+			document.getElementById("Feedback2").innerHTML = feedback;
 		}
 	}
 	
@@ -119,7 +169,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("approve3").innerHTML = memNames;
 			document.getElementById("approveTot3").innerText = altsApprove[2].length;
@@ -129,10 +179,25 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < disapprovers.length; i++) {
 				memName = disapprovers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("disapprove3").innerHTML = memNames;
 			document.getElementById("disapproveTot3").innerText = altsDisapprove[2].length;
+		}
+		if (altsFeedback[2] != null) {
+			feedbacks = altsFeedback[2];
+			/*feedbackDate = altsFeedbackDate[2];
+			feedbackName = altsFeedbackName[2];
+			feedbackContent = altsFeedbackContents[2];*/
+			var feedback ="";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
+			}
+			document.getElementById("Feedback3").innerHTML = feedback;
 		}
 	}	
 
@@ -148,7 +213,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("approve4").innerHTML = memNames;
 			document.getElementById("approveTot4").innerText = altsApprove[3].length;
@@ -158,10 +223,25 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < disapprovers.length; i++) {
 				memName = disapprovers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("disapprove4").innerHTML = memNames;
 			document.getElementById("disapproveTot4").innerText = altsDisapprove[3].length;
+		}
+		if (altsFeedback[3] != null) {
+			feedbacks = altsFeedback[3];
+			/*feedbackDate = altsFeedbackDate[3];
+			feedbackName = altsFeedbackName[3];
+			feedbackContent = altsFeedbackContents[3];*/
+			var feedback ="";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
+			}
+			document.getElementById("Feedback4").innerHTML = feedback;
 		}
 	}	
 	
@@ -177,7 +257,7 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < approvers.length; i++) {
 				memName = approvers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("approve5").innerHTML = memNames;
 			document.getElementById("approveTot5").innerText = altsApprove[4].length;
@@ -187,10 +267,25 @@ function processDisapproveResponse(result) {
 			var memNames = "";
 			for (var i=0; i < disapprovers.length; i++) {
 				memName = disapprovers[i];
-				memNames += memName + "\n";
+				memNames += memName + "<br>";
 			}
 			document.getElementById("disapprove5").innerHTML = memNames;
 			document.getElementById("disapproveTot5").innerText = altsDisapprove[4].length;
+		}
+		if (altsFeedback[4] != null) {
+			feedbacks = altsFeedback[4];
+			/*feedbackDate = altsFeedbackDate[4];
+			feedbackName = altsFeedbackName[4];
+			feedbackContent = altsFeedbackContents[4];*/
+			var feedback ="";
+			for (var i=0; i < feedbacks.length; i++) {
+				content = feedbacks[i].contents;
+				name = feedbacks[i].member.name;
+				date = feedbacks[i].timeMade;
+				
+				feedback += "<b>" + date + "&nbsp;&nbsp;&nbsp;&nbsp;" + name + "&nbsp;&nbsp;" + "</b>" + content + "<br>";
+			}
+			document.getElementById("Feedback5").innerHTML = feedback;
 		}
 	}	
 	

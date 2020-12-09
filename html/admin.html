@@ -16,14 +16,31 @@ function initialize() {
 <h1>Admin of Choice App</h1>
 
 <div style= "width: 100%">
-	<div style= "width: 60%; height: 100%; float: left">
+	<div style= "width: 75%; height: 100%; float: left">
 		<!-- Creating a new choice -->
 		<h2>Choice List </h2> 
 		  <input type="button" id="choiceList" value="Get List of Choices"  onClick="JavaScript:refreshChoiceList()">
-		  <div id="choices"></div>
+		  <div id="choices">
+		  <div style="display:inline-block; vertical-align: top; margin: 10px;">
+		  <p>Choice ID:</p>
+		  <div id="choiceID"></div>
+		  </div>
+		  <div style="display:inline-block; vertical-align: top; margin: 10px;">
+		  <p>Description:</p>
+		  <div id="description"></div>
+		  </div>
+		  <div style="display:inline-block; vertical-align: top; margin: 10px;">
+		  <p>Creation Date:</p>
+		  <div id="createdDate"></div>
+		  </div>
+		  <div style="display:inline-block; vertical-align: top; margin: 10px;">
+		  <p>Completed:</p>
+		  <div id="completed"></div>
+		  </div>
+		  </div>
 	</div>
 
-	<div style= "width: 40%; height: 50%; float: right">
+	<div style= "width: 25%; height: 50%; float: right">
 		<!-- Register to the Choice --> 
 		<h2> Delete Choices</h2> 
 		<p> This will delete any completed choices after the specified time</p>

@@ -8,6 +8,7 @@
 <script type='text/javascript' src='../js/approve.js'></script>
 <script type='text/javascript' src='../js/disapprove.js'></script>
 <script type='text/javascript' src='../js/unselect.js'></script>
+<script type='text/javascript' src='../js/feedback.js'></script>
 
 <script type="text/javascript">
 var currentAlt = 1;
@@ -63,7 +64,7 @@ function initialize() {
 
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<div style="display:inline-block; margin: 3px;">Choice # </div><div id="choiceId" style="display:inline-block; margin: 3px;">ID</div>
-	<div id="choiceDesc">This is the Choice Description. Choice Descriptions are going to be long and I want to see what happens when I change this. If I make it even longer what will happen?</div><br>
+	<div id="choiceDesc">This is the Choice Description.</div><br>
 	<div id="memberName"> Name</div>
 	<br><br>
 
@@ -71,31 +72,27 @@ function initialize() {
 		<p>Alternative #1</p><br>
 		<div id="alt1Desc"> The Description of The Chosen Alternative </div>
 		<br>
-		<button id="Picked1B" style="margin: 5px;">MARK AS PICKED</button>
+		<button id="Picked1B" style="margin: 5px;" onClick="JavaScript:handleSelectClick(this, 1)">MARK AS PICKED</button>
 		<button id="approve1B" style="margin: 5px;" onClick="JavaScript:handleApproveClick(this, 1)">THUMBS UP</button>
 		<button id="disapprove1B" style="margin: 5px;" onClick="JavaScript:handleDisapproveClick(this, 1)">THUMBS DOWN</button>
 		<br>
 		<div style="display:inline-block; vertical-align: top; margin: 10px;">Feedback:
-			<ul style="list-style-type:none; padding-left: 0;">
-			  <li>Feedback 1</li>
-			  <li>Feedback 2</li>
-			  <li>Feedback 3</li>
-			</ul>
+
+			<form name="addFeedback1" method="post" name="newFeedback">
+				<input name="feedback" value="" size="100"/>
+				<input type="button" value="Add New Feedback" onClick="JavaScript:handleFeedbackClick(this, 1)">
+			</form>
+			<div id="Feedback1">
+			</div>
 		</div>
 		<br>
-		<div style="display:inline-block; vertical-align: top; margin: 10px;">Approvers:
+		<div style="display:inline-block; vertical-align: top; margin: 25px;">Approvers:
 			<div id="approve1">
-			  Team Member 1
-			  Team Member 2
-			  Team Member 3
 			</div>
 			<div style="display:inline-block; margin: 3px;">Total:</div><div id="approveTot1" style="display:inline-block;"> 3</div>
 		</div>
-		<div style="display:inline-block; vertical-align: top; margin: 10px;">Disapprovers:
+		<div style="display:inline-block; vertical-align: top; margin: 25px;">Disapprovers:
 			<div id="disapprove1">
-			  Team Member 4 
-			  Team Member 5
-			  Team Member 6
 			</div>
 			<div style="display:inline-block; margin: 3px;">Total:</div><div id="disapproveTot1" style="display:inline-block;"> 3</div>
 		</div>
@@ -105,31 +102,26 @@ function initialize() {
 		<p>Alternative #2</p><br>
 		<div id="alt2Desc"> The Description of The Chosen Alternative </div>
 		<br>
-		<button id="Picked2B" style="margin: 5px;">MARK AS PICKED</button>
+		<button id="Picked2B" style="margin: 5px;" onClick="JavaScript:handleSelectClick(this, 2)">MARK AS PICKED</button>
 		<button id="approve2B" style="margin: 5px;" onClick="JavaScript:handleApproveClick(this, 2)">THUMBS UP</button>
 		<button id="disapprove2B" style="margin: 5px;" onClick="JavaScript:handleDisapproveClick(this, 2)">THUMBS DOWN</button>
 		<br>
 		<div style="display:inline-block; vertical-align: top; margin: 10px;">Feedback:
-			<ul style="list-style-type:none; padding-left: 0;">
-			  <li>Feedback 1</li>
-			  <li>Feedback 2</li>
-			  <li>Feedback 3</li>
-			</ul>
+			<form name="addFeedback2" method="post" name="newFeedback">
+				<p> Feedback Content: </p><input name="feedback" value="" size="100"/>
+				<input type="button" value="Add New Feedback" onClick="JavaScript:handleFeedbackClick(this, 2)">
+			</form>
+			<div id="Feedback2">
+			</div>
 		</div>
 		<br>
-		<div style="display:inline-block; vertical-align: top; margin: 10px;">Approvers:
+		<div style="display:inline-block; vertical-align: top; margin: 25px;">Approvers:
 			<div id="approve2">
-			  Team Member 1
-			  Team Member 2
-			  Team Member 3
 			</div>
 			<div style="display:inline-block; margin: 3px;">Total:</div><div id="approveTot2" style="display:inline-block;"> 3</div>
 		</div>
-		<div style="display:inline-block; vertical-align: top; margin: 10px;">Disapprovers:
+		<div style="display:inline-block; vertical-align: top; margin: 25px;">Disapprovers:
 			<div id="disapprove2">
-			  Team Member 4
-			  Team Member 5
-			  Team Member 6
 			</div>
 			<div style="display:inline-block; margin: 3px;">Total:</div><div id="disapproveTot2" style="display:inline-block;"> 3</div>
 		</div>
@@ -139,31 +131,26 @@ function initialize() {
 		<p>Alternative #3</p><br>
 		<div id="alt3Desc"> The Description of The Chosen Alternative </div>
 		<br>
-		<button id="Picked3B" style="margin: 5px;">MARK AS PICKED</button>
+		<button id="Picked3B" style="margin: 5px;" onClick="JavaScript:handleSelectClick(this, 3)">MARK AS PICKED</button>
 		<button id="approve3B" style="margin: 5px;" onClick="JavaScript:handleApproveClick(this, 3)">THUMBS UP</button>
 		<button id="disapprove3B" style="margin: 5px;" onClick="JavaScript:handleDisapproveClick(this, 3)">THUMBS DOWN</button>
 		<br>
 		<div style="display:inline-block; vertical-align: top; margin: 10px;">Feedback:
-			<ul style="list-style-type:none; padding-left: 0;">
-			  <li>Feedback 1</li>
-			  <li>Feedback 2</li>
-			  <li>Feedback 3</li>
-			</ul>
+			<form name="addFeedback3" method="post" name="newFeedback">
+				<p> Feedback Content: </p><input name="feedback" value="" size="100"/>
+				<input type="button" value="Add New Feedback" onClick="JavaScript:handleFeedbackClick(this, 3)">
+			</form>
+			<div id="Feedback3">
+			</div>
 		</div>
 		<br>
-		<div style="display:inline-block; vertical-align: top; margin: 10px;">Approvers:
+		<div style="display:inline-block; vertical-align: top; margin: 25px;">Approvers:
 			<div id="approve3">
-			  Team Member 1
-			  Team Member 2
-			  Team Member 3
 			</div>
 			<div style="display:inline-block; margin: 3px;">Total:</div><div id="approveTot3" style="display:inline-block;"> 3</div>
 		</div>
-		<div style="display:inline-block; vertical-align: top; margin: 10px;">Disapprovers:
+		<div style="display:inline-block; vertical-align: top; margin: 25px;">Disapprovers:
 			<div id="disapprove3">
-			  Team Member 4
-			  Team Member 5
-			  Team Member 6
 			</div>
 			<div style="display:inline-block; margin: 3px;">Total:</div><div id="disapproveTot3" style="display:inline-block;"> 3</div>
 		</div>
@@ -173,31 +160,26 @@ function initialize() {
 		<p>Alternative #4</p><br>
 		<div id="alt4Desc"> The Description of The Chosen Alternative </div>
 		<br>
-		<button id="Picked4B" style="margin: 5px;">MARK AS PICKED</button>
+		<button id="Picked4B" style="margin: 5px;" onClick="JavaScript:handleSelectClick(this, 4)">MARK AS PICKED</button>
 		<button id="approve4B" style="margin: 5px;" onClick="JavaScript:handleApproveClick(this, 4)">THUMBS UP</button>
 		<button id="disapprove4B" style="margin: 5px;" onClick="JavaScript:handleDisapproveClick(this, 4)">THUMBS DOWN</button>
 		<br>
 		<div style="display:inline-block; vertical-align: top; margin: 10px;">Feedback:
-			<ul style="list-style-type:none; padding-left: 0;">
-			  <li>Feedback 1</li>
-			  <li>Feedback 2</li>
-			  <li>Feedback 3</li>
-			</ul>
+			<form name="addFeedback4" method="post" name="newFeedback">
+				<p> Feedback Content: </p><input name="feedback" value="" size="100"/>
+				<input type="button" value="Add New Feedback" onClick="JavaScript:handleFeedbackClick(this, 4)">
+			</form>
+			<div id="Feedback4">
+			</div>
 		</div>
 		<br>
-		<div style="display:inline-block; vertical-align: top; margin: 10px;">Approvers:
+		<div style="display:inline-block; vertical-align: top; margin: 25px;">Approvers:
 			<div id="approve4">
-			  Team Member 1
-			  Team Member 2
-			  Team Member 3
 			</div>
 			<div style="display:inline-block; margin: 3px;">Total:</div><div id="approveTot4" style="display:inline-block;"> 3</div>
 		</div>
-		<div style="display:inline-block; vertical-align: top; margin: 10px;">Disapprovers:
+		<div style="display:inline-block; vertical-align: top; margin: 25px;">Disapprovers:
 			<div id="disapprove4">
-			  Team Member 4
-			  Team Member 5
-			  Team Member 6
 			</div>
 			<div style="display:inline-block; margin: 3px;">Total:</div><div id="disapproveTot4" style="display:inline-block;"> 3</div>
 		</div>
@@ -208,31 +190,26 @@ function initialize() {
 		<p>Alternative #5</p><br>
 		<div id="alt5Desc"> The Description of The Chosen Alternative </div>
 		<br>
-		<button id="Picked5B" style="margin: 5px;">MARK AS PICKED</button>
+		<button id="Picked5B" style="margin: 5px;" onClick="JavaScript:handleSelectClick(this, 5)">MARK AS PICKED</button>
 		<button id="approve5B" style="margin: 5px;" onClick="JavaScript:handleApproveClick(this, 5)">THUMBS UP</button>
 		<button id="disapprove5B" style="margin: 5px;" onClick="JavaScript:handleDisapproveClick(this, 5)">THUMBS DOWN</button>
 		<br>
 		<div style="display:inline-block; vertical-align: top; margin: 10px;">Feedback:
-			<ul style="list-style-type:none; padding-left: 0;">
-			  <li>Feedback 1</li>
-			  <li>Feedback 2</li>
-			  <li>Feedback 3</li>
-			</ul>
+			<form name="addFeedback5" method="post" name="newFeedback">
+				<p> Feedback Content: </p><input name="feedback" value="" size="100"/>
+				<input type="button" value="Add New Feedback" onClick="JavaScript:handleFeedbackClick(this, 5)">
+			</form>
+			<div id="Feedback5">
+			</div>
 		</div>
 		<br>
-		<div style="display:inline-block; vertical-align: top; margin: 10px;">Approvers: 
+		<div style="display:inline-block; vertical-align: top; margin: 25px;">Approvers: 
 			<div id="approve5">
-			  Team Member 1
-			  Team Member 2
-			  Team Member 3
 			</div>
 			<div style="display:inline-block; margin: 3px;">Total:</div><div id="approveTot5" style="display:inline-block;"> 3</div>
 		</div>
-		<div style="display:inline-block; vertical-align: top; margin: 10px;">Disapprovers:
+		<div style="display:inline-block; vertical-align: top; margin: 25px;">Disapprovers:
 			<div id="disapprove5">
-			  Team Member 4
-			  Team Member 5
-			  Team Member 6
 			</div>
 			<div style="display:inline-block; margin: 3px;">Total:</div><div id="disapproveTot5" style="display:inline-block;"> 3</div>
 		</div>
