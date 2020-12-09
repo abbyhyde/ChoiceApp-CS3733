@@ -513,8 +513,8 @@ public class ChoiceDAO {
         String memberName = "";
         while(resultSet2.next()) {
         	memberName = resultSet2.getString("name");
-        	resultSet2.close();
         }
+        resultSet2.close();
         
         feedback.member = new Member(memberName);
         feedback.timeMade = resultSet.getDate("timeWritten");

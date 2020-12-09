@@ -29,7 +29,7 @@ public class AddFeedbackHandlerTest extends LambdaTest {
     	String choiceId = "db53342a-0511-4a4f-a705-1d4ff745baa1";
     	String name = "Vanessa";
     	String altDesc = "Alt 1";
-    	String f = "testing feedback again";
+    	String f = "feedback3";
     	
     	AddFeedbackRequest ccr = new AddFeedbackRequest(choiceId, altDesc, name, f);
         String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);
