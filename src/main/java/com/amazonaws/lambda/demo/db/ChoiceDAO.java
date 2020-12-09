@@ -505,7 +505,18 @@ public class ChoiceDAO {
         Feedback feedback = new Feedback();
         feedback.contents = resultSet.getString("contents");
         String memberId = resultSet.getString("memberId");
-        feedback.member = new Member(memberId);
+        
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblMembers + " WHERE memberId=?;");
+        ps.setString(1,  memberId);
+        ResultSet resultSet2 = ps.executeQuery();
+        
+        String memberName = "";
+        while(resultSet2.next()) {
+        	memberName = resultSet2.getString("name");
+        	resultSet2.close();
+        }
+        
+        feedback.member = new Member(memberName);
         feedback.timeMade = resultSet.getDate("timeWritten");
         
         return feedback;
