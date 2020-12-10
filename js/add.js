@@ -37,6 +37,15 @@ function processAddResponse(result) {
 		document.getElementById("Alt4").style.visibility="hidden";
 		document.getElementById("Alt5").style.visibility="hidden";
 	}
+	if (status == 455) {
+		document.getElementById("error").innerText = "Choice does not exist";
+		document.getElementById("choice").style.visibility="hidden";
+		document.getElementById("Alt1").style.visibility="hidden";
+		document.getElementById("Alt2").style.visibility="hidden";
+		document.getElementById("Alt3").style.visibility="hidden";
+		document.getElementById("Alt4").style.visibility="hidden";
+		document.getElementById("Alt5").style.visibility="hidden";
+	}
   
   if (status == 200) {
     // Update computation result
