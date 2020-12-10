@@ -2,7 +2,7 @@
  * Respond to server JSON object.
  *
  */
-function processSelectResponse(result) {
+function processCompleteResponse(result) {
   // Can grab any DIV or SPAN HTML element and can then manipulate its
   // contents dynamically via javascript
   console.log("result:" + result);
@@ -12,6 +12,8 @@ function processSelectResponse(result) {
   var choiceId = choiceJSON["choiceId"];
   var description = choiceJSON["description"];
   var alternatives = choiceJSON["alternatives"];
+  var isComplete = choiceJSON["isCompleted"];
+  var chosenAlt = choiceJSON["altChosen"];
   var alts = new Array();
   var altsDesc = new Array();
   var altsApprove = new Array();
@@ -69,6 +71,66 @@ function processSelectResponse(result) {
 	var feedbackName = new Array();
 	var feedbackContent = new Array();
 
+
+	if (isComplete) {
+		document.getElementById("Picked1B").disabled=true;
+		document.getElementById("approve1B").disabled=true;
+		document.getElementById("disapprove1B").disabled=true;
+		document.getElementById("feedbackForm1").disabled=true;
+		
+		document.getElementById("Picked2B").disabled=true;
+		document.getElementById("approve2B").disabled=true;
+		document.getElementById("disapprove2B").disabled=true;
+		document.getElementById("feedbackForm2").disabled=true;
+		
+		document.getElementById("Picked3B").disabled=true;
+		document.getElementById("approve3B").disabled=true;
+		document.getElementById("disapprove3B").disabled=true;
+		document.getElementById("feedbackForm3").disabled=true;
+		
+		document.getElementById("Picked4B").disabled=true;
+		document.getElementById("approve4B").disabled=true;
+		document.getElementById("disapprove4B").disabled=true;
+		document.getElementById("feedbackForm4").disabled=true;
+		
+		document.getElementById("Picked5B").disabled=true;
+		document.getElementById("approve5B").disabled=true;
+		document.getElementById("disapprove5B").disabled=true;
+		document.getElementById("feedbackForm5").disabled=true;
+		
+		if (chosenAlt.description == altsDesc[0]) {
+			document.getElementById("Alt1").style.background-color = "#63ff7b";
+			document.getElementById("Alt2").style.background-color = "#ff6f59";
+			document.getElementById("Alt3").style.background-color = "#ff6f59";
+			document.getElementById("Alt4").style.background-color = "#ff6f59";
+			document.getElementById("Alt5").style.background-color = "#ff6f59";
+		} else if (chosenAlt.description == altsDesc[1]) {
+			document.getElementById("Alt2").style.background-color = "#63ff7b";
+			document.getElementById("Alt1").style.background-color = "#ff6f59";
+			document.getElementById("Alt3").style.background-color = "#ff6f59";
+			document.getElementById("Alt4").style.background-color = "#ff6f59";
+			document.getElementById("Alt5").style.background-color = "#ff6f59";
+		} else if (chosenAlt.description == altsDesc[2]) {
+			document.getElementById("Alt3").style.background-color = "#63ff7b";
+			document.getElementById("Alt2").style.background-color = "#ff6f59";
+			document.getElementById("Alt1").style.background-color = "#ff6f59";
+			document.getElementById("Alt4").style.background-color = "#ff6f59";
+			document.getElementById("Alt5").style.background-color = "#ff6f59";
+		} else if (chosenAlt.description == altsDesc[3]) {
+			document.getElementById("Alt4").style.background-color = "#63ff7b";
+			document.getElementById("Alt2").style.background-color = "#ff6f59";
+			document.getElementById("Alt3").style.background-color = "#ff6f59";
+			document.getElementById("Alt1").style.background-color = "#ff6f59";
+			document.getElementById("Alt5").style.background-color = "#ff6f59";
+		}else if (chosenAlt.description == altsDesc[4]) {
+			document.getElementById("Alt5").style.background-color = "#63ff7b";
+			document.getElementById("Alt2").style.background-color = "#ff6f59";
+			document.getElementById("Alt3").style.background-color = "#ff6f59";
+			document.getElementById("Alt4").style.background-color = "#ff6f59";
+			document.getElementById("Alt1").style.background-color = "#ff6f59";
+		}
+	}
+	
 
 	if (altsDesc[0] == null) {
 		document.getElementById("Alt1").style.visibility="hidden"; 
@@ -296,7 +358,7 @@ function processSelectResponse(result) {
   //refreshChoice();
 }
 
-function handleSelectClick(e) {
+function handleCompleteClick(e, int) {
   var altNum = int;
   var name = document.getElementById("memberName").innerText;
   var choiceId = document.getElementById("choiceId").innerText;
@@ -304,13 +366,12 @@ function handleSelectClick(e) {
 
   var data = {};          //NEED TO CHANGE: Make this for a choice
   data["choiceId"] = choiceId;
-  data["memberName"] = name;
   data["altDesc"] = description;
 
   var js = JSON.stringify(data);
   console.log("JS:" + js);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", unselect_url, true);
+  xhr.open("POST", complete_url, true);
 
   // send the collected data as JSON
   xhr.send(js);
@@ -322,9 +383,9 @@ function handleSelectClick(e) {
     
     if (xhr.readyState == XMLHttpRequest.DONE) {
       console.log ("XHR:" + xhr.responseText);
-      processUnselectResponse(xhr.responseText);
+      processCompleteResponse(xhr.responseText);
     } else {
-      processUnselectResponse("N/A");
+      processCompleteResponse("N/A");
     }
   };
 }

@@ -9,5 +9,7 @@ var approve_url    = base_url + "selectApproval";
 var disapprove_url = base_url + "selectDisapproval";
 var unselect_url   = base_url + "unselectOpinion";
 var feedback_url   = base_url + "addFeedback";
+var delete_url     = base_url + "deleteChoices";
+var complete_url     = base_url + "completeChoice";
 //need to add more here?
 
