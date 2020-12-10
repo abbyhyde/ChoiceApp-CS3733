@@ -39,9 +39,8 @@ public class ParticipateChoiceHandlerTest extends LambdaTest {
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
     public void testAddMemberWithPassword() {
-    	String choiceId = "47c435a0-1480-4d6a-a49e-04968c4f8d52";
-    	String name = "abby";
-    	//String password = "me12";
+    	String choiceId = "ff386885-f007-4187-add4-e6854e628e79";
+    	String name = "vanessa";
     	
     	ParticipateChoiceRequest ccr = new ParticipateChoiceRequest(choiceId, name);
         String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);

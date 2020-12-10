@@ -24,7 +24,7 @@ public class MarkCompletedHandlerTest extends LambdaTest {
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
     public void testMarkCompleted() {
-    	String choiceId = "ee4c68f0-8d17-4059-bb4e-6f726f9d44d7";
+    	String choiceId = "ee04db49-eb88-4eee-b7ef-297ecb83265c";
     	String altDesc = "pasta";
     	
     	MarkCompletedRequest ccr = new MarkCompletedRequest(choiceId, altDesc);

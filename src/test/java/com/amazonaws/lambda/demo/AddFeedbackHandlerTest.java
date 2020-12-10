@@ -7,6 +7,7 @@ import org.junit.Test;
 import com.google.gson.Gson;
 import com.amazonaws.lambda.demo.http.AddFeedbackRequest;
 import com.amazonaws.lambda.demo.http.AddFeedbackResponse;
+import com.amazonaws.lambda.demo.model.Feedback;
 
 /**
  * A simple test harness for locally invoking your Lambda function handler.
@@ -20,16 +21,17 @@ public class AddFeedbackHandlerTest extends LambdaTest {
     	String responseString = new Gson().toJson(resp);
     	System.out.println(responseString);
         Assert.assertEquals(200, resp.httpCode);
+        
     }
 
    
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
     public void testAddFeedback() {
-    	String choiceId = "db53342a-0511-4a4f-a705-1d4ff745baa1";
+    	String choiceId = "bbc653d7-c75c-4810-9dcf-06144b507eb1";
     	String name = "Vanessa";
-    	String altDesc = "Alt 1";
-    	String f = "feedback3";
+    	String altDesc = "country roads";
+    	String f = "banger";
     	
     	AddFeedbackRequest ccr = new AddFeedbackRequest(choiceId, altDesc, name, f);
         String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);

@@ -36,9 +36,9 @@ public class UnselectChoiceHandlerTest extends LambdaTest {
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
     public void testUnselectApprove() {
-    	String choiceId = "013788ea-614e-4628-ab83-4e0524084392";
-    	String name = "Zach";
-    	String altDesc = "gsal";
+    	String choiceId = "bbc653d7-c75c-4810-9dcf-06144b507eb1";
+    	String name = "Abby";
+    	String altDesc = "country roads";
     	
     	UnselectChoiceRequest ccr = new UnselectChoiceRequest(choiceId, name, altDesc);
         String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);
@@ -53,5 +53,24 @@ public class UnselectChoiceHandlerTest extends LambdaTest {
        
     }
     
+    // NOTE: this proliferates large number of constants! Be mindful
+    @Test
+    public void testUnselectDisapprove() {
+    	String choiceId = "bbc653d7-c75c-4810-9dcf-06144b507eb1";
+    	String name = "Vanessa";
+    	String altDesc = "country roads";
+    	
+    	UnselectChoiceRequest ccr = new UnselectChoiceRequest(choiceId, name, altDesc);
+        String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);
+        
+        System.out.println(SAMPLE_INPUT_STRING);
+        
+        try {
+        	testSuccessInput(SAMPLE_INPUT_STRING);
+        } catch (IOException ioe) {
+        	Assert.fail("Invalid:" + ioe.getMessage());
+        }
+       
+    }
    
 }

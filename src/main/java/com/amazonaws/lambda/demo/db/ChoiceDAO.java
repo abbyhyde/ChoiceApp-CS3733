@@ -365,7 +365,7 @@ public class ChoiceDAO {
             ps.setString(2, alt.description);
             ResultSet resultSet = ps.executeQuery();
             
-            Member member = feedback.getMember();
+            Member member = feedback.member;
             String memberId = (member.name + choice.choiceId);
             
             

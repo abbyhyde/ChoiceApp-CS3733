@@ -36,9 +36,9 @@ public class ApproveChoiceHandlerTest extends LambdaTest {
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
     public void testAddApprove() {
-    	String choiceId = "db53342a-0511-4a4f-a705-1d4ff745baa1";
-    	String name = "Vanessa";
-    	String altDesc = "Alt 1";
+    	String choiceId = "5caf6179-9c89-4cb4-b499-a229487489fb";
+    	String name = "Abby";
+    	String altDesc = "this is an alternative description";
     	
     	ApproveChoiceRequest ccr = new ApproveChoiceRequest(choiceId, name, altDesc);
         String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);

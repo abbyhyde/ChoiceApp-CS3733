@@ -26,9 +26,7 @@ public class Feedback{
 		
 		return false;  // not a Feedback
 	}
-	
-	public Member getMember() {return this.member;}
-	
+		
 	public String toString() {
 		return "Feedback(" + member.name + ": " + contents + ")";
 	}
