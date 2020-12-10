@@ -36,9 +36,16 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 		
 		// check if present
 		Choice exist = dao.getChoice(choiceId, logger);
-		logger.log(exist.description); //see if it actually got it
 		
-	
+		
+		if(exist == null) {
+			Choice c = new Choice();
+			c.choiceId = "455";
+			return c;
+		}
+		else {
+			logger.log(exist.description); //see if it actually got it
+		}
 		
 		Member member;
 		if (pass != null) {
@@ -102,6 +109,9 @@ public class ParticipateChoiceHandler implements RequestHandler<ParticipateChoic
 				}
 				else if (choice.choiceId.equals("444")) { //password doesnt match
 					response = new ParticipateChoiceResponse(444);
+				}
+				else if (choice.choiceId.equals("455")) { //choice does not exist
+					response = new ParticipateChoiceResponse(455);
 				}
 				else {
 					response = new ParticipateChoiceResponse(choice, 200);
