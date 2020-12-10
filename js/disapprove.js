@@ -100,35 +100,35 @@ function processDisapproveResponse(result) {
 		document.getElementById("feedbackForm5").disabled=true;
 		
 		if (chosenAlt.description == altsDesc[0]) {
-			document.getElementById("Alt1").style.background-color = "#63ff7b";
-			document.getElementById("Alt2").style.background-color = "#ff6f59";
-			document.getElementById("Alt3").style.background-color = "#ff6f59";
-			document.getElementById("Alt4").style.background-color = "#ff6f59";
-			document.getElementById("Alt5").style.background-color = "#ff6f59";
+			document.getElementById("Alt1").style.backgroundColor = "#63ff7b";
+			document.getElementById("Alt2").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt3").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt4").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt5").style.backgroundColor = "#ff6f59";
 		} else if (chosenAlt.description == altsDesc[1]) {
-			document.getElementById("Alt2").style.background-color = "#63ff7b";
-			document.getElementById("Alt1").style.background-color = "#ff6f59";
-			document.getElementById("Alt3").style.background-color = "#ff6f59";
-			document.getElementById("Alt4").style.background-color = "#ff6f59";
-			document.getElementById("Alt5").style.background-color = "#ff6f59";
+			document.getElementById("Alt2").style.backgroundColor = "#63ff7b";
+			document.getElementById("Alt1").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt3").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt4").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt5").style.backgroundColor = "#ff6f59";
 		} else if (chosenAlt.description == altsDesc[2]) {
-			document.getElementById("Alt3").style.background-color = "#63ff7b";
-			document.getElementById("Alt2").style.background-color = "#ff6f59";
-			document.getElementById("Alt1").style.background-color = "#ff6f59";
-			document.getElementById("Alt4").style.background-color = "#ff6f59";
-			document.getElementById("Alt5").style.background-color = "#ff6f59";
+			document.getElementById("Alt3").style.backgroundColor = "#63ff7b";
+			document.getElementById("Alt2").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt1").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt4").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt5").style.backgroundColor = "#ff6f59";
 		} else if (chosenAlt.description == altsDesc[3]) {
-			document.getElementById("Alt4").style.background-color = "#63ff7b";
-			document.getElementById("Alt2").style.background-color = "#ff6f59";
-			document.getElementById("Alt3").style.background-color = "#ff6f59";
-			document.getElementById("Alt1").style.background-color = "#ff6f59";
-			document.getElementById("Alt5").style.background-color = "#ff6f59";
+			document.getElementById("Alt4").style.backgroundColor = "#63ff7b";
+			document.getElementById("Alt2").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt3").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt1").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt5").style.backgroundColor = "#ff6f59";
 		}else if (chosenAlt.description == altsDesc[4]) {
-			document.getElementById("Alt5").style.background-color = "#63ff7b";
-			document.getElementById("Alt2").style.background-color = "#ff6f59";
-			document.getElementById("Alt3").style.background-color = "#ff6f59";
-			document.getElementById("Alt4").style.background-color = "#ff6f59";
-			document.getElementById("Alt1").style.background-color = "#ff6f59";
+			document.getElementById("Alt5").style.backgroundColor = "#63ff7b";
+			document.getElementById("Alt2").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt3").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt4").style.backgroundColor = "#ff6f59";
+			document.getElementById("Alt1").style.backgroundColor = "#ff6f59";
 		}
 	}
 
