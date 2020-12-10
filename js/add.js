@@ -7,61 +7,90 @@ function processAddResponse(result) {
   // contents dynamically via javascript
   console.log("result:" + result);
   var js = JSON.parse(result);
-
-  var choiceJSON = js["choice"];
-  var choiceId = choiceJSON["choiceId"];
-  var description = choiceJSON["description"];
-  var alternatives = choiceJSON["alternatives"];
-  var isComplete = choiceJSON["isCompleted"];
-  var chosenAlt = choiceJSON["altChosen"];
-  var alts = new Array();
-  var altsDesc = new Array();
-  var altsApprove = new Array();
-  var altsDisapprove = new Array();
-  var altsFeedback = new Array();
-  var altsFeedbackDate = new Array();
-  var altsFeedbackName = new Array();
-  var altsFeedbackContents = new Array();
-  	for(var i=0;i<alternatives.length;i++){
-  		var currentApprove = new Array();
-		var currentDisapprove = new Array();
-		var currentFeedback = new Array();
-		var currentFeedbackDate = new Array();
-		var currentFeedbackName = new Array();
-		var currentFeedbackContents = new Array();
-  		alts[i] = alternatives[i];
-  		altsDesc[i] = alternatives[i].description;
-		for (var j=0; j<alternatives[i].approvers.length; j++) {
-			currentApprove[j] = alternatives[i].approvers[j].name;
-		}
-		altsApprove[i] = currentApprove;
-		for (var j=0; j<alternatives[i].disapprovers.length; j++) {
-			currentDisapprove[j] = alternatives[i].disapprovers[j].name;
-		}
-		altsDisapprove[i] = currentDisapprove;
-		for (var j=0; j<alternatives[i].feedbacks.length; j++) {
-			currentFeedback[j] = alternatives[i].feedbacks[j];
-			currentFeedbackDate[j] = alternatives[i].feedbacks[j].timeMade;
-			currentFeedbackName[j] = alternatives[i].feedbacks[j].member.name;
-			currentFeedbackContents[j] = alternatives[i].feedbacks[j].contents;
-			//currentFeedback[j] = alternatives[i].feedbacks[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
-			
-		}
-		altsFeedback[i] = currentFeedback;
-		altsFeedbackDate[i] = currentFeedbackDate;
-		altsFeedbackName[i] = currentFeedbackName;
-		altsFeedbackContents[i] = currentFeedbackContents;
-  	}
-  
-  var maxNumMembers = choiceJSON["numMembers"];
-  var isCompleted = choiceJSON["isCompleted"];
   
   var status = js["httpCode"];
+
+	if (status == 420) {
+		document.getElementById("error").innerText = "Max members already registered for this choice";
+		document.getElementById("choice").style.visibility="hidden";
+		document.getElementById("Alt1").style.visibility="hidden";
+		document.getElementById("Alt2").style.visibility="hidden";
+		document.getElementById("Alt3").style.visibility="hidden";
+		document.getElementById("Alt4").style.visibility="hidden";
+		document.getElementById("Alt5").style.visibility="hidden";
+	}
+	if (status == 433) {
+		document.getElementById("error").innerText = "Choice has already been completed, cannot be registered";
+		document.getElementById("choice").style.visibility="hidden";
+		document.getElementById("Alt1").style.visibility="hidden";
+		document.getElementById("Alt2").style.visibility="hidden";
+		document.getElementById("Alt3").style.visibility="hidden";
+		document.getElementById("Alt4").style.visibility="hidden";
+		document.getElementById("Alt5").style.visibility="hidden";
+	}
+	if (status == 444) {
+		document.getElementById("error").innerText = "Password does not match";
+		document.getElementById("choice").style.visibility="hidden";
+		document.getElementById("Alt1").style.visibility="hidden";
+		document.getElementById("Alt2").style.visibility="hidden";
+		document.getElementById("Alt3").style.visibility="hidden";
+		document.getElementById("Alt4").style.visibility="hidden";
+		document.getElementById("Alt5").style.visibility="hidden";
+	}
   
   if (status == 200) {
     // Update computation result
     //document.addForm.result.value = computation
-    
+
+	  var choiceJSON = js["choice"];
+	  var choiceId = choiceJSON["choiceId"];
+	  var description = choiceJSON["description"];
+	  var alternatives = choiceJSON["alternatives"];
+	  var isComplete = choiceJSON["isCompleted"];
+	  var chosenAlt = choiceJSON["altChosen"];
+	  var alts = new Array();
+	  var altsDesc = new Array();
+	  var altsApprove = new Array();
+	  var altsDisapprove = new Array();
+	  var altsFeedback = new Array();
+	  var altsFeedbackDate = new Array();
+	  var altsFeedbackName = new Array();
+	  var altsFeedbackContents = new Array();
+	  	for(var i=0;i<alternatives.length;i++){
+	  		var currentApprove = new Array();
+			var currentDisapprove = new Array();
+			var currentFeedback = new Array();
+			var currentFeedbackDate = new Array();
+			var currentFeedbackName = new Array();
+			var currentFeedbackContents = new Array();
+	  		alts[i] = alternatives[i];
+	  		altsDesc[i] = alternatives[i].description;
+			for (var j=0; j<alternatives[i].approvers.length; j++) {
+				currentApprove[j] = alternatives[i].approvers[j].name;
+			}
+			altsApprove[i] = currentApprove;
+			for (var j=0; j<alternatives[i].disapprovers.length; j++) {
+				currentDisapprove[j] = alternatives[i].disapprovers[j].name;
+			}
+			altsDisapprove[i] = currentDisapprove;
+			for (var j=0; j<alternatives[i].feedbacks.length; j++) {
+				currentFeedback[j] = alternatives[i].feedbacks[j];
+				currentFeedbackDate[j] = alternatives[i].feedbacks[j].timeMade;
+				currentFeedbackName[j] = alternatives[i].feedbacks[j].member.name;
+				currentFeedbackContents[j] = alternatives[i].feedbacks[j].contents;
+				//currentFeedback[j] = alternatives[i].feedbacks[j].timeMade.concat("  ", alternatives[i].feedback[j].name, "   ", alternatives[i].feedback[j].contents);
+				
+			}
+			altsFeedback[i] = currentFeedback;
+			altsFeedbackDate[i] = currentFeedbackDate;
+			altsFeedbackName[i] = currentFeedbackName;
+			altsFeedbackContents[i] = currentFeedbackContents;
+	  	}
+  
+  var maxNumMembers = choiceJSON["numMembers"];
+  var isCompleted = choiceJSON["isCompleted"];
+    document.getElementById("choice").style.visibility="visible";
+	document.getElementById("error").innerText = "";
     //this is where you output all of the values from the variables above
     document.getElementById("choiceId").innerText = choiceId;
     document.getElementById("choiceDesc").innerText = description;
@@ -130,7 +159,39 @@ function processAddResponse(result) {
 			document.getElementById("Alt4").style.backgroundColor = "#ff6f59";
 			document.getElementById("Alt1").style.backgroundColor = "#ff6f59";
 		}
+	} else {
+		document.getElementById("Picked1B").disabled=false;
+		document.getElementById("approve1B").disabled=false;
+		document.getElementById("disapprove1B").disabled=false;
+		document.getElementById("feedbackForm1").disabled=false;
+		
+		document.getElementById("Picked2B").disabled=false;
+		document.getElementById("approve2B").disabled=false;
+		document.getElementById("disapprove2B").disabled=false;
+		document.getElementById("feedbackForm2").disabled=false;
+		
+		document.getElementById("Picked3B").disabled=false;
+		document.getElementById("approve3B").disabled=false;
+		document.getElementById("disapprove3B").disabled=false;
+		document.getElementById("feedbackForm3").disabled=false;
+		
+		document.getElementById("Picked4B").disabled=false;
+		document.getElementById("approve4B").disabled=false;
+		document.getElementById("disapprove4B").disabled=false;
+		document.getElementById("feedbackForm4").disabled=false;
+		
+		document.getElementById("Picked5B").disabled=false;
+		document.getElementById("approve5B").disabled=false;
+		document.getElementById("disapprove5B").disabled=false;
+		document.getElementById("feedbackForm5").disabled=false;
+		
+		document.getElementById("Alt1").style.backgroundColor = "white";
+		document.getElementById("Alt2").style.backgroundColor = "white";
+		document.getElementById("Alt3").style.backgroundColor = "white";
+		document.getElementById("Alt4").style.backgroundColor = "white";
+		document.getElementById("Alt5").style.backgroundColor = "white";
 	}
+	
 
 	if (altsDesc[0] == null) {
 		document.getElementById("Alt1").style.visibility="hidden"; 
@@ -386,8 +447,6 @@ function handleAddClick(e) {
     } else {
       processAddResponse("N/A");
     }
-	document.getElementById("choice").style.visibility="visible";
- 	document.getElementById("memberName").innerText = name;
-
+	document.getElementById("memberName").innerText = name;
   };
 }
